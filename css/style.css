@@ -1,0 +1,293 @@
+/* Algemeen */
+
+body {
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+    height: auto;
+}
+
+@font-face {
+    font-family: 'League Spartan';
+    src: url(../media/LeagueSpartan-Bold.otf);
+}
+
+/* Header, Logo en menu*/
+
+
+
+.nav {
+    background-color: #0096E6;
+    height: auto;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.nav ul {
+    display: flex;
+    display: -webkit-flex;
+    text-align: center;
+    height: 4em;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav li {
+    width: 100%;
+    height: 100%;
+}
+
+.nav li:hover {
+    background-color: grey;
+    font-size: 1.2em;
+}
+
+.nav ul li a {
+    color: #ecf0f1;
+    font-size: 1em;
+    font-family: 'Lato';
+    font-weight: 200;
+    display: block;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    text-decoration: none;
+    font-weight: 300;
+}
+
+.nav li a:hover {
+    text-decoration: none;
+}
+
+/* Network-lines animation */
+.animation {
+    height: 100vh;
+    background-color: #FEFEFE;
+    background-image: url(../media/skyline.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: table;
+    width: 100%;
+    text-shadow: 0 1px 3px rgba(0,0,0,1);
+}
+
+.animation h1 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 4em;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0.5em;
+    color: rgba(255,255,255,1);
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    position: absolute;
+}
+
+.container-img {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+}
+
+img.logo-img {
+    display: block;
+    margin: 0 auto;
+    width: 30%;
+    height: auto;
+    top: 18%;
+    position: relative;
+    z-index: 10000;
+}
+
+h1 {
+    font-family: 'Lato';
+    padding: 0;
+    margin: 0;
+    color: #5E5B5B;
+    padding-top: 1.3em;
+    padding-bottom: 0.2em;
+    height: auto;
+    font-weight: 700;
+    font-size: 2.5em;
+    width: 100%;
+}
+
+h2 {
+    font-family: 'Lato';
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 0;
+    color: #5E5B5B;
+    font-weight: 300;
+    padding-bottom: 3em;
+    font-size: 1.5em;
+}
+
+p {
+    font-family: 'Lato';
+    font-weight: 300;
+}
+
+article {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    float: left;    
+}
+
+.article-text {
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    float: left;
+    height: auto;
+    flex-direction: column;
+}
+
+.article-text p {
+    font-size: 1.375em;
+    max-width: 25em;
+    line-height: 1.5;
+    color: #5E5B5B;
+    padding: 5%;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.vision-item {
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: white;
+    float: left;
+    min-height: 33em;
+    margin: 0;
+}
+
+section img {
+    padding-bottom: 1em;
+    padding-top: 1em;
+    width: 10em;
+    height: 10em;
+}
+
+section h3 {
+    text-align: center;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    font-family: 'Lato';
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    color: #5E5B5B;
+}
+
+.line {
+    width: 20px;
+    border: 2px solid #5E5B5B;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.article-line {
+    margin-bottom: 5em;
+}
+
+.vision-item p {
+    text-align: center;
+    max-width: 25em;
+    min-height: 12em;
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 1em;
+    line-height: 1.5;
+    color: #5E5B5B;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 0;
+    margin: 0;
+    
+}
+
+.use-cases {
+    background-color: #F2F2F2;
+}
+
+.contribute-item p {
+    min-height: 6em;
+}
+
+
+.contribute-item img {
+    width: 8em;
+    height: 8em;
+}
+
+.contribute-item a {
+    font-weight: 400;
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    border: 2px solid #666666;
+    border-radius: 3px;
+    color: white;
+    background-color: rgba(102, 102, 102, 1);
+    text-decoration: none;
+    letter-spacing: 4px;
+    width: 50%;
+    height: auto;
+    font-family: 'Lato'
+}
+
+.contribute-item a:hover {
+    background-color: white;
+    color: rgba(102, 102, 102, 1);
+}
+
+.contribute-item a:active {
+    background-color: rgba(102, 102, 102, 1);
+    color: white;
+}
+
+@media screen and (min-width: 650px) {
+.contribute-item {
+    width: 50%;
+    }
+
+    
+.contribute-item p {
+    min-height: 11em;
+}
+    
+    
+}
+
+@media screen and (min-width: 900px) {
+
+.vision-item {
+    width: 33.33333333%;
+}
+
+.contribute-item {
+    width: 25%;
+}
+
+.contribute-item p {
+    min-height: 17em;
+}
+    
+}
+
