@@ -13,9 +13,6 @@ body {
 }
 
 /* Header, Logo en menu*/
-
-
-
 .nav {
     background-color: #0096E6;
     height: auto;
@@ -107,20 +104,18 @@ img.logo-img {
     z-index: 10000;
 }
 
-h1 {
+h2 {
     font-family: 'Lato';
     padding: 0;
-    margin: 0;
+    margin: 0 0 30px;
     color: #5E5B5B;
-    padding-top: 1.3em;
-    padding-bottom: 0.2em;
     height: auto;
     font-weight: 700;
     font-size: 2.5em;
     width: 100%;
 }
 
-h2 {
+h3 {
     font-family: 'Lato';
     padding-left: 5%;
     padding-right: 5%;
@@ -131,11 +126,6 @@ h2 {
     font-size: 1.5em;
 }
 
-p {
-    font-family: 'Lato';
-    font-weight: 300;
-}
-
 article {
     width: 100%;
     text-align: center;
@@ -143,38 +133,23 @@ article {
     float: left;    
 }
 
-.article-text {
-    display: -webkit-flex;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
-    float: left;
-    height: auto;
-    flex-direction: column;
+.block {
+    padding: 60px 0;
 }
 
-.article-text p {
-    font-size: 1.375em;
-    max-width: 25em;
-    line-height: 1.5;
+p {
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 1.2em;
+    max-width: 70%;
+    margin: 0 auto;
+    line-height: 1.8;
     color: #5E5B5B;
-    padding: 5%;
-    padding-top: 0;
-    padding-bottom: 0;
+    margin-bottom: 30px;
 }
 
-.vision-item {
-    display: -webkit-flex;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    background-color: white;
-    float: left;
-    min-height: 33em;
-    margin: 0;
+p:last-child {
+    margin-bottom: 0;
 }
 
 section img {
@@ -182,18 +157,6 @@ section img {
     padding-top: 1em;
     width: 10em;
     height: 10em;
-}
-
-section h3 {
-    text-align: center;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    font-family: 'Lato';
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 1.2em;
-    color: #5E5B5B;
 }
 
 .line {
@@ -207,23 +170,11 @@ section h3 {
     margin-bottom: 5em;
 }
 
-.vision-item p {
-    text-align: center;
-    max-width: 25em;
-    min-height: 12em;
-    font-family: 'Lato';
-    font-weight: 300;
-    font-size: 1em;
-    line-height: 1.5;
-    color: #5E5B5B;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 0;
-    margin: 0;
-    
+h4 {
+    text-transform: uppercase;
 }
 
-.use-cases {
+#use-cases {
     background-color: #F2F2F2;
 }
 
