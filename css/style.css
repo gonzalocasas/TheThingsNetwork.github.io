@@ -8,102 +8,111 @@ body {
 }
 
 @font-face {
-    font-family: 'League Spartan';
-    src: url(../media/LeagueSpartan-Bold.otf);
-}
-
-/* Header, Logo en menu*/
-.nav {
-    background-color: #0096E6;
-    height: auto;
-    width: 100%;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-
-.nav ul {
-    display: flex;
-    display: -webkit-flex;
-    text-align: center;
-    height: 4em;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.nav li {
-    width: 100%;
-    height: 100%;
-}
-
-.nav li:hover {
-    background-color: grey;
-    font-size: 1.2em;
-}
-
-.nav ul li a {
-    color: #ecf0f1;
-    font-size: 1em;
     font-family: 'Lato';
-    font-weight: 200;
-    display: block;
-    padding-top: 18px;
-    padding-bottom: 18px;
-    text-decoration: none;
-    font-weight: 300;
-}
-
-.nav li a:hover {
-    text-decoration: none;
+    src: url(../fonts/Lato-Semibold.ttf);
 }
 
 /* Network-lines animation */
 .animation {
     height: 100vh;
-    background-color: #FEFEFE;
+    background-color: rgba(0,0,0, 0.77);
     background-image: url(../media/skyline.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-blend-mode: darken;
     display: table;
     width: 100%;
-    text-shadow: 0 1px 3px rgba(0,0,0,1);
+    /*text-shadow: 0 1px 3px rgba(0,0,0,1);*/
 }
 
 .animation h1 {
-    text-transform: uppercase;
     text-align: center;
-    font-size: 4em;
+    font-size: 3em;
     width: 100%;
     height: auto;
-    position: absolute;
-    bottom: 0.5em;
+    font-family: 'Lato';
+    padding-top: 0.5em;
     color: rgba(255,255,255,1);
+    z-index: 2;
+}
+
+.animation h2 {
+    color: white;
+    font-size: 1.8em;
+    font-family: 'Lato';
+    font-weight: 300;
+    text-align: center;
+}
+
+.center-title {
+    margin-top: 2em;
+    width: 12em;
+    height: 0.1em;
+    background-color: white;
+}
+.animation p  {
+    padding-top: 2em;
+    text-align: center;
+}
+
+.animation a {
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    background-color: white;
+    border-radius: 6px;
+    margin: 0.5em;
+    font-family: 'Lato';
+    font-size: 1.2em;
+    color: darkslategrey;
+    text-shadow: none;
+    font-weight: 600;
+    position: relative;
+    z-index: 100000000000;
+    text-decoration: none;
+    border: 2px solid white;
+    -webkit-transition: all 0.5s ease-in-out;
+}
+
+.animation a:first-child:hover {
+    background: none;
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.animation a:last-child {
+    background: none;
+    border: 2px solid white;
+    color: white;
+}
+
+.animation a:last-child:hover {
+    background: white;
+    transition-duration: 0.5s;
+    border: 2px solid white;
+    color: darkslategrey;
 }
 
 canvas {
     width: 100%;
     height: 100%;
-    opacity: 0.7;
+    opacity: 0.1;
     position: absolute;
+    top: 0;
 }
 
-.container-img {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-}
 
 img.logo-img {
     display: block;
     margin: 0 auto;
-    width: 30%;
+    padding-top: 3em;
+    width: 13%;
     height: auto;
-    top: 18%;
-    position: relative;
     z-index: 10000;
+    position: relative;
 }
-
+/* Different Headers/Paragraphs and re-usable articles */
 h2 {
     font-family: 'Lato';
     padding: 0;
@@ -124,6 +133,19 @@ h3 {
     font-weight: 300;
     padding-bottom: 3em;
     font-size: 1.5em;
+    width: 100;
+}
+
+h4 {
+    font-family: 'Lato';
+}
+
+h5 {
+    font-family: 'Lato';
+}
+
+h6 {
+    font-family: 'Lato';
 }
 
 article {
@@ -134,13 +156,13 @@ article {
 }
 
 .block {
-    padding: 60px 0;
+    padding: 30px 0;
 }
 
 p {
     font-family: 'Lato';
     font-weight: 300;
-    font-size: 1.2em;
+    font-size: 1.4em;
     max-width: 70%;
     margin: 0 auto;
     line-height: 1.8;
@@ -148,13 +170,8 @@ p {
     margin-bottom: 30px;
 }
 
-p:last-child {
-    margin-bottom: 0;
-}
-
 section img {
-    padding-bottom: 1em;
-    padding-top: 1em;
+    padding: 1em;
     width: 10em;
     height: 10em;
 }
@@ -174,14 +191,73 @@ h4 {
     text-transform: uppercase;
 }
 
-#use-cases {
+/* PAGE 1 WHAT WE DO */
+#whatwedo {
+    min-height: 30em;
+    width: 100%;
+    margin: 0;
     background-color: #F2F2F2;
 }
 
-.contribute-item p {
-    min-height: 6em;
+.intro-text {
+    width: 100%;
+    float: left;
+    max-width: 50%;
+    height: 26em;
+    display: table;
 }
 
+.intro-text-content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.media-container {
+    width: 100%;
+    float: left;
+    max-width: 48%;
+    padding: 3em;
+    height: 26em;    
+    background-image: url(../media/internetofthings.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: dodgerblue;
+}
+
+/* PAGE USE CASES */
+
+#use-cases {
+    background-color: #F2F2F2;
+}
+.usecase-item {
+    padding-top: 5em;
+    padding-bottom: 5em;
+    background-color: #F2F2F2;
+}
+
+.usecase-item img {
+    width: 20em;
+    height: 20em;
+    background-color: yellow;
+}
+
+.usecase-item h4 {
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+/* CONTRIBUTE PAGE */
+
+.contribute-item p {
+    min-height: 20em;
+    margin-top: 1.5em;
+    margin-bottom: 0;
+}
+
+.contribute-item h4 {
+    min-height: 2em;
+}
 
 .contribute-item img {
     width: 8em;
@@ -198,9 +274,9 @@ h4 {
     background-color: rgba(102, 102, 102, 1);
     text-decoration: none;
     letter-spacing: 4px;
-    width: 50%;
+    width: 10em;
     height: auto;
-    font-family: 'Lato'
+    font-family: 'Lato';
 }
 
 .contribute-item a:hover {
@@ -213,32 +289,393 @@ h4 {
     color: white;
 }
 
-@media screen and (min-width: 650px) {
-.contribute-item {
-    width: 50%;
-    }
-
-    
-.contribute-item p {
-    min-height: 11em;
-}
-    
-    
-}
-
-@media screen and (min-width: 900px) {
+/* PAGE VISION */
 
 .vision-item {
-    width: 33.33333333%;
+    padding-top: 3em;
+}
+
+.vision-item p {
+    font-size: 1.2em;
+}
+
+/* PAGE TEAM */
+.diagonal {
+    width: 100%;
+    height: auto;
+    border-style: solid;
+    border-width: 0 0 80px 98vw;
+    border-color: transparent transparent #4183D7 transparent;
+}
+
+#team {
+    text-align: center;
+    background-color: #4183D7;
+    padding-bottom: 4em;
+}
+.team-item {
+    width: 50%;
+    height: auto;
+    text-align: center;
+    float: left;
+    margin: 0;
+}
+
+#team h4 {
+    font-size: 1.1em;
+}
+
+#team h4 {
+    text-transform: none;
+    font-size: 2em;
+    color: white;
+}
+
+#team h2 {
+    color: white;
+}
+
+#team h5 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 1.3em;
+}
+
+.team-item img {
+    height: auto;
+    width: 40%;
+    border-radius: 50%;
+}
+
+.other-teams {
+    display: none;
+    float: left;
+    width: 100%;
+    padding-top: 2em;
+}
+
+.other-teams h6 {
+    padding: 1.5em;
+    border-right: 2px solid white;
+    color: white;
+    font-size: 1.2em;
+}
+
+.other-teams h6:last-child {
+    border: none;
+}
+
+/* PARTNERS & CONTRIBUTORS */
+.founding-partner {
+    background-color: #F2F2F2;
+}
+
+.founding-partner h2 {
+    width: 50%;
+    float: left;
+    height: auto;
+    padding: 1.5em;
+    margin: 0 auto;
+}
+
+.next-logo {
+    width: 50%;
+    float: left;
+    background-image: url(../media/TNW.png);
+    height: 10em;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.our-contributors {
+    background-color: white;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.company-logo {
+    width: 14.2857%;
+    height: 10em;
+    margin: 0;
+    float: left;
+}
+
+/* LOGO'S OF PARTNERS & CONTRIBUTORS*/
+
+.company-logo {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90%;
+    -webkit-filter: grayscale(1);
+    filter: gray;
+    -webkit-transition: all .2s ease-in-out;
+}
+
+.company-logo:hover {
+    -webkit-filter: grayscale(0);
+    background-size: 95%;
+}
+
+#logo1 {
+    background-image: url(../media/rockstart.png);
+}
+
+#logo2 {
+    background-image: url(../media/Bovendebalie.png);
+}
+
+#logo3 {
+    background-image: url(../media/thenextweb.png);
+}
+
+#logo4 {
+    background-image: url(../media/disrupted%20VC.png);
+}
+
+#logo5 {
+    background-image: url(../media/meetberlage.png);
+}
+
+#logo6 {
+    background-image: url(../media/a%20lab.png);
+}
+
+#logo7 {
+    background-image: url(../media/kpmg.png);
+}
+
+.partner-logo {
+    background-image: url(../media/meetberlage.png);
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 14.2857%;
+    height: 10em;
+    display: block;
+    margin: 0 auto;
+    filter: grey;
+    -webkit-filter: grayscale(1);
+    -webkit-transition: all 0.2s ease-in-out;
+    margin-bottom: 2em;
+}
+
+.partner-logo:hover {
+    filter: none;
+    -webkit-filter: grayscale(0);
+    background-size: 95%
+}
+
+.footer {
+    height: 4em;
+    padding-top: 1.5em;
+    background-color: #6C7A89;
+    color: white;
+    font-family: 'Lato';
+    letter-spacing: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,207cca+37,207cca+37,2989d8+50,7db9e8+100 */
+background: #1e5799; /* Old browsers */
+background: -moz-linear-gradient(45deg,  #1e5799 0%, #207cca 37%, #207cca 37%, #2989d8 50%, #7db9e8 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#1e5799), color-stop(37%,#207cca), color-stop(37%,#207cca), color-stop(50%,#2989d8), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(45deg,  #1e5799 0%,#207cca 37%,#207cca 37%,#2989d8 50%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(45deg,  #1e5799 0%,#207cca 37%,#207cca 37%,#2989d8 50%,#7db9e8 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(45deg,  #1e5799 0%,#207cca 37%,#207cca 37%,#2989d8 50%,#7db9e8 100%); /* IE10+ */
+background: linear-gradient(45deg,  #1e5799 0%,#207cca 37%,#207cca 37%,#2989d8 50%,#7db9e8 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+
+
+/* TABLET CHANGES*/
+@media screen 
+  and (min-width: 700px) 
+  and (max-width: 1050px) {
+      
+.contribute-item {
+    width: 100%;
+    padding: 0;
+    display: inline-block;
+}
+      
+.contribute-item p {
+    min-height: 1px;
+}
+    
+.contribute-item a {
+    margin-bottom: 4em;
+    margin-top: 2em;
+}
+      
+.company-logo {
+    width: 25%;
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+      
+.partner-logo {
+    width: 25%;
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+}
+
+
+/* SPECIFIC CHANGES FOR USECASES*/
+
+@media screen and (min-width: 900px) {
+    
+.usecase-item img {
+    float: left;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+    
+.usecase-item h4 {
+    float: left;
+    text-align: left;
+    width: 20em;
+}
+
+.usecase-item p { 
+    width: 30em;
+    padding-top: 1em;
+    text-align: left;
+    float: left;
+}
+}
+
+
+/* MOBILE*/
+
+@media screen and (max-width: 699px) {
+.team-item {
+    width: 100%;
+    margin-top: 5em;
+}
+    
+.team-item img {
+    width: 60%;
+}
+
+img.logo-img {
+    width: 50%;
+}
+  
+.animation h1 {
+    font-size: 2em;
+}
+    
+.animation h2 {
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.animation a {
+    display: block;
+}
+
+.animation a:last-child {
+    background-color: transparent;
+    margin-bottom: 2em;
+}
+    
+canvas {
+    opacity: 0;
+}
+    
+.animation p {
+    padding-top: 5px;
 }
 
 .contribute-item {
-    width: 25%;
+    padding-top: 4em;
 }
 
-.contribute-item p {
-    min-height: 17em;
+.contribute-item:nth-child(2) {
+    padding-top: 0;
 }
     
+.contribute-item p {
+    min-height: 1px;
+}
+    
+.contribute-item a {
+    margin-top: 1.5em;
+}
+    
+.usecase-item img {
+    width: 60%;
+    height: auto;
+}
+    
+#whatwedo section {
+    min-width: 100%;
 }
 
+.intro-text {
+    height: auto;
+}
+
+.media-container {
+    background-size: 80%;
+    background-color: transparent;
+}
+    
+.company-logo {
+    width: 50%;
+    filter: none;
+    -webkit-filter: grayscale(0);
+    margin-top: 2em;
+}
+
+.partner-logo {
+    width: 50%;
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+    
+.founding-partner h2 {
+    width: 100%;
+    font-size: 2em;
+    padding: 1em;
+
+}
+    
+.next-logo {
+    width: 100%;
+    background-size: 50%;
+}
+    
+
+/*Negative spaces at Usecases & Vision-items*/
+    
+@media screen and (max-width: 900px) {
+.usecase-item {
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+.usecase-item:nth-child(7) {
+    padding-bottom: 6em;
+}
+    
+.vision-item {
+    padding-top: 3em;
+}
+    
+.vision-item:nth-child(2) {
+    padding-top: 4em;
+}
+}

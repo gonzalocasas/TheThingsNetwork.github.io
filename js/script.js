@@ -1,12 +1,19 @@
 console.log("hello");
 
 $(function(fade) {
-$(".welcome").hide(0).delay(0).fadeIn(1500);
+$(".welcome").hide(0).delay(0).fadeIn(5000);
 });
 
 $(function(jump) {
 $(".logo-img").hide(0).delay(0).fadeIn(2000);
 });
+
+$(function(scroll) {
+$('a').butterScroll({
+    speed: 2000,
+});
+});
+
 
 $(function(particles){
 $(".animation").jParticle({
@@ -55,10 +62,6 @@ $(".animation").jParticle({
 });
 });
 
-$(function(stickUp) {
-$(".nav").stickUp();
-
-});
 
 
 
