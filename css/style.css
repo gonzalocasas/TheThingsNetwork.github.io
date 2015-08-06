@@ -175,7 +175,24 @@ section img {
     width: 10em;
     height: 10em;
 }
+.button {
+    font-family: 'Lato';
+    padding: 1.5em;
+    border: 2px solid #5E5B5B;
+    position: relative;
+    color: #5E5B5B;
+    font-size: 1.2em;
+    font-weight: 600;
+    top: 1.3em; 
+    -webkit-transition: all 0.5s ease-in-out;
+    text-transform: uppercase;
+}
 
+.button:hover {
+    text-decoration: none;
+    background-color: #5E5B5B;
+    color: #F2F2F2;
+}
 .line {
     width: 20px;
     border: 2px solid #5E5B5B;
@@ -229,6 +246,13 @@ h4 {
 
 #use-cases {
     background-color: #F2F2F2;
+    padding-bottom: 0;
+    height: auto;
+    padding-bottom: 6em;
+}
+
+#use-cases .button {
+    
 }
 .usecase-item {
     padding-top: 5em;
@@ -236,10 +260,41 @@ h4 {
     background-color: #F2F2F2;
 }
 
+
+.water-detector, .rhino-finder {
+    background-color: white;
+
+}
+/*
+.water-detector {
+    background-image: url(../media/boat.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-color: rgba(0,0,0, 0.6);
+    background-blend-mode: darken;
+}
+*/
+
+.water-detector img {
+    background-image: url(../media/boat.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.bike-finder img {
+    background-image: url(../media/bicycles.jpg);
+    background-size: cover;
+}
+
+.rhino-finder img {
+    background-image: url(../media/rhino.jpg);
+    background-size: cover;
+    background-position: 35%;
+}
 .usecase-item img {
     width: 20em;
     height: 20em;
-    background-color: yellow;
+    background-color: white;
 }
 
 .usecase-item h4 {
@@ -299,6 +354,60 @@ h4 {
     font-size: 1.2em;
 }
 
+.splitter {
+    border-color: rgba(102, 102, 102, 0.6);
+    width: 30%;
+}
+/* PAGE BUILDING THE NETWORK */
+.building {
+    background-image: url(../media/amsterdam5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+    background-color: rgba(0,0,0, 0.90);
+    background-blend-mode: darken;
+    background-position: center;
+    padding-bottom: 6em;
+}
+
+.building h2 {
+    color: white;
+}
+
+.building p {
+    color: white;
+    text-align: left;
+    font-size: 1.3em;
+}
+
+.letsbuild {
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: white;
+    font-size: 1.2em;
+    padding: 0.6em;
+    border: none;
+    border-radius: 2px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: auto;
+}
+
+.fat {
+    font-weight: 400;
+}
+
+.building a {
+    color: white;
+    border: 2px solid white;
+}
+
+.building a:hover {
+    color: rgba(0,0,0, 0.9);
+    background-color: #F2F2F2;
+}
+
 /* PAGE TEAM */
 .diagonal {
     width: 100%;
@@ -313,6 +422,7 @@ h4 {
     background-color: #4183D7;
     padding-bottom: 4em;
 }
+
 .team-item {
     width: 50%;
     height: auto;
@@ -327,7 +437,7 @@ h4 {
 
 #team h4 {
     text-transform: none;
-    font-size: 2em;
+    font-size: 1.4em;
     color: white;
 }
 
@@ -339,38 +449,79 @@ h4 {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 700;
-    font-size: 1.3em;
+    font-size: 1em;
 }
 
 .team-item img {
     height: auto;
-    width: 40%;
+    width: 34%;
     border-radius: 50%;
 }
 
-.other-teams {
-    display: none;
+.rest-of-team {
+    background-color: #4183D7;
+    height: auto;
+    padding-bottom: 8em;
+}
+
+.team-members {
     float: left;
+    height: auto;
     width: 100%;
-    padding-top: 2em;
+    margin: 0;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    padding-bottom: 3em;
 }
 
-.other-teams h6 {
-    padding: 1.5em;
-    border-right: 2px solid white;
-    color: white;
+.team-member {
+    width: 25%;
+    display: inline-block;
+    margin: 0;
+    height: auto;
+    float: left;    
+}
+
+.team-member img {
+    width: 14em;
+    height: 14em;
+}
+
+.team-member h5 {
+    font-family: 'Lato';
     font-size: 1.2em;
+    font-weight: 300;
+    margin-top: 1px;
+    margin-bottom: 30px;
 }
 
-.other-teams h6:last-child {
-    border: none;
+.rest-of-team p {
+    color: white;
+    font-weight: 400;
+    font-size: 1.6em;
 }
+
+.rest-of-team a {
+    top: 2em;
+    border-color: white;
+    color: white;
+}
+
+.rest-of-team a:hover {
+    background-color: white;
+    color: #4183D7;
+}
+
 
 /* PARTNERS & CONTRIBUTORS */
 .founding-partner {
     background-color: #F2F2F2;
 }
 
+#contributors {
+    display: none;
+}
 .founding-partner h2 {
     width: 50%;
     float: left;
@@ -446,13 +597,24 @@ h4 {
     background-image: url(../media/kpmg.png);
 }
 
+/* PAGE PARTNER */
+
+.partner {
+    background-color: #F2F2F2;
+    padding-bottom: 9em;
+}
+
+.partner h2 {
+    padding-top: 1em;
+}
+
 .partner-logo {
     background-image: url(../media/meetberlage.png);
     background-size: 90%;
     background-repeat: no-repeat;
     background-position: center;
-    width: 14.2857%;
-    height: 10em;
+    width: 33%;
+    height: 15em;
     display: block;
     margin: 0 auto;
     filter: grey;
@@ -467,6 +629,9 @@ h4 {
     background-size: 95%
 }
 
+.partner a {
+    top: 2.2em;
+}
 .footer {
     height: 4em;
     padding-top: 1.5em;
@@ -529,12 +694,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', end
     filter: none;
     -webkit-filter: grayscale(0);
 }
+    
+.team-member {
+    width: 33.3333333%;
+}
 }
 
 
 /* SPECIFIC CHANGES FOR USECASES*/
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1000px) {
     
 .usecase-item img {
     float: left;
@@ -656,6 +825,20 @@ canvas {
 .next-logo {
     width: 100%;
     background-size: 50%;
+}
+
+p {
+    max-width: 90%;
+}
+    
+.usecase-item img {
+    width: 90%;
+    height: 20em;
+}
+    
+.team-member {
+    width: 50%;
+}
 }
     
 
