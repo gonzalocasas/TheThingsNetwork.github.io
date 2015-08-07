@@ -15,7 +15,7 @@ body {
 /* Network-lines animation */
 .animation {
     height: 100vh;
-    background-color: rgba(0,0,0, 0.77);
+    background-color: rgba(0,0,0, 0.60);
     background-image: url(../media/skyline.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -106,7 +106,7 @@ canvas {
 img.logo-img {
     display: block;
     margin: 0 auto;
-    padding-top: 3em;
+    padding-top: 9em;
     width: 13%;
     height: auto;
     z-index: 10000;
@@ -282,7 +282,6 @@ h4 {
     background-size: 85%;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: dodgerblue;
     margin-top: 5em;
     margin-bottom: 5em;
 }
@@ -533,6 +532,7 @@ h4 {
 .team-member img {
     width: 14em;
     height: 14em;
+    border-radius: 50%;
 }
 
 .team-member h5 {
@@ -637,12 +637,14 @@ h4 {
     background-position: center;
     width: 33%;
     height: 18em;
-    display: block;
+    display: inline-block;
     margin: 0 auto;
     -webkit-transition: all 0.2s ease-in-out;
     margin-bottom: 2em;
 }
-
+#peerby {
+    background-image: url(../media/peerby.png);
+}
 .partner-logo:hover {
     filter: none;
     -webkit-filter: grayscale(0);
@@ -860,13 +862,13 @@ input:focus {
 }
       
 .company-logo {
-    width: 25%;
+    width: 14.2857%;
     filter: none;
     -webkit-filter: grayscale(0);
 }
       
 .partner-logo {
-    width: 25%;
+    width: 60%;
     filter: none;
     -webkit-filter: grayscale(0);
 }
@@ -938,6 +940,7 @@ input:focus {
 }
 
 img.logo-img {
+    padding-top: 2em;
     width: 50%;
 }
   
@@ -1008,11 +1011,11 @@ canvas {
     width: 50%;
     filter: none;
     -webkit-filter: grayscale(0);
-    margin-top: 2em;
+    
 }
 
 .partner-logo {
-    width: 50%;
+    width: 75%;
 }
     
 .founding-partner h2 {
@@ -1045,7 +1048,7 @@ p {
 }
 
 .footer p {
-    font-size: 0.8em;
+    font-size: 0.6em;
 }
 
 #myModal h4 {
