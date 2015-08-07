@@ -25,10 +25,7 @@
                     </p>
                 </div>
             </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+
 
 
             
@@ -260,14 +257,16 @@ We believe the abundance we are creating will lead to exponential innovation fro
                 </section>
                 
                 <p>Will you be the next member of our team?</p>
-                <a href="#" class="button">Join our team</a>
+                <button type="button" class="btn btn-primary btn-lg" id="join-button" data-toggle="modal" data-target="#joinTeam">Join our team</button>
+                
             </article>   
             
-<article class="founding-partner">
-                <section class="nextweb">
+            <article class="partner">
+                
                     <h2>Founding media partner</h2>
-                    <div class="next-logo"></div>
-                </section>
+                        <div class="partner-logo nextweb"></div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac elit est. Integer turpis tellus, cursus eget justo nec, commodo ornare sem. Mauris nunc eros, pellentesque sit amet massa ac, suscipit ullamcorper nibh. Mauris hendrerit porttitor neque. Integer quis suscipit ex. Morbi mauris odio, placerat sed hendrerit commodo, iaculis vel massa. Phasellus arcu arcu, ornare vitae dui in, pellentesque lacinia turpis.</p>
+                
             </article>
             
             <article class="our-contributors block">
@@ -279,6 +278,8 @@ We believe the abundance we are creating will lead to exponential innovation fro
                     <a href="http://www.meetberlage.com"><div class="company-logo" id="logo5"></div></a>
                     <a href="http://www.a-lab.com"><div class="company-logo" id="logo6"></div></a>
                     <a href="http://www.kpmg.com"><div class="company-logo" id="logo7"></div></a>
+                
+                        <aside><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac elit est. Integer turpis tellus, cursus eget justo nec, commodo ornare sem. Mauris nunc eros, pellentesque sit amet massa ac, suscipit ullamcorper nibh. Mauris hendrerit porttitor neque. Integer quis suscipit ex. Morbi mauris odio, placerat sed hendrerit commodo, iaculis vel massa. Phasellus arcu arcu, ornare vitae dui in, pellentesque lacinia turpis.</p></aside>
             </article>
             
             <article class="partner">         
@@ -286,12 +287,59 @@ We believe the abundance we are creating will lead to exponential innovation fro
                     <div class="partner-logo"></div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac elit est. Integer turpis tellus, cursus eget justo nec, commodo ornare sem. Mauris nunc eros, pellentesque sit amet massa ac, suscipit ullamcorper nibh. Mauris hendrerit porttitor neque. Integer quis suscipit ex. Morbi mauris odio, placerat sed hendrerit commodo, iaculis vel massa. Phasellus arcu arcu, ornare vitae dui in, pellentesque lacinia turpis.</p>
                     
-                    <a href="#" class="button">How to become an integrator?</a>
+                    <button type="button" class="btn btn-primary btn-lg" id="button-TTN" data-toggle="modal" data-target="#myModal">
+  How to become an integrator
+</button>
             </article>
             
-            <article class="footer"><a href="http://www.wearesmiths.com">2015 - Created by The Smiths</a></article>
+<article class="footer"><p><span class="top-line">Copyright 2015 </span><span class="top-line" id="second-top-line"> The Things Network </span> <a href="http://www.wearesmiths.com">Made by The Smiths</a></p></article>
         
-    
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Become an integrator</h4>
+      </div>
+      <div class="modal-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac elit est. Integer turpis tellus, cursus eget justo nec, commodo ornare sem. Mauris nunc eros, pellentesque sit amet massa ac, suscipit ullamcorper nibh. Mauris hendrerit porttitor neque. Integer quis suscipit ex. Morbi mauris odio, placerat sed hendrerit commodo, iaculis vel massa. Phasellus arcu arcu, ornare vitae dui in, pellentesque lacinia turpis.</p>
+      </div>
+      <div class="modal-footer">
+          <form>
+            <input type="email" name="email" placeholder="Enter your email address">
+        </form>
+        
+        <button type="button" class="btn btn-primary" id="subscribe">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="joinTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Join our team</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you as motivated as us when it comes to building a new open network? Leave your email address here and we will contact you as soon as possible.</p>
+      </div>
+      <div class="modal-footer">
+        <form>
+  
+  <input type="email" name="email" placeholder="Enter your email address">
+</form>
+        
+        <button type="button" class="btn btn-primary" id="subscribe">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</div>
     </main>
     </body>
 

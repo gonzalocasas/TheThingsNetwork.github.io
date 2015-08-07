@@ -208,6 +208,49 @@ h4 {
     text-transform: uppercase;
 }
 
+#button-TTN {
+    font-family: 'Lato';
+    padding: 1.5em;
+    border: 2px solid #5E5B5B;
+    position: relative;
+    color: #5E5B5B;
+    font-size: 1.2em;
+    font-weight: 600;
+    top: 1.3em; 
+    -webkit-transition: all 0.5s ease-in-out;
+    text-transform: uppercase;
+    border-radius: 0px;
+    background-color: transparent;
+}
+
+#button-TTN:hover {
+    text-decoration: none;
+    background-color: #5E5B5B;
+    color: #F2F2F2;
+}
+
+#join-button {
+    font-family: 'Lato';
+    padding: 1.5em;
+    border: 2px solid white;
+    position: relative;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    top: 1.3em; 
+    -webkit-transition: all 0.5s ease-in-out;
+    text-transform: uppercase;
+    border-radius: 0px;
+    background-color: transparent;
+}
+
+#join-button:hover {
+    text-decoration: none;
+    background-color: white;
+    color: #4183D7;
+}
+
+.
 /* PAGE 1 WHAT WE DO */
 #whatwedo {
     min-height: 30em;
@@ -413,7 +456,7 @@ h4 {
     width: 100%;
     height: auto;
     border-style: solid;
-    border-width: 0 0 80px 98vw;
+    border-width: 0 0 80px 97vw;
     border-color: transparent transparent #4183D7 transparent;
 }
 
@@ -502,42 +545,10 @@ h4 {
     font-size: 1.6em;
 }
 
-.rest-of-team a {
-    top: 2em;
-    border-color: white;
-    color: white;
-}
-
-.rest-of-team a:hover {
-    background-color: white;
-    color: #4183D7;
-}
-
-
 /* PARTNERS & CONTRIBUTORS */
-.founding-partner {
-    background-color: #F2F2F2;
-}
 
 #contributors {
     display: none;
-}
-.founding-partner h2 {
-    width: 50%;
-    float: left;
-    height: auto;
-    padding: 1.5em;
-    margin: 0 auto;
-}
-
-.next-logo {
-    width: 50%;
-    float: left;
-    background-image: url(../media/TNW.png);
-    height: 10em;
-    background-size: 40%;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .our-contributors {
@@ -553,6 +564,11 @@ h4 {
     float: left;
 }
 
+.our-contributors aside {
+    float: left;
+    padding-top: 2em;
+    
+}
 /* LOGO'S OF PARTNERS & CONTRIBUTORS*/
 
 .company-logo {
@@ -601,7 +617,7 @@ h4 {
 
 .partner {
     background-color: #F2F2F2;
-    padding-bottom: 9em;
+    padding-bottom: 6.5em;
 }
 
 .partner h2 {
@@ -609,16 +625,14 @@ h4 {
 }
 
 .partner-logo {
-    background-image: url(../media/meetberlage.png);
+    background-image: url(../media/qwiksense.png);
     background-size: 90%;
     background-repeat: no-repeat;
     background-position: center;
     width: 33%;
-    height: 15em;
+    height: 18em;
     display: block;
     margin: 0 auto;
-    filter: grey;
-    -webkit-filter: grayscale(1);
     -webkit-transition: all 0.2s ease-in-out;
     margin-bottom: 2em;
 }
@@ -629,19 +643,19 @@ h4 {
     background-size: 95%
 }
 
-.partner a {
-    top: 2.2em;
+.nextweb {
+    background-image: url(../media/TNW.png);
 }
+
 .footer {
-    height: 4em;
-    padding-top: 1.5em;
+    height: auto;
     background-color: #6C7A89;
     color: white;
     font-family: 'Lato';
     letter-spacing: 3px;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 1.2em;
+    font-size: 1em;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,207cca+37,207cca+37,2989d8+50,7db9e8+100 */
 background: #1e5799; /* Old browsers */
 background: -moz-linear-gradient(45deg,  #1e5799 0%, #207cca 37%, #207cca 37%, #2989d8 50%, #7db9e8 100%); /* FF3.6+ */
@@ -651,7 +665,21 @@ background: -o-linear-gradient(45deg,  #1e5799 0%,#207cca 37%,#207cca 37%,#2989d
 background: -ms-linear-gradient(45deg,  #1e5799 0%,#207cca 37%,#207cca 37%,#2989d8 50%,#7db9e8 100%); /* IE10+ */
 background: linear-gradient(45deg,  #1e5799 0%,#207cca 37%,#207cca 37%,#2989d8 50%,#7db9e8 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
 
+.footer p {
+    font-family: 'Lato';
+    font-weight: 500;
+    font-size: 1em;
+    color: white;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 0 auto;
+}
+
+.top-line {
+    border-right: 1px solid white;
+    margin-right: 10px;
 }
 
 .footer a {
@@ -659,10 +687,152 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', end
     text-decoration: none;
 }
 
+/* MODAL */
+.modal {
+    z-index: 1000000000000000000000000000000000000000000000;
+}
+.modal-content {
+    background-image: url(../media/amsterdam4.jpg);
+    background-color: rgba(0,0,0,0.87);
+    background-blend-mode: darken;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.modal h4 {
+    font-size: 2em;
+}
+
+.modal p {
+    color: white;
+    padding-top: 2em;
+    font-weight: 400;
+    
+}
+
+.close {
+   font-size: 50px; 
+    font-weight: 100;
+    opacity: 1;
+    color: white;
+}
+form {
+    text-align: left;
+    width: 70%;
+    color: white;
+    font-family: 'Lato';
+    font-size: 1.2em;
+    float: left; 
+    text-transform: uppercase;
+
+}
+
+input {
+    width: 100%;
+    margin-left: 5%;
+    color: black;
+    border-radius: 0px;
+    border: none;
+    height: 3em;
+    background-color: rgba(255,255,255, 1);
+    padding-left: 1em;
+
+}
+
+input:focus {
+    outline: none;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+#subscribe {
+    font-family: 'Lato';
+    background-color: transparent;
+    border: 2px solid white;
+    padding: 1em;
+    border-radius: 0;
+    text-transform: uppercase;
+}
+
+#subscribe:hover {
+    background-color: white;
+    color: black;
+}
+
+.modal-header {
+    border-radius: inherit;
+    background-color: rgba(255,255,255, 0.33);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    color: white;
+    border: none;
+}
+
+.modal-backdrop {
+    opacity: 0.77 !important;
+}
+
+.modal-footer {
+    border: none;
+    background-color: rgba(255,255,255, 0.33);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
 
 
 
+/* MODAL version 2 */
+ #joinTeam .modal-content {
+     border-radius: 0;
+     background-image: none;
+     background-color: white;
+     max-height: 45em;
+     
+}
 
+#joinTeam .modal-header {
+    color: grey;
+    width: auto;
+    height: 5em;
+    background-color: orange;
+}
+#joinTeam form {
+    color: black;
+    width: 100%;
+    display: block;
+    margin-bottom: 1em;
+}
+#joinTeam p {
+    color: black;
+}
+#joinTeam input {
+    border: 3px solid orange;
+    width: 100%;
+    color: black;
+    padding: 0;
+    margin: 0;
+    padding-left: 1em;
+}
+
+#joinTeam #subscribe {
+    display: block;
+    width: 100%;
+    background-color: orange;
+}
+#joinTeam .close {
+    z-index: 400;
+    color: white;
+    
+
+}
+#joinTeam h4 {
+    color: white;    
+}
+
+
+
+    
 /* TABLET CHANGES*/
 @media screen 
   and (min-width: 700px) 
@@ -729,6 +899,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', end
 /* MOBILE*/
 
 @media screen and (max-width: 699px) {
+    
+#button-TTN {
+    font-size: 1em;
+}
+
+.team-member img {
+    width: 90%;
+    height: auto;
+}
+    
+.team-member h5 {
+    font-size: 1em;
+    color: white;
+}
+
+.team-member:last-child {
+    display: none;
+}
+
 .team-item {
     width: 100%;
     margin-top: 5em;
@@ -811,8 +1000,6 @@ canvas {
 
 .partner-logo {
     width: 50%;
-    filter: none;
-    -webkit-filter: grayscale(0);
 }
     
 .founding-partner h2 {
@@ -839,8 +1026,54 @@ p {
 .team-member {
     width: 50%;
 }
+    
+.footer {
+    font-size: 1em;
+}
+
+.footer p {
+    font-size: 0.8em;
+}
+#myModal h4 {
+    font-size: 1.7em;
 }
     
+#second-top-line {
+    border: none;
+}
+    
+#myModal .close {
+    font-size: 3em;
+}
+#myModal p {
+    line-height: 1.4em;
+    font-size: 1.3em;
+    
+}
+    
+#myModal form {
+    display: block;
+    width: 100%;
+}
+
+#myModal input {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 1em;
+    text-align: center;
+    
+}
+
+#myModal input:focus {
+    text-align: left;
+}
+#myModal #subscribe {
+    display: block;
+    width: 100%;
+}
+    
+    
+}
 
 /*Negative spaces at Usecases & Vision-items*/
     
