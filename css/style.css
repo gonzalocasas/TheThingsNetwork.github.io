@@ -347,7 +347,10 @@ h4 {
 }
 
 /* CONTRIBUTE PAGE */
-
+.contribute-item {
+    padding-bottom: 4em;
+    
+}
 .contribute-item p {
     min-height: 20em;
     margin-top: 1.5em;
@@ -363,30 +366,6 @@ h4 {
     height: 8em;
 }
 
-.contribute-item a {
-    font-weight: 400;
-    padding-top: 0.6em;
-    padding-bottom: 0.6em;
-    border: 2px solid #666666;
-    border-radius: 3px;
-    color: white;
-    background-color: rgba(102, 102, 102, 1);
-    text-decoration: none;
-    letter-spacing: 4px;
-    width: 10em;
-    height: auto;
-    font-family: 'Lato';
-}
-
-.contribute-item a:hover {
-    background-color: white;
-    color: rgba(102, 102, 102, 1);
-}
-
-.contribute-item a:active {
-    background-color: rgba(102, 102, 102, 1);
-    color: white;
-}
 
 /* PAGE VISION */
 #vision {
@@ -453,6 +432,23 @@ h4 {
     color: rgba(0,0,0, 0.9);
     background-color: #F2F2F2;
 }
+
+
+/* PAGE HOW TO CONNECT TO THE NETWORK */
+
+.how-to-connect {
+    background-color: #2f2f2f;
+}
+
+.how-to-connect h2 {
+    color: white;
+}
+
+.how-to-connect p {
+    color: white;
+}
+
+
 
 /* PAGE TEAM */
 .diagonal {
@@ -542,9 +538,11 @@ h4 {
     margin-top: 1px;
     margin-bottom: 30px;
     color: white;
-    text-transform: 
 }
 
+#new-member {
+    border-radius: 0;
+}
 .rest-of-team p {
     color: white;
     font-weight: 400;
@@ -552,10 +550,6 @@ h4 {
 }
 
 /* PARTNERS & CONTRIBUTORS */
-
-#contributors {
-    display: none;
-}
 
 .our-contributors {
     background-color: white;
@@ -642,9 +636,11 @@ h4 {
     -webkit-transition: all 0.2s ease-in-out;
     margin-bottom: 2em;
 }
+
 #peerby {
     background-image: url(../media/peerby.png);
 }
+
 .partner-logo:hover {
     filter: none;
     -webkit-filter: grayscale(0);
@@ -655,6 +651,54 @@ h4 {
     background-image: url(../media/TNW.png);
 }
 
+/* PAGE TESTIMONIALS */
+.testimonials {
+    background-color: #F2F2F2;
+}
+
+.testimonial-item {
+    width: 50%;
+    float: left;
+    padding-bottom: 2em;
+    padding-top: 2em;
+}
+
+.testimonial-item img {
+    float: left;
+    width: 10em;
+    height: 10em;
+    padding: 0;
+    margin-left: 5%;
+    border-radius: 50%;
+}
+
+.testimonial-item p {
+    float: left;
+    width: 60%;
+    padding-left: 5%;
+    text-align: left;
+    font-size: 1.2em;
+    line-height: 1.6em;
+    display: block;
+}
+
+
+.testimonial-item p span {
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #4183D7;
+    line-height: 1.3em;
+}
+
+#sentence2 {
+    display: block;
+    font-size: 0.7em;
+    color: #5E5B5B;
+    
+}
+
+/* FOOTER */
 .footer {
     height: auto;
     background-color: #6C7A89;
@@ -850,17 +894,15 @@ input:focus {
     width: 100%;
     padding: 0;
     display: inline-block;
+    margin-bottom: 8em;
 }
+      
       
 .contribute-item p {
     min-height: 1px;
+    padding-bottom: 2em;
 }
     
-.contribute-item a {
-    margin-bottom: 4em;
-    margin-top: 2em;
-}
-      
 .company-logo {
     width: 14.2857%;
     filter: none;
@@ -908,6 +950,11 @@ input:focus {
 
 @media screen and (max-width: 699px) {
 
+.testimonial-item {
+    width: 100%;
+}
+    
+    
 .splitter {
     margin-top: 4em;
 }
@@ -982,10 +1029,7 @@ canvas {
     min-height: 1px;
 }
     
-.contribute-item a {
-    margin-top: 1.5em;
-}
-    
+  
 .usecase-item img {
     width: 60%;
     height: auto;
