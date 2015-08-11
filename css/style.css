@@ -303,7 +303,9 @@ h4 {
     padding-bottom: 5em;
     background-color: #F2F2F2;
 }
-
+.usecase-item a {
+    font-size: 0.8em;
+}
 
 .water-detector, .rhino-finder {
     background-color: white;
@@ -447,9 +449,38 @@ h4 {
 .how-to-connect p {
     color: white;
 }
+#mc_embed_signup form {
+    width: 100%;
+    float: left;
+    padding: 0;
+    margin: 0;
+    text-align: center; 
+    
+}
+#mc_embed_signup h2 {
+    font-size: 1em;
+    padding-top: 1em;
+}
+#mc_embed_signup input {
+    width: 50%;
+    padding: 14px;
+    margin-left: 0;
+}
 
+#mc-embedded-subscribe {
+    margin-bottom: 2em;
+    font-size: 1em;
+    background-color: inherit;
+    border-color: white;
+    color: white;
+    
+}
 
-
+#mc-embedded-subscribe:hover {
+    background-color: white;
+    color: #2f2f2f;
+    
+}
 /* PAGE TEAM */
 .diagonal {
     width: 100%;
@@ -783,7 +814,7 @@ form {
 input {
     width: 100%;
     margin-left: 5%;
-    color: black;
+    color: #2f2f2f;
     border-radius: 0px;
     border: none;
     height: 3em;
@@ -861,7 +892,7 @@ input:focus {
 #joinTeam input {
     border: 3px solid orange;
     width: 100%;
-    color: black;
+    color: #2f2f2f;
     padding: 0;
     margin: 0;
     padding-left: 1em;
@@ -942,7 +973,9 @@ input:focus {
     padding-top: 1em;
     text-align: left;
     float: left;
+    line-height: 1.4em;
 }
+
 }
 
 
