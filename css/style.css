@@ -303,8 +303,12 @@ h4 {
     padding-bottom: 5em;
     background-color: #F2F2F2;
 }
+
+.usecase-item p {
+    font-size: 1.2em;
+}
 .usecase-item a {
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .water-detector, .rhino-finder {

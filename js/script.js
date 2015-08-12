@@ -1,72 +1,59 @@
 console.log("hello");
 
 $(function(fade) {
-$(".welcome").hide(0).delay(0).fadeIn(5000);
+$(".container-img").hide(0).delay(0).fadeIn(2000);
 });
 
-$(function(jump) {
-$(".logo-img").hide(0).delay(0).fadeIn(2000);
-});
 
-$(function(scroll) {
+$(function scroll (scroll) {
 $('a').butterScroll({
     speed: 2000,
 });
 });
 
+$(function(){
+    $(".animation").jParticle({
 
-$(function(particles){
-$(".animation").jParticle({
-        
     // number of particles
-    particlesNumber: 100,
+        particlesNumber: 100,
 
 
-// Distance where link is full opacity
-    linkDist: 50,
+    // Distance where link is full opacity
+        linkDist: 50,
 
-// Distance where particles start linking.
-    createLinkDist: 120,
+    // Distance where particles start linking.
+        createLinkDist: 120,
 
-// disable links between particles
-    disableLinks: false,
+    // disable links between particles
+        disableLinks: false,
 
-// disable mouse interaction
-    disableMouse: false,
+    // disable mouse interaction
+        disableMouse: false,
 
-// background color
-    background: 'transparent',
+    // background color
+        background: 'transparent',
 
-// Particles and links color.
-    color: 'white',
+    // Particles and links color.
+        color: 'white',
 
-// container's width/height
-    width: 1280,
-    height: 637,
+    // container's width/height
+        width: 1280,
+        height: 637,
 
-// Links width in pixels
-    linksWidth: 1,
+    // Links width in pixels
+        linksWidth: 1,
 
-    particle: {
+        particle: {
 
-  // Particles color.
-        color: "white",
+      // Particles color.
+            color: "white",
 
-  // min / max size
-        minSize: 2,
-        maxSize: 8,
+      // min / max size
+            minSize: 2,
+            maxSize: 8,
 
-  // animation speed
-        speed: 30
-    }
+      // animation speed
+            speed: 30
+        }
+    });
 });
-});
-
-
-
-
-
-
-
-
-
