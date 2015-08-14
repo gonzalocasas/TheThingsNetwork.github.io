@@ -802,6 +802,9 @@ h4 {
     margin-bottom: 2em;
     border-radius: 50%;
 }
+.quote p:nth-child(1) {
+    font-style: italic;
+}
 
 #peerby {
     background-image: url(../media/peerby.png);
