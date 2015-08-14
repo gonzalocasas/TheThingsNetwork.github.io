@@ -1,16 +1,22 @@
 console.log("hello");
-
+/*
 $(function(fade) {
-$(".container-img").hide(0).delay(0).fadeIn(2000);
+$(".container-img").hide(0).delay(0).fadeIn(1000);
 });
-
+*/
 
 $(function scroll (scroll) {
-$('a').butterScroll({
-    speed: 2000,
+$('#learn-more-button').butterScroll({
+    speed: 1800,
 });
 });
 
+$(function scroll (scroll) {
+$('#contribute-button').butterScroll({
+    speed: 1500,
+});
+});
+/*
 $(function(){
     $(".animation").jParticle({
 
@@ -57,3 +63,4 @@ $(function(){
         }
     });
 });
+*/
