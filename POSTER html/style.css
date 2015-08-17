@@ -1,0 +1,437 @@
+body {
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background-image: url(skyline.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0, 0.60);
+    background-blend-mode: darken;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+main {
+    
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    color: white;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+p {
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-family: 'Lato', sans-serif;
+    color: white;
+    margin: 0;
+}
+
+#conference {
+    padding-top: 1.5em;
+}
+.small {
+    display: none;
+}
+span {
+    font-weight: 800;
+}
+
+h1 {
+    padding-top: 1em;
+
+}
+
+hr {
+    width: 40%;
+    margin-top: 1.5em;
+}
+
+section {
+    margin: 0;
+    padding-top: 3em;
+    float: left;
+}
+
+#program {
+    width: 50%;
+    padding-left: 5%;
+}
+
+#participants {
+    width: 40%;
+    
+}
+
+section h2 {
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 2em;
+    width: auto;
+    padding-bottom: 0.6em;
+}
+
+.underline {
+    border-bottom: 2px solid white;
+}
+
+section p {
+    text-align: left;
+    padding: 0;
+    font-size: 1em;
+    display: inline;
+}
+
+.time {
+    font-size: 1.7em;
+    padding-right: 0.5em;
+    line-height: 1.4em;
+}
+
+
+.button-parent {
+    width: 100%;
+    text-align: center;
+    padding-top: 0;
+}
+
+a {
+    display: block;
+    text-align: center;
+    font-family: 'Lato';
+    color: white;
+    border: 2px solid white;
+    text-decoration: none;
+    padding: 0.5em;
+    width: 8em;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 1px
+}
+
+#meeting {
+    text-align: center;
+    font-size: 2em;
+}
+
+a:hover {
+    color: darkslategray;
+    background-color: white;
+}
+
+.logo {
+    display: inline-block;
+    float: left;
+    width: 25%;
+    height: 6em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.logo {
+    background-size: 90%;;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.logo:first-child {
+    background-image: url(logos/tnw%20hi%20res.png);
+}
+
+.logo:nth-child(2) {
+    background-image: url(logos/kpmg.png);
+}
+
+.logo:nth-child(3) {
+    background-image: url(logos/rockstart.png);
+}
+
+.logo:nth-child(4) {
+    background-image: url(logos/Bovendebalie.png);
+}
+
+.logo:nth-child(5) {
+    background-image: url(logos/glimworm%20beacons.png)
+}
+
+.logo:nth-child(6) {
+    background-image: url(logos/hoosjebootje.png);
+}
+
+.logo:nth-child(7) {
+    background-image: url(logos/messagebird.png);
+}
+
+.logo:nth-child(8) {
+    background-image: url(logos/port%20of%20amsterdam.png);
+}
+
+.logo:nth-child(9) {
+    background-image: url(logos/trakkies.png);
+}
+
+.logo:nth-child(10) {
+    background-image: url(logos/kerlink.png)
+}
+
+.logo:nth-child(11) {
+    background-image: url(logos/sodaq.png);
+    background-size: 5em;
+}
+
+.logo:nth-child(12) {
+    background-image: url(logos/waag.png);
+    background-size: 5em;
+}
+
+.logo:nth-child(13) {
+    background-image: url(logos/robots%20to%20the%20rescue.png);
+}
+
+.logo:nth-child(14) {
+    background-image: url(logos/peerby.png);
+    background-size: 5em;
+}
+
+.logo:nth-child(15) {
+    background-image: url(logos/wesharesolar.gif);
+    background-size: 6em;
+}
+
+.logo:nth-child(16) {
+}
+
+.footer {
+    width: 100%;
+    padding-top: 0;
+}
+.rockstart {
+    border: none;
+    display: inline;
+    text-transform: none;
+    font-size: inherit;
+    letter-spacing: normal;
+}
+
+.rockstart:hover {
+    background-color: transparent;
+    color: lightgrey;
+}
+
+.footer-border {
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 3em;
+}
+.footer-border2 {
+    width: 40%;
+    margin-bottom: 2em;
+}
+#hackathon {
+    background-color: white;
+    opacity: 0.98;
+    padding: 1em;
+    border-radius: 3px;
+    width: 70%;
+    border: 1px solid #F2F2F2;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+#hackathon h3 {
+    color: #172727;
+    display: inline-block;
+    float: left;
+}
+
+#hackathon p {
+    color: #172727;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    min-width: 30em;
+    font-weight: 700;
+}
+
+#hackathon p:last-child {
+    font-size: 1em;
+    display: block;
+    text-transform: none;
+    font-weight: 500;
+    min-width: 1px;
+    text-align: center;
+}
+
+#hackathon hr {
+    width: 80%;
+    border: 1px solid #F2F2F2;
+    margin-top: 1em;
+}
+
+.until {
+    font-weight: 300;
+    font-size: 0.8em;
+}
+
+.location {
+    text-align: left;
+    margin: 0 auto;
+    display: block;
+    width: 30%;
+    margin-bottom: 1em;
+}
+.button-parent h1 {
+    padding-bottom: 1em;
+    font-size: 2em;
+}
+
+
+.location h3 {
+    display: inline;
+    text-transform: uppercase;
+    font-size: 1.4em;
+}
+
+.location span {
+    display: block;
+    font-size: 0.9em;
+}
+
+@media screen and (max-width: 767px) {
+.small {
+    display: block;
+    width: 20%;
+    opacity: 0.3;
+}
+    
+#program {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    padding-top: 4em;
+}
+
+.time {
+    font-size: 1.7em;
+    line-height: 2em;
+    
+}
+    
+#program p {
+    font-size: 1em;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    display: block;
+    
+}
+
+#program h2 {
+    padding-left: 5%;
+    text-align: center;
+}
+    
+#participants h2 {
+    text-align: center;
+}
+    
+#participants {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    padding-top: 4em;
+    
+}
+    
+    
+#participants h2 {
+    padding-left: 5%;
+}
+    
+.logo {
+    margin: 0;
+    padding: 0;
+    width: 33.33333333333333%;
+    height: 8em;
+    b
+    ackground-size: 8em;
+}
+    
+#hackathon {
+    margin: 0 auto;
+    margin-top: 2.5em;
+    
+}
+    
+#hackathon p {
+    text-align: left;
+    padding-top: 12px;
+    min-width: 1px;
+}
+    
+#hackathon h3 {
+}
+    
+.location {
+    width: 80%;
+}
+.button-parent hr {
+    width: 80%;
+}
+}
+
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) {
+    
+#program {
+    width: 100%;
+    padding: 0;
+    padding-top: 4em;
+}
+
+#program h2 {
+    padding-left: 5%;
+}
+    
+#program p {
+    padding-left: 5%;
+}
+    
+#participants {
+    width: 100%;
+}
+    
+#participants h2 {
+    padding-left: 5%;
+}
+.logo {
+    padding-bottom: 3em;
+}
+.logos {
+    padding-left: 5%;
+    padding-right: 5%;
+    
+}
+    
+#hackathon {
+    margin-left: 5%;
+    width: 60%;
+}
+    
+#hackathon p {
+    padding-left: 0;
+}
+    
+.location {
+    width: 60%;
+    }
+}
