@@ -5,16 +5,19 @@ $(".container-img").hide(0).delay(0).fadeIn(1000);
 });
 */
 
-$(function scroll (scroll) {
 $('#learn-more-button').butterScroll({
-    speed: 1800,
-});
+    speed: 1000,
+    container: null
 });
 
-$(function scroll (scroll) {
 $('#contribute-button').butterScroll({
     speed: 1500,
+    container: null
 });
+
+$('#to-gateways').butterScroll({
+    speed: 1000,
+    container: null
 });
 /*
 $(function(){
@@ -63,4 +66,5 @@ $(function(){
         }
     });
 });
+
 */
