@@ -19,6 +19,11 @@ $('#to-gateways').butterScroll({
     speed: 1000,
     container: null
 });
+
+$('#to-gateways2').butterScroll({
+    speed: 1000,
+    container: null
+});
 /*
 $(function(){
     $(".animation").jParticle({

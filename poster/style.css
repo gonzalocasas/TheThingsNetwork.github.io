@@ -136,6 +136,7 @@ a:hover {
     height: 6em;
     text-align: center;
     vertical-align: middle;
+    padding-bottom: 3em;
 }
 
 .logo {
@@ -245,6 +246,8 @@ a:hover {
     width: 70%;
     border: 1px solid #F2F2F2;
     box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 #hackathon h3 {

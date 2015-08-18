@@ -281,7 +281,7 @@ h4 {
     min-height: 30em;
     width: 100%;
     margin: 0;
-    background-color: #F2F2F2;
+    background-color: white;
 }
 
 .intro-text {
@@ -446,6 +446,13 @@ h4 {
 
 .vision-item p {
     font-size: 1.2em;
+}
+
+.vision-image {
+   font-size: 9em;
+    height: 1.3em;
+    color: 
+    
 }
 
 .splitter {
@@ -1212,7 +1219,7 @@ input:focus {
 }
 
 .gateway-image {
-    background-image: url(../media/kerlinklora.png);
+    background-image: url(../media/kerlink%20lora%20iot.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 90%;
@@ -1226,7 +1233,11 @@ input:focus {
 }
 
 #multitech {
-    background-image: url(../media/multi.png);
+    background-image: url(../media/multi%20gateway.png);
+}
+
+#last-gateway .gateway-image {
+    background-image: url(../media/The%20Things%20Uitlijning.svg);
 }
 
 .gateway-type p {
@@ -1288,7 +1299,6 @@ input:focus {
     display: block;
     margin: 0 auto;
     border-radius: 50%;
-    background-color: #F2F2F2;
     width: 50%;
     height: auto;
 }
@@ -1310,7 +1320,10 @@ input:focus {
     border-radius: 0;
     
 }
-
+#new-member-button {
+    background-color: transparent;
+    border: none;
+}
 #moreInfo2 input {
     border: 2px solid #5E5B5B;
     width: 18em;
@@ -1568,10 +1581,10 @@ input:focus {
 
 img.logo-img {
     padding-top: 2em;
-    width: 50%;
+    width: 40%;
     border-radius: 50%;
 }
-  
+
 .animation h1 {
     font-size: 2em;
 }
