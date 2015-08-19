@@ -290,6 +290,7 @@ h4 {
     max-width: 50%;
     height: 36em;
     display: table;
+
 }
 
 .intro-text-content {
@@ -301,14 +302,13 @@ h4 {
     width: 100%;
     float: left;
     max-width: 48%;
-    padding: 3em;
-    height: 26em;    
+    height: 33em;    
     background-image: url(../media/internetofthings.png);
     background-size: 85%;
     background-repeat: no-repeat;
     background-position: center;
-    margin-bottom: 5em;
-    margin-top: 5em;
+    margin-bottom: 2em;
+    margin-top: 2em;
 }
 
 
@@ -802,7 +802,7 @@ h4 {
 }
 
 .company-logo {
-    width: 12.5%;
+    width: 16.6666667%;
     height: 10em;
     margin: 0;
     float: left;
@@ -903,7 +903,13 @@ h4 {
 #logo15 {
     background-image: url(../media/deloitte.png);
 }
+#logo16 {
+    background-image: url(../media/uncinc.png);
+}
 
+#logo17 {
+    background-image: url(../media/bright.png);
+}
 
 /* PAGE PARTNER */
 
@@ -1360,6 +1366,47 @@ input:focus {
     color: #5E5B5B;
 }
 
+
+#moreInfo3 h4 {
+    color: #5E5B5B;
+}
+
+#moreInfo3 p {
+    color: #5E5B5B;
+}
+
+#moreInfo3 .close {
+    color: #5E5B5B;
+}
+
+#moreInfo3 .modal-header {
+    border-bottom: 2px solid #F2F2F2;
+}
+
+#moreInfo3 input {
+    border: 2px solid #F2F2F2;
+    width: 20em;
+    color: #5E5B5B;
+}
+
+#moreInfo3 .clear input {
+    background: #5E5B5B;
+    border-color: #5E5B5B;
+    color: white;
+}
+
+#moreInfo3 .clear input:hover {
+    color: #5E5B5B;
+    background: white;
+    border-color: #5E5B5B;
+}
+
+.contribute-item #moreInfobutton {
+    top: 0;
+    padding: 1.4em;
+    font-size: 1.2em;
+}
+
 /* TABLET CHANGES*/
 @media screen 
   and (min-width: 700px) 
@@ -1676,7 +1723,9 @@ canvas {
     background-color: transparent;
     margin-top: 0;
     margin-bottom: 0;
+
 }
+    
     
 .company-logo {
     width: 50%;
@@ -1870,4 +1919,34 @@ p {
 }
 
 
+@media screen and (min-width: 700px)
+    and (max-width: 1150px) {
+    .intro-text {
+    min-width: 100%;
+    float: left;
+    display: table;
 
+}
+
+.intro-text-content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.media-container {
+    float: left;
+    height: 33em;
+    min-width: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-image: url(../media/internetofthings.png);
+    background-size: 85%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+        
+        
+        
+    }
