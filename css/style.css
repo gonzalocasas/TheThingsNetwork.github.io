@@ -807,7 +807,9 @@ h4 {
     margin: 0;
     float: left;
 }
-
+aside {
+    width: 100%;
+}
 .our-contributors aside {
     float: left;
     padding-top: 2em;
