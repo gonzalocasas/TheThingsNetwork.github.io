@@ -10,7 +10,7 @@ body {
 }
 .background {
     position: absolute;
-    
+
 }
 h1 {
     font-family: 'Lato';
@@ -37,19 +37,19 @@ h1 {
     border: 1px solid #F2F2F2;
     opacity: 0.96;
     margin-bottom: 4em;
-    
+
 }
 span {
     text-transform: uppercase;
     font-weight: 600;
-    
-    
+
+
 }
 form {
     width: 60%;
     margin: 0 auto;
     font-family: 'Lato';
-    
+
 }
 
 input {
@@ -66,11 +66,11 @@ input {
     display: inline-block;
     float: left;
     width: 100%;
-    
+
 }
 
 .clear {
-    
+
 }
 .button {
     margin-top: 0.5em;
@@ -80,7 +80,7 @@ input {
     border: 2px solid white;
    width: 100%;
     padding: 5%;
-    
+
 }
 
 article {
@@ -97,7 +97,7 @@ section {
     color: #4A4A4A;
     border-radius: 3px;
     margin-bottom: 2em;
-    
+
 }
 
 section p {
@@ -120,6 +120,7 @@ section p {
     top: 15px;
     right: 15px;
     width: 12em;
+    z-index: 100;
 }
 
 hr {
@@ -183,14 +184,14 @@ section h3:last-child {
     text-align: center;
     height: auto;
     padding-bottom: 1em;
-    
+
 }
 
 section h3:last-child hr {
     margin-top: 0;
     margin-bottom: 1em;
     border-color: #F2F2F2;
-    
+
 }
 
 #last-product-section p {
@@ -199,7 +200,7 @@ section h3:last-child hr {
 
 #last-product-section h1 {
     margin-right: 0;
-    
+
 }
 
 #last-product-section .product-image {
@@ -214,51 +215,51 @@ section h3:last-child hr {
     article {
         padding-top: 2em;
     }
-    
-    
+
+
     section {
         width: 100%;
         margin-bottom: 2em;
     }
-    
+
     section p {
         margin-right: 0;
         height: auto;
         padding-top: 1em;
         padding-bottom: 1em;
     }
-    
+
     section h1 {
         margin-right: 0;
     }
-    
+
     section h3 {
         margin-right: 0;
         padding-top: 1em;
         padding-bottom: 1em;
     }
-    
+
     section h3:last-child {
         height: auto;
     }
-    
+
     .product-image {
         margin-right: 0;
     }
-    
+
     .container {
         width: 90%;
         padding: 0;
     }
-    
+
     .container p {
         font-weight: 300;
         padding: 5%;
     }
-    
+
     #kickstart {
         width: 5em;
-        
-        
+
+
     }
 }
