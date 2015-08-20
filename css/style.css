@@ -271,6 +271,9 @@ h4 {
     
 }
 
+#startBuilding-button {
+    width: 12em;
+}
 
 #moreInfobutton:hover {
     color: white;
