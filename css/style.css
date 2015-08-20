@@ -322,9 +322,8 @@ h4 {
 }
 
 .usecase-item {
-    padding-top: 5em;
     width: 50%;
-    min-height: 24em;
+    min-height: 31em;
 
 }
 
@@ -1437,6 +1436,7 @@ img.logo-img {
     border-top: 3px solid white;
     border-bottom: 3px solid white;
 }
+      
 .gateway-type p {
     text-align: left;
     padding-left: 5%;
@@ -1445,10 +1445,10 @@ img.logo-img {
     padding-top: 0;
     padding-bottom: 0;
 }
+      
 .gateway-type h5 {
     font-size: 1.8em;
     font-weight: 400;
-    
 }
       
 .gateways {
@@ -1471,8 +1471,8 @@ img.logo-img {
     display: block;
     text-align: center;
     margin-bottom: 3em;
-
 }
+      
 .gateway-type h5 {
     text-align: left;
     padding-left: 5%;
@@ -1481,11 +1481,9 @@ img.logo-img {
     margin-bottom: 0;    
 }
 
-      
 .contribute-item p {
     min-height: 1px;
     padding-bottom: 2em;
-
 }
     
 .company-logo {
@@ -1493,17 +1491,13 @@ img.logo-img {
     filter: none;
     -webkit-filter: grayscale(0);
 }
-    
-      
+        
 .partner-logo {
     width: 60%;
     filter: none;
     -webkit-filter: grayscale(0);
     width: 40%;
 }
-      
-      
-      
       
 .team-member {
     width: 33.3333333%;
@@ -1513,14 +1507,14 @@ img.logo-img {
     width: 50%;
     height: 50%;
 }
+      
 .usecase-item {
     width: 100%;
+    min-height: 0;
+    padding-bottom: 8em;
 }
-      
-.usecase-item h4 {
+}
 
-}
-}
 /* TESTIMONIAL-ITEMS */
 @media screen 
     and (min-width: 700px)
