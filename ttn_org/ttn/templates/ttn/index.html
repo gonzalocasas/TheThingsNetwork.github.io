@@ -223,13 +223,13 @@ Join our global campaign by contributing. Let's make sure your city is next.</p>
                 <h2>Our team</h2>
                     <p>The current team consists of Internet of Things enthusiasts who believe in an open and free internet.</p>
                     <section class="team-item">
-                        <a href="https://www.linkedin.com/in/wienke"><img src=media/wienke.jpg></a>
+                        <a href="https://www.linkedin.com/in/wienke"><img src="{% static 'ttn/media/wienke.jpg' %}"></a>
                             <h4>Wienke Giezeman</h4>
                                 <h5>Initiator</h5>
                     </section>
 
                     <section class="team-item">
-                        <a href="https://www.linkedin.com/in/johanstokking/nl"><img src=media/johan.jpg></a>
+                        <a href="https://www.linkedin.com/in/johanstokking/nl"><img src="{% static 'ttn/media/johan.jpg' %}"></a>
                             <h4>Johan Stokking</h4>
                                 <h5>Tech lead</h5>
                     </section>
@@ -239,52 +239,52 @@ Join our global campaign by contributing. Let's make sure your city is next.</p>
                 <section class="team-members">
 
                     <div class="team-member">
-                        <img src="media/team/hans%20crijns.png">
+                        <img src="{% static 'ttn/media/team/hans%20crijns.png' %}">
                             <h5>Hans Crijns</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="media/team/fokko%20visser.png">
+                        <img src="{% static 'ttn/media/team/fokko%20visser.png' %}">
                             <h5>Fokko Visser</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="media/team/martijn%20van%20der%20veen.png">
+                        <img src="{% static 'ttn/media/team/martijn%20van%20der%20veen.png' %}">
                             <h5>Martijn van der Veen</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="media/team/johan%20hoeksma.png">
+                        <img src="{% static 'ttn/media/team/johan%20hoeksma.png' %}">
                             <h5>Johan Hoeksma</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="media/team/ruud%20vlaming.jpg">
+                        <img src="{% static 'ttn/media/team/ruud%20vlaming.jpg' %}">
                             <h5>Ruud Vlaming</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="media/team/hans%20donner.jpg">
+                        <img src="{% static 'ttn/media/team/hans%20donner.jpg' %}">
                             <h5>Hans Donner</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="media/wessel.jpg">
+                        <img src="{% static 'ttn/media/wessel.jpg' %}">
                             <h5>Wessel Versluis</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="media/bob.png">
+                        <img src="{% static 'ttn/media/bob.png' %}">
                             <h5>Bob van Sommeren</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="media/994907.jpeg">
+                        <img src="{% static 'ttn/media/994907.jpeg' %}">
                             <h5>Luke Roberts</h5>
                     </div>
 
                     <div class="team-member">
-                        <button id="new-member-button" data-toggle="modal" data-target="#joinTeam"><img src="media/newmember.png" id="new-member"></button>
+                        <button id="new-member-button" data-toggle="modal" data-target="#joinTeam"><img src="{% static 'ttn/media/newmember.png' %}" id="new-member"></button>
                             <h5>Your name?</h5>
                     </div>
                 </section>
@@ -624,13 +624,13 @@ Join our global campaign by contributing. Let's make sure your city is next.</p>
         </main>
     </body>
 
-    <script src="js/jquery-2.1.3.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/jparticle.jquery.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/jq-butterscroll-0.0.1.js"></script>
-    <script src="js/ga.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{% static 'ttn/js/jquery-2.1.3.js' %}"></script>
+    <script src="{% static 'ttn/js/bootstrap.js' %}"></script>
+    <script src="{% static 'ttn/js/jparticle.jquery.js' %}"></script>
+    <script src="{% static 'ttn/js/wow.min.js' %}"></script>
+    <script src="{% static 'ttn/js/jq-butterscroll-0.0.1.js' %}"></script>
+    <script src="{% static 'ttn/js/ga.js' %}"></script>
+    <script src="{% static 'ttn/js/script.js' %}"></script>
     <script>
         new WOW().init();
     </script>

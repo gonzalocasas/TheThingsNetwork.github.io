@@ -1,17 +1,18 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TheThings Kickstarter</title>
-     <link rel="stylesheet" href="stylesheet.css" type="text/css">
+  <link rel="stylesheet" href="{% static 'ttn/css/kickstarter.css' %}" type="text/css">
      <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
  </head>
  <body>
      <div class="background"></div>
   <h1>The Things Gateway</h1>
 
-     <img src="media/kickstarter%20badge.png" id="kickstart">
+      <img src="{% static 'ttn/media/kickstarter%20badge.png' %}" id="kickstart">
 
 
 
@@ -110,5 +111,5 @@
 </table>
 
  </body>
-<script src="../js/ga.js"></script>
+ <script src="{% static 'ttn/js/ga.js' %}"></script>
 </html>
