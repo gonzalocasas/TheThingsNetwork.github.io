@@ -11,4 +11,6 @@ urlpatterns = [
 
     url(r'^$', TemplateView.as_view(template_name=APP+'/index.html'),
         name='index'),
+    url(r'^landing/kickstarter$', TemplateView.as_view(template_name=APP+'/landing/kickstarter.html'),
+        name='kickstarter'),
 ]
