@@ -89,10 +89,12 @@
 
             <!-- Communities -->
             <article id="communities" class="block">
-                <h2>Active communities</h2>
+                <h2>Communities</h2>
                 <span class="communities">
                     {% for community in communities %}
+                    {% if community.slug %}
                     <a href="{% url 'ttn:community' slug=community.slug %}">{{ community.title }}</a><br>
+                    {% endif %}
                     {% endfor %}
                 </span>
             </article>
@@ -233,15 +235,19 @@
                 <h2>Our team</h2>
                     <p>The current team consists of Internet of Things enthusiasts who believe in an open and free internet.</p>
                     <section class="team-item">
-                        <a href="https://www.linkedin.com/in/wienke"><img src="{% static 'ttn/media/team/wienke.jpg' %}"></a>
+                        <a href="https://www.linkedin.com/in/wienke" target="_blank">
+                            <img src="{% static 'ttn/media/team/wienke.jpg' %}"></a>
                             <h4>Wienke Giezeman</h4>
-                                <h5>Initiator</h5>
+                            <h5>Initiator</h5>
+                        </a>
                     </section>
 
                     <section class="team-item">
-                        <a href="https://www.linkedin.com/in/johanstokking/nl"><img src="{% static 'ttn/media/johan.jpg' %}"></a>
+                        <a href="https://www.linkedin.com/in/johanstokking/nl" target="_blank">
+                            <img src="{% static 'ttn/media/johan.jpg' %}"></a>
                             <h4>Johan Stokking</h4>
-                                <h5>Tech lead</h5>
+                            <h5>Tech lead</h5>
+                        </a>
                     </section>
             </article>
 
@@ -249,48 +255,66 @@
                 <section class="team-members">
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/team/hans%20crijns.png' %}">
+                        <a href="https://www.linkedin.com/pub/hans-crijns/2/51a/a74" target="_blank">
+                            <img src="{% static 'ttn/media/team/hans%20crijns.png' %}">
                             <h5>Hans Crijns</h5>
+                        </a>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/team/fokko%20visser.png' %}">
+                        <a href="https://www.linkedin.com/pub/fokko-visser/24/485/a94" target="_blank">
+                            <img src="{% static 'ttn/media/team/fokko%20visser.png' %}">
                             <h5>Fokko Visser</h5>
+                        </a>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/team/martijn%20van%20der%20veen.png' %}">
+                        <a href="https://nl.linkedin.com/in/martijnvderveen" target="_blank">
+                            <img src="{% static 'ttn/media/team/martijn%20van%20der%20veen.png' %}">
                             <h5>Martijn van der Veen</h5>
+                        </a>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/team/johan%20hoeksma.png' %}">
+                        <a href="https://www.linkedin.com/pub/johan-hoeksma/64/988/961" target="_blank">
+                            <img src="{% static 'ttn/media/team/johan%20hoeksma.png' %}">
                             <h5>Johan Hoeksma</h5>
+                        </a>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/team/ruud%20vlaming.jpg' %}">
+                        <a href="https://www.linkedin.com/pub/ruud-vlaming/11/1a9/a57" target="_blank">
+                            <img src="{% static 'ttn/media/team/ruud%20vlaming.jpg' %}">
                             <h5>Ruud Vlaming</h5>
+                        </a>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/team/hans%20donner.jpg' %}">
+                        <a href="https://www.linkedin.com/in/hansdonner" target="_blank">
+                            <img src="{% static 'ttn/media/team/hans%20donner.jpg' %}">
                             <h5>Hans Donner</h5>
+                        </a>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/team/wessel.jpg' %}">
+                        <a href="https://www.linkedin.com/in/wesselversluis/en" target="_blank">
+                            <img src="{% static 'ttn/media/team/wessel.jpg' %}">
                             <h5>Wessel Versluis</h5>
+                        </a>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/team/bob.png' %}">
-                            <h5>Bob van Sommeren</h5>
+                        <a href="https://www.linkedin.com/pub/bob-van-someren/4/685/260" target="_blank">
+                            <img src="{% static 'ttn/media/team/bob.png' %}">
+                            <h5>Bob van Someren</h5>
+                        </a>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/team/994907.jpg' %}">
+                        <a href="https://www.linkedin.com/pub/luke-roberts/56/763/a96" target="_blank">
+                            <img src="{% static 'ttn/media/team/994907.jpg' %}">
                             <h5>Luke Roberts</h5>
+                        </a>
                     </div>
 
                     <div class="team-member">
