@@ -1,0 +1,314 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: 'Lato';
+    color: white;
+}
+
+h1 {
+    font-family: 'Lato';
+    padding: 0;
+    margin: 0 0 30px;
+    color: #5E5B5B;
+    height: auto;
+    font-weight: 700;
+    font-size: 2.5em;
+    width: 100%;
+}
+
+.intro h1 {
+    padding-top: 2em;
+}
+
+.information h1 {
+    padding-top: 1em;
+    font-size: 1.5em;
+}
+
+.progress h1 {
+    padding-top: 1em;
+}
+
+.intro p {
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 1.4em;
+    max-width: 70%;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #5E5B5B;
+    padding-bottom: 3.5em;
+}
+
+.frontpage {
+    background-image: url(../media/examplecity-newyork.jpg);
+    height: 40em;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0,0,0, 0.70);
+    background-blend-mode: darken;
+    position: relative;
+    float: left;
+}
+
+.logo {
+    width: 8em;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2em;
+    left: 2em;
+}
+
+.inititator {
+    border-radius: 50%;
+    height: 20em;
+    margin: auto;
+    position: absolute;
+    top: 0; 
+    left: 0;
+    bottom: 0; 
+    right: 0;
+}
+
+.initiator-name {
+    margin: auto;
+    position: absolute;
+    top: 14em;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1em;
+    text-align: center;
+    font-size: 2em;
+
+}
+
+.initiator-city {
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 28em;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1em;
+    font-weight: 300;
+}
+
+.coverage-progress {
+    float: left;
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+}
+
+.progress {
+    width: 25%;
+    height: 30em;
+    float: left;
+    text-align: center;
+    display: inline-block;
+    min-width: 16em;
+    background-color: #F2F2F2;
+}
+
+.progress img {
+    padding-top: 2em;
+}
+
+.coverage-map {
+    height: 30em;
+    width: 75%;
+    float: left;
+    display: inline-block;
+    background-image: url(../media/map-newyork.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+article {
+    width: 100%;
+    text-align: center;
+    float: left;
+
+}
+
+.information {
+    float: left;
+    width: 100%;
+    height: 50em;
+    background-color: #F2F2F2;
+}
+
+.left-bar {
+    width: 20%;
+    height: inherit;
+    display: inline-block;
+    float: left;
+    background-color: #d8d8d8;
+
+}
+
+.contributor {
+    display: block;
+    width: 8em;
+    margin: 0 auto;
+    border-radius: 50%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.center {
+    width: 60%;
+    height: auto;
+    min-height: 40em;
+    display: inline-block;
+    float: left;
+}
+
+.blog-posts {
+    height: auto;
+    width: 100%;
+}
+
+.blog-posts h1 {
+    font-size: 2em;
+    
+}
+
+.blog-post {
+    text-align: left;
+    float: left;
+    width: 100%;
+    padding-left: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #f2f2f2;
+}
+
+.blog-text {
+    float: left;
+    height: 10em;
+    width: 50%;
+    padding-left: 2%;
+    display: inline-block;
+}
+
+.blog-post h4 {
+    color: black;
+    font-size: 1.3em;
+    margin: 0;
+    color: #5E5B5B;
+}
+
+.blog-post p {
+    font-family: 'Lato';
+    color: #5E5B5B;
+    font-weigth: 300;
+    padding-bottom: 1em;
+    width: auto;
+}
+
+.blog-post a {
+    color: #5E5B5B;
+    font-family: 'Lato';
+    text-decoration: none;
+    border: 2px solid #5E5B5B;
+    padding: 0.5em;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+.blog-image {
+    width: 15em;
+    height: 15em;
+    background-image: url(../media/boat.jpg);
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    float: left;
+    
+}
+
+.right-bar {
+    width: 20%;
+    height: auto;
+    display: inline-block;
+    float: left;
+    height: inherit;
+    background-color: #d8d8d8;
+}
+
+.how-to-connect {
+    background-color: white;
+    font-family: 'Lato';
+    padding-bottom: 2em;
+}
+
+#mc_embed_signup input {
+    width: 28%;
+    border: 2px solid #5E5B5B;
+    padding: 1em;
+    margin-left: 0;
+    margin-bottom: 1em;
+    font-family: 'Lato';
+    font-size: 1em;
+}
+
+#mc-embedded-subscribe {
+    background-color: inherit;
+    color: #5E5B5B;
+    text-transform: uppercase;
+}
+
+.how-to-connect h1 {
+    padding-top: 1em;
+    
+}
+
+.how-to-connect p {
+    color: #5E5B5B;
+    padding-bottom: 2em;
+    
+}
+
+
+@media screen and (max-width: 1025px) {
+    .progress {
+        width: 100%;
+    }
+    .coverage-map {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1167px) {
+    .left-bar {
+        width: 100%;
+        height: auto;
+        padding-bottom: 3em;
+    }
+
+    .left-bar img {
+        display: inline;
+    }
+    
+    .center {
+        width: 100%;
+    }
+    
+    .right-bar {
+        width: 100%;
+    }
+}
