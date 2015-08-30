@@ -53,6 +53,17 @@ h1 {
     padding-bottom: 3.5em;
 }
 
+.intro a {
+    color: #5E5B5B;
+    font-family: 'Lato';
+    text-decoration: none;
+    border: 2px solid #5E5B5B;
+    padding: 0.5em;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
 .frontpage {
     height: 40em;
     width: 100%;
