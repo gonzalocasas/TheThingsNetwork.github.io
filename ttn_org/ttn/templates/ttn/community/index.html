@@ -16,7 +16,7 @@
    
     <body>
         <main>
-            <div class="frontpage">
+        <div class="frontpage" style="background-image: url('{% if community.image_url %}{{ community.image_url }}{% else %}{% static 'ttn/media/examplecity-newyork.jpg' %}{% endif %}');">
                 <img class="logo" src="{% static 'ttn/media/The%20Things%20Uitlijning.svg' %}">
                 {% for leader in community.leaders.all %}
                 <img class="inititator" src="{% static 'ttn/media/team/wienke.jpg' %}">
@@ -27,7 +27,7 @@
             
             <article class="intro">
                 <h1>The Things Network in {{ community.title }}<h1>
-                        <p>{{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }} has taken the job upon him to rollout The Things Network in {{ community.title }} Beneath you can see the parts which are already covered. Be a part of the movement and join him to complete his task! </p>
+                        <p>{{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }} has taken the job upon him to rollout The Things Network in {{ community.title }}. Beneath you can see the parts which are already covered. Be a part of the movement and join him to complete his task! </p>
             </article>
             
             <section class="coverage-progress">

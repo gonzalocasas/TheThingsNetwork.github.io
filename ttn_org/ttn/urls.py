@@ -10,7 +10,7 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     # Main website
-    url(r'^$', TemplateView.as_view(template_name=APP+'index.html'),
+    url(r'^$', views.IndexView.as_view(template_name=APP+'index.html'),
         name='index'),
 
     # Community pages

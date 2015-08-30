@@ -38,7 +38,7 @@ h1 {
 .intro p {
     font-family: 'Lato';
     font-weight: 300;
-    font-size: 1.4em;
+    font-size: 1em;
     max-width: 70%;
     margin: 0 auto;
     line-height: 1.8;
@@ -47,7 +47,6 @@ h1 {
 }
 
 .frontpage {
-    background-image: url(../media/examplecity-newyork.jpg);
     height: 40em;
     width: 100%;
     background-repeat: no-repeat;

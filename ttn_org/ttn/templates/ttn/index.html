@@ -47,7 +47,7 @@
                 <section class="media-container"><iframe src="http://player.vimeo.com/video/136731514?title=0&byline=0&badge=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></section>
             </article>
 
-            <!-  Vision ->
+            <!--  Vision -->
             <article id="vision" class="block">
                 <section class="col-md-8 col-md-offset-2">
                     <h2>Our vision</h2>
@@ -77,17 +77,27 @@
                 </section>
             </article>
 
-            <!- Building the Network ->
+            <!-- Building the Network -->
             <article class="building block">
                 <h2>Building the network</h2>
                     <p>With a small group of people it is possible to provide an entire city of data connectivity for things.</br>
-<br/><span class="fat">In a period of 4 weeks the city-wide coverage of Amsterdam was crowdsourced and implemented.</span></br></br> From day one use cases were built on top of this network. We believe the abundance we are creating will lead to exponential innovation from which we all benefit.
-Join our global campaign by contributing. Let's make sure your city is next.</p>
-<p>
-<span class="letsbuild">You are the network. Let's build this thing together.</span></p>
+                    <br/><span class="fat">In a period of 4 weeks the city-wide coverage of Amsterdam was crowdsourced and implemented.</span></br></br> From day one use cases were built on top of this network. We believe the abundance we are creating will lead to exponential innovation from which we all benefit.
+                    Join our global campaign by contributing. Let's make sure your city is next.</p>
+                    <p>
+                    <span class="letsbuild">You are the network. Let's build this thing together.</span></p>
             </article>
 
-            <!-  Contributors ->
+            <!-- Communities -->
+            <article id="communities" class="block">
+                <h2>Active communities</h2>
+                <span class="communities">
+                    {% for community in communities %}
+                    <a href="{% url 'ttn:community' slug=community.slug %}">{{ community.title }}</a><br>
+                    {% endfor %}
+                </span>
+            </article>
+
+            <!--  Contributors -->
             <article id="contributors" class="block">
                 <h2>How to contribute</h2>
 
@@ -223,7 +233,7 @@ Join our global campaign by contributing. Let's make sure your city is next.</p>
                 <h2>Our team</h2>
                     <p>The current team consists of Internet of Things enthusiasts who believe in an open and free internet.</p>
                     <section class="team-item">
-                        <a href="https://www.linkedin.com/in/wienke"><img src="{% static 'ttn/media/wienke.jpg' %}"></a>
+                        <a href="https://www.linkedin.com/in/wienke"><img src="{% static 'ttn/media/team/wienke.jpg' %}"></a>
                             <h4>Wienke Giezeman</h4>
                                 <h5>Initiator</h5>
                     </section>
@@ -269,17 +279,17 @@ Join our global campaign by contributing. Let's make sure your city is next.</p>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/wessel.jpg' %}">
+                        <img src="{% static 'ttn/media/team/wessel.jpg' %}">
                             <h5>Wessel Versluis</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/bob.png' %}">
+                        <img src="{% static 'ttn/media/team/bob.png' %}">
                             <h5>Bob van Sommeren</h5>
                     </div>
 
                     <div class="team-member">
-                        <img src="{% static 'ttn/media/994907.jpeg' %}">
+                        <img src="{% static 'ttn/media/team/994907.jpg' %}">
                             <h5>Luke Roberts</h5>
                     </div>
 

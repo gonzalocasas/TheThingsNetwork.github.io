@@ -509,6 +509,21 @@ h4 {
 }
 
 
+/* PAGE COMMUNITIES */
+#communities {
+    background-color: #F2F2F2;
+    background-blend-mode: darken;
+    background-position: left;
+}
+
+.communities a {
+    color: white;
+    font-size: 150%;
+    font-weight: 400;
+    color: darkblue;
+}
+
+
 /* PAGE HOW TO CONNECT TO THE NETWORK */
 
 .how-to-connect {

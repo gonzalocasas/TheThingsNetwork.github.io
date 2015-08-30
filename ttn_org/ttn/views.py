@@ -1,8 +1,20 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.http import Http404
+from django.db import models
 
 from .models import Community
+
+
+class IndexView(TemplateView):
+
+    def get(self, request, **kwargs):
+        c = Community.objects.all() \
+                             .annotate(gateways_count=models.Count('gateways')) \
+                             .order_by('-gateways_count')
+        context = self.get_context_data(**kwargs)
+        context['communities'] = c
+        return self.render_to_response(context)
 
 
 class CommunityView(TemplateView):
