@@ -22,6 +22,13 @@ h1 {
     width: 100%;
 }
 
+.vseperator {
+    float: left;
+    border-bottom: 1px solid #f2f2f2;
+    width: 100%;
+    margin: 100px 0px 50px 0px;
+}
+
 .intro h1 {
     padding-top: 2em;
 }
@@ -182,7 +189,6 @@ article {
 
 .blog-posts h1 {
     font-size: 2em;
-    
 }
 
 .blog-post {
@@ -249,17 +255,40 @@ article {
     background-color: #d8d8d8;
 }
 
-.media-post {
+.side-post {
     text-align: left;
     float: left;
-    width: 100%;
+    width: 90%;
     padding-left: 5%;
     padding-top: 5%;
     padding-bottom: 5%;
     font-family: 'Lato';
     color: #5E5B5B;
+    font-weight: 300;
+    padding-bottom: 1em;
+}
+
+.side-post h4 {
+    color: black;
+    font-size: 1.3em;
+    margin: 0;
+    color: #5E5B5B;
+}
+
+.side-post p {
+    font-family: 'Lato';
+    color: #5E5B5B;
     font-weigth: 300;
     padding-bottom: 1em;
+    width: auto;
+}
+
+.side-post a {
+    color: #5E5B5B;
+    font-family: 'Lato';
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.8em;
 }
 
 .how-to-connect {

@@ -55,7 +55,10 @@
                                 <div class="response" id="mce-success-response" style="display:none"></div>
                             </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                             <div style="position: absolute; left: -5000px;"><input type="text" name="b_20406705fec6d7d4b2ab1d6cc_0b4108dfeb" tabindex="-1" value=""></div>
-                            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                            <div class="clear">
+                            <br>
+                                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -78,15 +81,15 @@
                 <section class="center">
                     <div class="blog-posts">
                         <h1>Posts</h1>
-                            {% if community.posts %}
-                            {% for post in community.posts.all %}
+                            {% if community.post_set.all %}
+                            {% for post in community.post_set.all %}
                             <div class="blog-post">
                                 <div class="blog-image"></div>
                                 
                                     <div class="blog-text">
-                                        <h4>Blog post title</h2>
-                                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                            <a href="#">Read more</a>
+                                        <h4>{{ post.title }}</h4>
+                                        <p>{{ post.description|truncatewords:50 }}</p>
+                                        <a href="#">Read more</a>
                                     </div>
                             </div>
                             {% endfor %}
@@ -94,7 +97,7 @@
                             <div class="blog-post">
                                 <p>The {{ community.title }} community hasn't posted anything yet!</p>
                                 <p><a href="{% url 'ttn:community-contact' slug=community.slug %}">
-                                    Ask {{ community.leaders.first.first_name }} why.
+                                    Ask {{ community.leaders.first.first_name }} why
                                 </a></p>
                             </div>
                             {% endif %}
@@ -103,16 +106,32 @@
             
                 <section class="right-bar">
                     <h1>Media</h1>
-                    {% if community.media %}
-                    {% for medium in community.media %}
-                    <div class="media-post">
-                        <h2>{{ medium.title }}</h2>
+                    {% if community.media_set.all %}
+                    {% for medium in community.media_set.all %}
+                    <div class="side-post">
+                        <h4>{{ medium.title }}</h4>
                         <a href="{{ medium.url }}" target="_blank">read more</a>
                     </div>
                     {% endfor %}
                     {% else %}
-                    <div class="media-post">
+                    <div class="side-post">
                         The {{ community.title }} community is working on media attention!
+                    </div>
+                    {% endif %}
+
+                    <div class="vseperator">&nbsp;</div>
+
+                    <h1>Resources</h1>
+                    {% if community.resource_set.all %}
+                    {% for resource in community.resource_set.all %}
+                    <div class="side-post">
+                        <h4>{{ resource.title }}</h4>
+                        <a href="{{ resource.url }}" target="_blank">have a look</a>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="side-post">
+                        We don't have any external resources yet.
                     </div>
                     {% endif %}
                 </section>
