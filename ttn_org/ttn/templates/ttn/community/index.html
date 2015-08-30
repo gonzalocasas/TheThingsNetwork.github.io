@@ -1,32 +1,16 @@
+{% extends "ttn/community/base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>The Things Network</title>
-        <meta property="og:title" content="The Things Network" />
-        <meta property="og:type" content="website" />
-        <meta property="og:description" content="We are building a global open free crowdsourced long range low battery IoT data network." />
-        <meta property="og:url" content="http://www.thethingsnetwork.com" />
-        <meta property="og:image" content="/media/logo+rond2.png" />
-        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
-        <link href="{% static 'ttn/css/community.css' %}" rel='stylesheet' type='text/css'>
-    </head>
-   
-    <body>
-        <main>
-        <div class="frontpage" style="background-image: url('{% if community.image_url %}{{ community.image_url }}{% else %}{% static 'ttn/media/examplecity-newyork.jpg' %}{% endif %}');">
-                <a href="{% url 'ttn:index' %}">
-                    <img class="logo" src="{% static 'ttn/media/The%20Things%20Uitlijning.svg' %}">
-                </a>
+
+{% block author %}
                 {% for leader in community.leaders.all %}
                 <img class="inititator" src="{% static 'ttn/media/team/wienke.jpg' %}">
                 <h2 class="initiator-name">{{ leader.first_name }} {{ leader.last_name }}</h2>
-                <h3 class="initiator-city">Initiator for {{ community.title }}<h3>
+                <h3 class="initiator-city">Initiator for {{ community.title }}</h3>
                 {% endfor %}
-            </div>
-            
+{% endblock %}
+
+
+{% block content %}
             <article class="intro">
                 <h1>The Things Network in {{ community.title }}<h1>
                         <p>{{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }} has taken the job upon him to rollout The Things Network in {{ community.title }}. Beneath you can see the parts which are already covered. Be a part of the movement and join him to complete his task! </p>
@@ -89,7 +73,9 @@
                                     <div class="blog-text">
                                         <h4>{{ post.title }}</h4>
                                         <p>{{ post.description|truncatewords:50 }}</p>
-                                        <a href="#">Read more</a>
+                                        <a href="{% url 'ttn:community-post' slug=community.slug pk=post.pk %}">
+                                            Read more
+                                        </a>
                                     </div>
                             </div>
                             {% endfor %}
@@ -136,8 +122,5 @@
                     {% endif %}
                 </section>
          </article>
-    </main>
-    </body>
-    
-</html>
 
+{% endblock %}
