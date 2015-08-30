@@ -32,10 +32,55 @@ class Community(models.Model):
     slug = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True)
+    #image = models.ImageField('City image', blank=True, null=True)
+    image_url = models.CharField(max_length=250)
     created = models.DateTimeField(auto_now_add=True)
     leaders = models.ManyToManyField(User, related_name="Leaders")
     members = models.ManyToManyField(User, related_name="Members")
+    gateways = models.ManyToManyField(Gateway, related_name="Gateways")
 
     def __str__(self):
         return "{} <{}, {}>".format(self.title, self.lat, self.lon)
+
+
+class Post(models.Model):
+    author = models.ForeignKey(User, null=True, blank=True)
+    community = models.ForeignKey(Community, null=True, blank=True)
+    slug = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    description = models.TextField(null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        c = self.community.title if self.community else '*'
+        return "[{}] {}".format(c, self.title)
+
+
+class Media(models.Model):
+    """Media attention for specific community"""
+    author = models.ForeignKey(User, null=True, blank=True)
+    community = models.ForeignKey(Community, null=True, blank=True)
+    title = models.CharField(max_length=200)
+    url = models.CharField(max_length=250)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        c = self.community.title if self.community else '*'
+        return "[{}] {}".format(c, self.title)
+
+
+class Resource(models.Model):
+    """External resource for community (github, meetup group, ..)"""
+    author = models.ForeignKey(User, null=True, blank=True)
+    community = models.ForeignKey(Community, null=True, blank=True)
+    title = models.CharField(max_length=200)
+    url = models.CharField(max_length=250)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        c = self.community.title if self.community else '*'
+        return "[{}] {}".format(c, self.title)
 
