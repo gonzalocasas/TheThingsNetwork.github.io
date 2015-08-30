@@ -17,7 +17,9 @@
     <body>
         <main>
         <div class="frontpage" style="background-image: url('{% if community.image_url %}{{ community.image_url }}{% else %}{% static 'ttn/media/examplecity-newyork.jpg' %}{% endif %}');">
-                <img class="logo" src="{% static 'ttn/media/The%20Things%20Uitlijning.svg' %}">
+                <a href="{% url 'ttn:index' %}">
+                    <img class="logo" src="{% static 'ttn/media/The%20Things%20Uitlijning.svg' %}">
+                </a>
                 {% for leader in community.leaders.all %}
                 <img class="inititator" src="{% static 'ttn/media/team/wienke.jpg' %}">
                 <h2 class="initiator-name">{{ leader.first_name }} {{ leader.last_name }}</h2>
@@ -63,16 +65,21 @@
             <article class="information">
                 <section class="left-bar">
                     <h1>Contributors</h1>
+                    {# TODO #}
+                    {% if community.slug == 'amsterdam' %}
                     <img class="contributor" src="{% static 'ttn/media/team/contributor.jpg' %}">
                     <img class="contributor" src="{% static 'ttn/media/team/martijn%20van%20der%20veen.png' %}">
                     <img class="contributor" src="{% static 'ttn/media/team/johan.jpg' %}">
                     <img class="contributor" src="{% static 'ttn/media/team/fokko%20visser.png' %}">
                     <img class="contributor" src="{% static 'ttn/media/team/contributor.jpg' %}">
+                    {% endif %}
                 </section>
             
                 <section class="center">
                     <div class="blog-posts">
                         <h1>Posts</h1>
+                            {% if community.posts %}
+                            {% for post in community.posts.all %}
                             <div class="blog-post">
                                 <div class="blog-image"></div>
                                 
@@ -82,20 +89,32 @@
                                             <a href="#">Read more</a>
                                     </div>
                             </div>
-                    
+                            {% endfor %}
+                            {% else %}
                             <div class="blog-post">
-                                <div class="blog-image"></div>
-                                    <div class="blog-text">
-                                        <h4>Blog post title</h2>
-                                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                            <a href="#">Read more</a>
-                                    </div>
+                                <p>The {{ community.title }} community hasn't posted anything yet!</p>
+                                <p><a href="{% url 'ttn:community-contact' slug=community.slug %}">
+                                    Ask {{ community.leaders.first.first_name }} why.
+                                </a></p>
                             </div>
+                            {% endif %}
                     </div>
                 </section>
             
                 <section class="right-bar">
                     <h1>Media</h1>
+                    {% if community.media %}
+                    {% for medium in community.media %}
+                    <div class="media-post">
+                        <h2>{{ medium.title }}</h2>
+                        <a href="{{ medium.url }}" target="_blank">read more</a>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="media-post">
+                        The {{ community.title }} community is working on media attention!
+                    </div>
+                    {% endif %}
                 </section>
          </article>
     </main>

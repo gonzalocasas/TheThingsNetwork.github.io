@@ -20,6 +20,9 @@ class IndexView(TemplateView):
 class CommunityView(TemplateView):
 
     def get(self, request, slug, **kwargs):
+        # TODO: subdomains
+        # http://w3facility.org/question/wildcard-subdomains-in-a-django-project/
+        #print("SUBDOMAIN", request.META['HTTP_HOST'].split('.')[0])
         c = Community.objects.filter(slug=slug)
         if not c:
             return redirect('ttn:new-community', search=slug)

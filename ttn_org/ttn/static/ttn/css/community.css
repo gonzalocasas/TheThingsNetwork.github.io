@@ -249,6 +249,19 @@ article {
     background-color: #d8d8d8;
 }
 
+.media-post {
+    text-align: left;
+    float: left;
+    width: 100%;
+    padding-left: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-family: 'Lato';
+    color: #5E5B5B;
+    font-weigth: 300;
+    padding-bottom: 1em;
+}
+
 .how-to-connect {
     background-color: white;
     font-family: 'Lato';
