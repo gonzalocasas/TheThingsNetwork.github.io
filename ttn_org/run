@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+. ../../.venv/bin/activate
+PARENT_DIR=$(dirname $(pwd))
+gunicorn ttn_org.wsgi -c "$PARENT_DIR/deploy/etc/gunicorn.py"

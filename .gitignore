@@ -2,7 +2,8 @@ ttn_org/static
 
 *.swp
 *.sqlite3
-.venv
+.venv/
+supervise/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -18,7 +18,7 @@
         <main>
         <div class="frontpage" style="background-image: url('{% if community.image_url %}{{ community.image_url }}{% else %}{% static 'ttn/media/examplecity-newyork.jpg' %}{% endif %}');">
                 <a href="{% url 'ttn:index' %}">
-                    <img class="logo" src="{% static 'ttn/media/The%20Things%20Uitlijning.svg' %}">
+                    <img class="logo" src="{% static 'ttn/media/The Things Uitlijning.svg' %}">
                 </a>
                 {% block author %}
                 {% endblock %}

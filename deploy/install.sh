@@ -6,7 +6,7 @@
 
 . vars.sh
 
-sudo apt-get install python3-pip python3-virtualenv virtualenv nginx
+sudo apt-get install python3-pip python3-virtualenv virtualenv nginx daemontools
 
 cd ~
 git clone https://github.com/TheThingsNetwork/TheThingsNetwork.github.io.git $TTN_ORG
