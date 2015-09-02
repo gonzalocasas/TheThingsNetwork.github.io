@@ -28,7 +28,7 @@ class CommunityAdmin(admin.ModelAdmin):
         (None, {
             'fields': ['slug', 'title', 'description',
                        'lat', 'lon', 'scale',
-                       'image_url']
+                       'image_url', 'image_thumb_url']
         }),
         ('Assets', {
             'fields': ['leaders', 'members', 'gateways'],

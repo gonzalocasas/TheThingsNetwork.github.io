@@ -17,8 +17,8 @@
         var mapOptions = {
           center: new google.maps.LatLng(
                 {{ community.lat|default:'44.5403' }},
-                {{ community.lng|default:'-78.5463' }}),
-          zoom: 8,
+                {{ community.lon|default:'-78.5463' }}),
+          zoom: Math.round(21 - Math.log({{ community.rng|default:25000 }}/100) / Math.LN2),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         var map = new google.maps.Map(mapCanvas, mapOptions)

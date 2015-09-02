@@ -9,6 +9,8 @@ supervise/
 __pycache__/
 *.py[cod]
 
+*.sql
+
 # C extensions
 *.so
 
