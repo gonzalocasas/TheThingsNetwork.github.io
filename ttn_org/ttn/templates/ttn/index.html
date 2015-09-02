@@ -93,7 +93,10 @@
                 <span class="communities">
                     {% for community in communities %}
                     {% if community.slug %}
-                    <a href="{% url 'ttn:community' slug=community.slug %}">{{ community.title }}</a><br>
+                    <a href="{% url 'ttn:community' slug=community.slug %}">
+			<img class="city-image" src="{% if community.image_thumb_url %}{{ community.image_thumb_url }}{% else %}{% static 'ttn/media/communities/city.jpg' %}{% endif %}"><br>
+                        {{ community.title }}
+                    </a>
                     {% endif %}
                     {% endfor %}
                 </span>
@@ -244,7 +247,7 @@
 
                     <section class="team-item">
                         <a href="https://www.linkedin.com/in/johanstokking/nl" target="_blank">
-                            <img src="{% static 'ttn/media/johan.jpg' %}"></a>
+                            <img src="{% static 'ttn/media/team/johan.jpg' %}"></a>
                             <h4>Johan Stokking</h4>
                             <h5>Tech lead</h5>
                         </a>
