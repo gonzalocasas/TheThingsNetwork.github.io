@@ -122,10 +122,13 @@ h1 {
 }
 
 .coverage-progress {
+/*
     float: left;
     width: 100%;
     margin: 0 auto;
     height: auto;
+*/
+overflow: none;
 }
 
 .progress {
@@ -142,16 +145,20 @@ h1 {
     padding-top: 2em;
 }
 
-.coverage-map {
-    height: 30em;
-    width: 75%;
+#map {
+    height: 400px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+/*
     float: left;
     display: inline-block;
     background-image: url(../media/map-newyork.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}
+*/
 
 article {
     width: 100%;
@@ -337,12 +344,14 @@ article {
 
 
 @media screen and (max-width: 1025px) {
+/*
     .progress {
         width: 100%;
     }
-    .coverage-map {
+    #coverage-map {
         width: 100%;
     }
+*/
 }
 
 @media screen and (max-width: 1167px) {
