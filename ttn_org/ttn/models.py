@@ -34,6 +34,7 @@ class Community(models.Model):
     description = models.TextField(null=True)
     #image = models.ImageField('City image', blank=True, null=True)
     image_url = models.CharField(max_length=250)
+    image_thumb_url = models.CharField(max_length=250)
     created = models.DateTimeField(auto_now_add=True)
     leaders = models.ManyToManyField(User, related_name="Leaders")
     members = models.ManyToManyField(User, related_name="Members")
