@@ -33,6 +33,13 @@ h1 {
     padding-top: 2em;
 }
 
+.quote-author {
+    margin-top: 0px;
+    color: #7E7B7B;
+    font-size: 80%;
+    font-style: italic;
+}
+
 .information h1 {
     padding-top: 1em;
     font-size: 1.5em;
@@ -150,6 +157,7 @@ overflow: none;
     width: 100%;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 /*
     float: left;

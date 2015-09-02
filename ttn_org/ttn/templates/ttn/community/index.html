@@ -32,19 +32,23 @@
             <article class="intro">
                 <h1>The Things Network in {{ community.title }}<h1>
                         <p>{{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }} has taken the job upon him to rollout The Things Network in {{ community.title }}. Beneath you can see the parts which are already covered. Be a part of the movement and join him to complete his task! </p>
-			{% if community.description %}
-			<p>{{ community.description }}</p>
-			{% endif %}
+                        {% if community.description %}
+                        <p>
+                            "{{ community.description }}"<br>
+                            <span class="quote-author">{{ community.leaders.first.first_name }}</span>
+                        </p>
+                        {% endif %}
             </article>
             
-            <section class="coverage-progress">
+            <article class="coverage-progress">
                 <!-- div class="progress">
                     <h1>Progress</h1>
                     <img src="{% static 'ttn/media/progress.png' %}">
                 </div -->
+                <div class="clear"></div>
                 <div id="map">testing</div>
 		<!-- https://developers.google.com/maps/documentation/staticmaps/intro -->
-            </section>
+            </article>
             
         <article class="how-to-connect">
             <h1>Stay up to date</h1>
