@@ -6,7 +6,7 @@
                 <div class="leader">
                     <img class="inititator" src="{% if leader.ttnuser.image_thumb_url %}{{ leader.ttnuser.image_thumb_url }}{% else %}{% static 'ttn/media/team/newmember.png' %}{% endif %}">
                     <h2 class="initiator-name">{{ leader.first_name }} {{ leader.last_name }}</h2>
-                    <h3 class="initiator-city">Initiator for {{ community.title }}</h3>
+                    <h3 class="initiator-city">{% if leader.tagline %}{{ leader.tagline }}{% else %}Initiator for {{ community.title }}{% endif %}</h3>
                 </div>
                 {% endfor %}
 {% endblock %}
