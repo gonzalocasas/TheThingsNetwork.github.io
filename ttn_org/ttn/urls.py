@@ -18,7 +18,7 @@ urlpatterns = [
         views.CommunityView.as_view(template_name=APP+'community/index.html'),
         name='community'),
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/contact$',
-        TemplateView.as_view(template_name=APP+'community/contact.html'),
+        views.CommunityView.as_view(template_name=APP+'community/contact.html'),
         name='community-contact'),
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/post/(?P<pk>[0-9a-zA-Z_-]+)$',
         views.PostView.as_view(template_name=APP+'community/post.html'),

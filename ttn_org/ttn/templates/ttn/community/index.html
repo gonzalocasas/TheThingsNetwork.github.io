@@ -111,9 +111,6 @@
                             {% else %}
                             <div class="blog-post">
                                 <p>The {{ community.title }} community hasn't posted anything yet!</p>
-                                <p><a href="{% url 'ttn:community-contact' slug=community.slug %}">
-                                    Ask {{ community.leaders.first.first_name }} why
-                                </a></p>
                             </div>
                             {% endif %}
                     </div>
@@ -149,6 +146,12 @@
                         We don't have any external resources yet.
                     </div>
                     {% endif %}
+
+                    <div class="contact">
+                        <p><a href="{% url 'ttn:community-contact' slug=community.slug %}">
+                            Contact us
+                        </a></p>
+                    </div>
                 </section>
          </article>
 

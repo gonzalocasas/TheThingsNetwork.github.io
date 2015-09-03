@@ -317,6 +317,21 @@ article {
     font-size: 0.8em;
 }
 
+.contact {
+    padding-top: 150px;
+}
+
+.contact a {
+    color: #5E5B5B;
+    font-family: 'Lato';
+    text-decoration: none;
+    border: 2px solid #5E5B5B;
+    padding: 0.5em;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
 .how-to-connect {
     background-color: white;
     font-family: 'Lato';

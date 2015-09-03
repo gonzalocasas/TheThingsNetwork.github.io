@@ -1,0 +1,28 @@
+{% extends "ttn/community/base.html" %}
+{% load staticfiles %}
+
+{% block author %}
+    <h2 class="initiator-name">Contact {{ community.leaders.author.first_name }} {{ p.author.last_name }}, initiator of {{ community.title }}.</h2>
+{% endblock %}
+
+
+{% block content %}
+
+        <article class="intro">
+            <h1>Contact {{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }}, initiator of {{ community.title }}.</h1>
+            
+            {% if community.contact %}
+            <p>{{ community.contact }}</p>
+            {% else %}
+            {# this might piss people off #}
+            <p>Email: {{ community.leaders.first.email }}</p>
+            {% endif %}
+
+            <a href="{% url 'ttn:community' slug=community.slug %}">
+                Back to {{ community.title }}
+            </a>
+
+            <p>&nbsp;</p>
+        </article>
+
+{% endblock %}
