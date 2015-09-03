@@ -26,7 +26,7 @@ class ResourceInline(admin.TabularInline):
 class CommunityAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
-            'fields': ['slug', 'title', 'description',
+            'fields': ['slug', 'title', 'description', 'contact',
                        'lat', 'lon', 'scale',
                        'image_url', 'image_thumb_url']
         }),
