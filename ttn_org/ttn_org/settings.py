@@ -25,9 +25,9 @@ env = os.environ
 SECRET_KEY = 'k68wehezi=b_gn4%cco$1&rvpe^xyz$(3kzyrb_4&oau)vh)xh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(env.get('DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

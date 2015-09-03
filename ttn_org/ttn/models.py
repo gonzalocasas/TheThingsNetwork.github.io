@@ -56,9 +56,9 @@ class Community(models.Model):
     leaders = models.ManyToManyField(User, related_name="Leaders")
     members = models.ManyToManyField(User, related_name="Members")
     companies = models.ManyToManyField(Company, related_name="Companies",
-                                       blank=True, null=True)
+                                       blank=True)
     gateways = models.ManyToManyField(Gateway, related_name="Gateways",
-                                      blank=True, null=True)
+                                      blank=True)
 
     def __str__(self):
         return "{} <{}, {}>".format(self.title, self.lat, self.lon)
