@@ -90,16 +90,18 @@
             <!-- Communities -->
             <article id="communities" class="block">
                 <h2>Communities</h2>
-                <span class="communities">
+                <div class="communities">
                     {% for community in communities %}
                     {% if community.slug %}
+                    <div class="community">
                     <a href="{% url 'ttn:community' slug=community.slug %}">
-			<img class="city-image" src="{% if community.image_thumb_url %}{{ community.image_thumb_url }}{% else %}{% static 'ttn/media/communities/city.jpg' %}{% endif %}"><br>
+                        <img class="community-image" src="{% if community.image_thumb_url %}{{ community.image_thumb_url }}{% else %}{% static 'ttn/media/communities/city.jpg' %}{% endif %}"><br>
                         {{ community.title }}
                     </a>
+                    </div>
                     {% endif %}
                     {% endfor %}
-                </span>
+                </div>
             </article>
 
             <!--  Contributors -->

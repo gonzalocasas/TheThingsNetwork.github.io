@@ -117,15 +117,6 @@ img.logo-img {
     border-radius: 50%;
 }
 
-.city-image {
-    border-radius: 50%;
-    height: 10em;
-    width: 10em;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-}
-
 /* Different Headers/Paragraphs and re-usable articles */
 h2 {
     font-family: 'Lato';
@@ -525,11 +516,29 @@ h4 {
     background-position: left;
 }
 
+.communities {
+    text-align: center;
+}
+
 .communities a {
-    color: white;
+    color: #5E5B5B;
     font-size: 150%;
     font-weight: 400;
-    color: darkblue;
+}
+
+.community {
+    display: inline-block;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.community-image {
+    border-radius: 50%;
+    height: 10em;
+    width: 10em;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
 }
 
 
