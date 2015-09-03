@@ -26,6 +26,20 @@ class Gateway(models.Model):
         return self.title
 
 
+class Company(models.Model):
+    """Companies wanting exposure"""
+    title = models.CharField(max_length=200)
+    url = models.CharField(max_length=250)
+    #image_logo = models.ImageField('Picture', blank=True, null=True)
+    image_logo_url = models.CharField(max_length=250)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        c = self.community.title if self.community else '*'
+        return "[{}] {}".format(c, self.title)
+
+
 class Community(models.Model):
     # TODO: use area type
     lat = models.FloatField('latitude', blank=True, null=True)
@@ -41,6 +55,8 @@ class Community(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     leaders = models.ManyToManyField(User, related_name="Leaders")
     members = models.ManyToManyField(User, related_name="Members")
+    companies = models.ManyToManyField(Company, related_name="Companies",
+                                       blank=True, null=True)
     gateways = models.ManyToManyField(Gateway, related_name="Gateways",
                                       blank=True, null=True)
 

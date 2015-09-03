@@ -2,12 +2,13 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from .models import Gateway, Community, Post, Media, Resource, TTNUser
+from .models import Gateway, Community, Post, Media, Resource, TTNUser, Company
 
 admin.site.register(Gateway)
 admin.site.register(Post)
 admin.site.register(Media)
 admin.site.register(Resource)
+admin.site.register(Company)
 
 
 # Users
@@ -50,7 +51,7 @@ class CommunityAdmin(admin.ModelAdmin):
                        'image_url', 'image_thumb_url']
         }),
         ('Assets', {
-            'fields': ['leaders', 'members', 'gateways'],
+            'fields': ['leaders', 'members', 'gateways', 'companies'],
             'classes': ['collapse']
         })
     ]
