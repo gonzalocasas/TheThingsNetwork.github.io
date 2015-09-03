@@ -1,5 +1,5 @@
 {% extends "ttn/community/base.html" %}
-{% load staticfiles %}
+{% load staticfiles markup %}
 
 {% block author %}
     <h2 class="initiator-name">{{ p.author.first_name }} {{ p.author.last_name }}</h2>
@@ -10,7 +10,9 @@
 
         <article class="intro">
             <h1>{{ post.title }}</h1>
-            <p>{{ post.description }}</p>
+            <div class="page-content">
+                {{ post.description|markdown }}
+            </div>
 
             <a href="{% url 'ttn:community' slug=post.community.slug %}">
                 Back to {{ post.community.title }}

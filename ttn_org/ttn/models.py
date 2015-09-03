@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-#class TTNUser(models.Model):
-#    # See: https://docs.djangoproject.com/en/1.8/topics/auth/customizing/#extending-the-existing-user-model
-#    user = models.OneToOneField(User)
-#    image = models.ImageField('Picture', blank=True, null=True)
+class TTNUser(models.Model):
+    # See: https://docs.djangoproject.com/en/1.8/topics/auth/customizing/#extending-the-existing-user-model
+    user = models.OneToOneField(User)
+    #image_thumb = models.ImageField('Picture', blank=True, null=True)
+    image_thumb_url = models.CharField(max_length=250)
 
 
 class Gateway(models.Model):

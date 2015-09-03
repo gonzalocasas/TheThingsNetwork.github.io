@@ -4,7 +4,7 @@
 {% block author %}
                 {% for leader in community.leaders.all %}
                 <div class="leader">
-                    <img class="inititator" src="{% static 'ttn/media/team/wienke.jpg' %}">
+                    <img class="inititator" src="{% if leader.ttnuser.image_thumb_url %}{{ leader.ttnuser.image_thumb_url }}{% else %}{% static 'ttn/media/team/newmember.png' %}{% endif %}">
                     <h2 class="initiator-name">{{ leader.first_name }} {{ leader.last_name }}</h2>
                     <h3 class="initiator-city">Initiator for {{ community.title }}</h3>
                 </div>
@@ -83,14 +83,10 @@
             <article class="information">
                 <section class="left-bar">
                     <h1>Contributors</h1>
-                    {# TODO #}
-                    {% if community.slug == 'amsterdam' %}
-                    <img class="contributor" src="{% static 'ttn/media/team/contributor.jpg' %}">
-                    <img class="contributor" src="{% static 'ttn/media/team/martijn van der veen.png' %}">
-                    <img class="contributor" src="{% static 'ttn/media/team/johan.jpg' %}">
-                    <img class="contributor" src="{% static 'ttn/media/team/fokko visser.png' %}">
-                    <img class="contributor" src="{% static 'ttn/media/team/contributor.jpg' %}">
-                    {% endif %}
+                    {% for member in community.members.all %}
+                    <img class="contributor" alt="{{ member.first_name }} {{ member.last_name }}"
+                     src="{% if member.ttnuser.image_thumb_url %}{{ member.ttnuser.image_thumb_url }}{% else %}{% static 'ttn/media/team/newmember.png' %}{% endif %}">
+                    {% endfor %}
                 </section>
             
                 <section class="center">
