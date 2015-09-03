@@ -30,7 +30,7 @@ class Community(models.Model):
     # TODO: use area type
     lat = models.FloatField('latitude', blank=True, null=True)
     lon = models.FloatField('longitude', blank=True, null=True)
-    scale = models.FloatField('Scale (m)', default=25000)
+    scale = models.FloatField('Scale (m)', default=13)
     slug = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True)
