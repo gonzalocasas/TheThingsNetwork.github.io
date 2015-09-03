@@ -3,3 +3,5 @@ mysqlclient
 virtualenv
 pillow
 gunicorn
+django-markwhat
+markdown

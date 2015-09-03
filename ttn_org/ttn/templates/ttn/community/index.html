@@ -1,5 +1,5 @@
 {% extends "ttn/community/base.html" %}
-{% load staticfiles %}
+{% load staticfiles markup %}
 
 {% block author %}
                 {% for leader in community.leaders.all %}
@@ -34,11 +34,13 @@
             <article class="intro">
                 <h1>We are on a mission to build a global open crowdsourced Internet of Things data network.</h1>
 
+                <div class="page-content">
                     {% if community.description %}
-                        <p class="intro-text">{{ community.description }}</p>
+                        {{ community.description|markdown }}
                     {% else %}
-                        <p class="intro-text">{{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }} has taken the job upon him to rollout The Things Network in {{ community.title }}. Beneath you can see the parts which are already covered. Be a part of the movement and join him to complete his task!</p>
+                        <p>{{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }} has taken the job upon him to rollout The Things Network in {{ community.title }}. Beneath you can see the parts which are already covered. Be a part of the movement and join him to complete his task!</p>
                     {% endif %}
+                </div>
             </article>
             
             <article class="coverage-progress">

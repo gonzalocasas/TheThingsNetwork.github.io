@@ -32,7 +32,7 @@ class Community(models.Model):
     slug = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True)
-    contact = models.TextField(null=True)
+    contact = models.TextField(blank=True, null=True)
     #image = models.ImageField('City image', blank=True, null=True)
     image_url = models.CharField(max_length=250)
     image_thumb_url = models.CharField(max_length=250)
