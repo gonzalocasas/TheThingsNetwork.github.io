@@ -27,18 +27,37 @@
         var map = new google.maps.Map(mapCanvas, mapOptions)
 
         var gateways = [];
-        {% for gw in community.gateways.all %}
-        gateways.push(new google.maps.Circle({
-            strokeColor: '#00FF00',
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: '#22FF22',
-            fillOpacity: 0.5,
-            map: map,
-            center: {lat: {{ gw.lat|default:0 }}, lng: {{ gw.lon|default:0 }} },
-            radius: {{ gw.rng|default:5000 }}
-        }));
+        var colours = {'PL': '#0000DD', 'AC': '#00DD00',
+                       'MA': '#80A000', 'DE': '#995555'};
+        var opacities = {'DE': 0.2, 'PL': 0.3, 'MA': 0.5, 'AC': 0.5};
+        function shadeColor(color, percent) {  
+            percent = percent || 10;
+            var num = parseInt(color.slice(1),16), amt = Math.round(2.55 * percent);
+            var R = (num >> 16) + amt, G = (num >> 8 & 0x00FF) + amt, B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000
+                       + (G<255?G<1?0:G:255)*0x100
+                       + (B<255?B<1?0:B:255)).toString(16).slice(1);
+        }
+        {% with 'DE PL MA AC' as statuses %}
+        {% for status in statuses.split %}
+            {% for gw in community.gateways.all %}
+                {% if gw.status == status %}
+                var colour = colours['{{ gw.status }}'] || '#333333';
+                var opacity = opacities['{{ gw.status }}'] || 0.8;
+                gateways.push(new google.maps.Circle({
+                    strokeColor: shadeColor(colour, 20),
+                    strokeOpacity: opacity,
+                    strokeWeight: 1,
+                    fillColor: colour,
+                    fillOpacity: opacity,
+                    map: map,
+                    center: {lat: {{ gw.lat|default:0 }}, lng: {{ gw.lon|default:0 }} },
+                    radius: {{ gw.rng|default:5000 }}
+                }));
+                {% endif %}
+            {% endfor %}
         {% endfor %}
+        {% endwith %}
       }
       google.maps.event.addDomListener(window, 'load', initialize);
 </script>
@@ -49,13 +68,19 @@
             <article class="intro">
                 <h1>We are on a mission to build a global open crowdsourced Internet of Things data network.</h1>
 
-                <div class="page-content">
-                    {% if community.description %}
-                        {{ community.description|markdown }}
+                <div class="intro-mission">
+                    {% if community.mission %}
+                        {{ community.mission|markdown }}
                     {% else %}
-                        <p>{{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }} has taken the job upon him to rollout The Things Network in {{ community.title }}. Beneath you can see the parts which are already covered. Be a part of the movement and join him to complete his task!</p>
+                        <p>{{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }} has taken the job upon him to rollout The Things Network in {{ community.title }}.</p>
                     {% endif %}
                 </div>
+
+                {% if community.description %}
+                <div class="page-content">
+                    {{ community.description|markdown }}
+                </div>
+                {% endif %}
             </article>
             
             <article class="coverage-progress">

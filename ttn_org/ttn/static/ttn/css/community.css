@@ -29,10 +29,6 @@ h1 {
     margin: 100px 0px 50px 0px;
 }
 
-.intro h1 {
-    padding-top: 2em;
-}
-
 .quote-author {
     margin-top: 0px;
     color: #7E7B7B;
@@ -52,12 +48,29 @@ h1 {
 .page-content {
     font-family: 'Lato';
     font-weight: 300;
-    font-size: 2em;
+    font-size: 1.7em;
     max-width: 70%;
     margin: 0 auto;
     line-height: 1.8;
     color: #5E5B5B;
     padding-bottom: 3.5em;
+}
+
+.intro h1 {
+    padding-top: 2em;
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+.intro-mission {
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 2em;
+    max-width: 70%;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #5E5B5B;
+    padding-bottom: 1.5em;
 }
 
 .intro a {

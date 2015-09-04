@@ -11,6 +11,12 @@ class TTNUser(models.Model):
 
 
 class Gateway(models.Model):
+    STATUS_CHOICES = [
+        ('PL', 'Planned'),
+        ('AC', 'Active'),
+        ('MA', 'Maintenance'),
+        ('DE', 'Deprecated')
+    ]
     # TODO: use GeoDjango fields (for fast geo queries)
     # https://docs.djangoproject.com/en/dev/ref/contrib/gis/
     lat = models.FloatField('latitude', blank=True, null=True)
@@ -19,7 +25,9 @@ class Gateway(models.Model):
     title = models.CharField(max_length=200)
     owner_human = models.ForeignKey(User, null=True, blank=True)
     owner_company = models.ForeignKey('Company', null=True, blank=True)
-    message_count = models.IntegerField(default=0)
+    message_count = models.IntegerField(default=0, null=True, blank=True)
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES,
+                              default='AC')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -34,6 +42,7 @@ class Community(models.Model):
     scale = models.FloatField('Scale (m)', default=13)
     slug = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
+    mission = models.TextField(null=True)
     description = models.TextField(null=True)
     contact = models.TextField(blank=True, null=True)
     #image = models.ImageField('City image', blank=True, null=True)
