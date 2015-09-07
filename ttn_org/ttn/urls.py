@@ -1,8 +1,10 @@
 from django.conf.urls import include, url
+from django.core.urlresolvers import reverse_lazy
 from . import views
 from django.views.generic import TemplateView, RedirectView
 
 APP = 'ttn/'
+APPNS = 'ttn:'
 
 urlpatterns = [
     # Examples:
@@ -31,4 +33,6 @@ urlpatterns = [
     url(r'^landing/kickstarter$',
         TemplateView.as_view(template_name=APP+'landing/kickstarter.html'),
         name='kickstarter'),
+    url(r'^kickstarter-landing/kickstarter.html$',
+        RedirectView.as_view(url=reverse_lazy(APPNS+'kickstarter'), permanent=True)),
 ]
