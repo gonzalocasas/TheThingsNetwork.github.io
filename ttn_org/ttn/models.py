@@ -40,6 +40,7 @@ class Community(models.Model):
     lat = models.FloatField('latitude', blank=True, null=True)
     lon = models.FloatField('longitude', blank=True, null=True)
     scale = models.FloatField('Scale (m)', default=13)
+    published = models.BooleanField(default=True)
     slug = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     mission = models.TextField(blank=True, null=True)

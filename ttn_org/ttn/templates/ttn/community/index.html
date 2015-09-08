@@ -29,7 +29,7 @@
         var gateways = [];
         var colours = {'PL': '#0000DD', 'AC': '#00DD00',
                        'MA': '#80A000', 'DE': '#995555'};
-        var opacities = {'DE': 0.2, 'PL': 0.3, 'MA': 0.5, 'AC': 0.5};
+        var opacities = {'DE': 0.1, 'PL': 0.2, 'MA': 0.3, 'AC': 0.4};
         function shadeColor(color, percent) {  
             percent = percent || 10;
             var num = parseInt(color.slice(1),16), amt = Math.round(2.55 * percent);
@@ -43,7 +43,7 @@
             {% for gw in community.gateways.all %}
                 {% if gw.status == status %}
                 var colour = colours['{{ gw.status }}'] || '#333333';
-                var opacity = opacities['{{ gw.status }}'] || 0.8;
+                var opacity = opacities['{{ gw.status }}'] || 0.5;
                 gateways.push(new google.maps.Circle({
                     strokeColor: shadeColor(colour, 20),
                     strokeOpacity: opacity,
@@ -123,10 +123,21 @@
             <article class="information">
                 <section class="left-bar">
                     <h1>Contributors</h1>
+                    {% for member in community.members.all|slice:":4" %}
+                    <img class="contributor" alt="{{ member.first_name }} {{ member.last_name }}"
+                     src="{% if member.ttnuser.image_thumb_url %}{{ member.ttnuser.image_thumb_url }}{% else %}{% static 'ttn/media/team/newmember.png' %}{% endif %}">
+                    {% endfor %}
+                    {% if community.members.all|length > 4 %}
+                    {% comment %}
+                    <a href="#" onclick="">see all</a>
+
+                    TODO MODAL
                     {% for member in community.members.all %}
                     <img class="contributor" alt="{{ member.first_name }} {{ member.last_name }}"
                      src="{% if member.ttnuser.image_thumb_url %}{{ member.ttnuser.image_thumb_url }}{% else %}{% static 'ttn/media/team/newmember.png' %}{% endif %}">
                     {% endfor %}
+                    {% endcomment %}
+                    {% endif %}
                 </section>
             
                 <section class="center">

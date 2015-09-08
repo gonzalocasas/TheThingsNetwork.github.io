@@ -9,7 +9,7 @@ from .models import Community, Post
 class IndexView(TemplateView):
 
     def get(self, request, **kwargs):
-        c = Community.objects.all() \
+        c = Community.objects.filter(published=True) \
                              .annotate(gateways_count=models.Count('gateways')) \
                              .order_by('-gateways_count')
         context = self.get_context_data(**kwargs)
