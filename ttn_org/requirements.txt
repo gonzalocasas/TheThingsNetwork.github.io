@@ -5,3 +5,7 @@ pillow
 gunicorn
 django-markwhat
 markdown
+waliki[all]
+rst2pdf==0.93
+hovercraft
+django-sendfile

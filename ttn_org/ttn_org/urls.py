@@ -10,4 +10,8 @@ urlpatterns = [
 
     # apps
     url(r'', include('ttn.urls', namespace='ttn')),
+
+    # wiki
+    url(r'^wiki/', include('waliki.urls')),
+
 ]

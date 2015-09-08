@@ -35,4 +35,5 @@ urlpatterns = [
         name='kickstarter'),
     url(r'^kickstarter-landing/kickstarter.html$',
         RedirectView.as_view(url=reverse_lazy(APPNS+'kickstarter'), permanent=True)),
+
 ]
