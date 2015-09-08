@@ -1,4 +1,5 @@
 ttn_org/static
+ttn_org/waliki_data
 
 *.swp
 *.sqlite3
