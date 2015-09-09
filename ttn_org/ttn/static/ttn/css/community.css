@@ -278,7 +278,6 @@ article {
 .blog-image {
     width: 15em;
     height: 15em;
-    background-image: url(../media/boat.jpg);
     background-size: cover;
     background-position: center;
     display: inline-block;

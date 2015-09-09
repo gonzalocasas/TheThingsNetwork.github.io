@@ -70,6 +70,8 @@ class Post(models.Model):
     slug = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True)
+    #image = models.ImageField('City image', blank=True, null=True)
+    image_url = models.CharField(max_length=250, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

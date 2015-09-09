@@ -146,15 +146,17 @@
                             {% if community.post_set.all %}
                             {% for post in community.post_set.all %}
                             <div class="blog-post">
-                                <div class="blog-image"></div>
+                                {% if post.image_url %}
+                                <div class="blog-image" style="background-image: url('{% if post.image_url %}{{ post.image_url }}{% endif %}');"></div>
+                                {% endif %}
                                 
-                                    <div class="blog-text">
-                                        <h4>{{ post.title }}</h4>
-                                        <p>{{ post.description|truncatewords:50 }}</p>
-                                        <a href="{% url 'ttn:community-post' slug=community.slug pk=post.pk %}">
-                                            Read more
-                                        </a>
-                                    </div>
+                                <div class="blog-text">
+                                    <h4>{{ post.title }}</h4>
+                                    <p>{{ post.description|truncatewords:50 }}</p>
+                                    <a href="{% url 'ttn:community-post' slug=community.slug pk=post.pk %}">
+                                        Read more
+                                    </a>
+                                </div>
                             </div>
                             {% endfor %}
                             {% else %}
