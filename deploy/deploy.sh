@@ -12,8 +12,7 @@ pip3 install -r requirements.txt
 
 echo '--- Migrating, collecting static files'
 ./manage.py migrate
-rm static/ -r
-./manage.py collectstatic --noinput
+./manage.py collectstatic --noinput --link --clear
 
 echo '--- Running server'
 #./manage.py runserver 0.0.0.0:80
