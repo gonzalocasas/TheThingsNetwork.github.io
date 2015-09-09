@@ -56,6 +56,7 @@ class CommunityAdmin(admin.ModelAdmin):
             'classes': ['collapse']
         })
     ]
+    filter_horizontal = ('leaders', 'members', 'gateways', 'companies')
     inlines = [PostInline, MediaInline, ResourceInline]
     list_display = ('slug', 'title', 'created')
     search_fields = ('title', 'slug', 'description')

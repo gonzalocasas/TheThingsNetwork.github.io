@@ -42,9 +42,12 @@ class Community(models.Model):
     scale = models.FloatField('Scale (m)', default=13)
     published = models.BooleanField(default=True)
     slug = models.CharField(max_length=200)
+    slug.help_text = 'url'
     title = models.CharField(max_length=200)
+    title.help_text = 'Area name'
     mission = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    description.help_text = 'Get them excited'
     contact = models.TextField(blank=True, null=True)
     #image = models.ImageField('City image', blank=True, null=True)
     image_url = models.CharField(max_length=250)
