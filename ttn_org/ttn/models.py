@@ -123,3 +123,15 @@ class Company(models.Model):
         c = self.community.title if self.community else '*'
         return "[{}] {}".format(c, self.title)
 
+
+class InitiatorSubmission(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    url = models.CharField(max_length=250)
+    skills = models.TextField(blank=True, null=True)
+    area = models.CharField(max_length=200)
+    contributors = models.TextField(blank=True, null=True)
+    plan = models.TextField(blank=True, null=True)
+    helping = models.TextField(blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+

@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.http import Http404
 from django.db import models
 
-from .models import Community, Post, Gateway
+from .models import Community, Post, Gateway, InitiatorSubmission
 
 
 class IndexView(TemplateView):
@@ -36,6 +36,11 @@ class StartCommunityView(TemplateView):
         return self.render_to_response(context)
 
     def post(self, request, **kwargs):
+        submission = InitiatorSubmission()
+        for field in ['name', 'email', 'url', 'skills', 'area',
+                      'contributors', 'plan', 'helping']:
+            setattr(submission, field, request.POST.get(field, ''))
+        submission.save()
         return redirect('ttn:new-community-thanks')
 
 
