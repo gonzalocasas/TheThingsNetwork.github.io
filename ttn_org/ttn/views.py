@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.http import Http404
 from django.db import models
 
-from .models import Community, Post
+from .models import Community, Post, Gateway
 
 
 class IndexView(TemplateView):
@@ -25,6 +25,17 @@ class CommunityView(TemplateView):
             return redirect('ttn:new-community', search=slug)
         context = self.get_context_data(**kwargs)
         context['community'] = c[0]
+        return self.render_to_response(context)
+
+
+class OverviewView(TemplateView):
+
+    def get(self, request, **kwargs):
+        cs = Community.objects.all()
+        gws = Gateway.objects.all()
+        context = self.get_context_data(**kwargs)
+        context['communities'] = cs
+        context['gateways'] = gws
         return self.render_to_response(context)
 
 

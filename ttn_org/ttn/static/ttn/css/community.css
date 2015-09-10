@@ -165,21 +165,21 @@ overflow: none;
     padding-top: 2em;
 }
 
-#map {
+#map-inline {
     height: 400px;
     width: 100%;
     margin: 0;
     padding: 0;
     position: relative;
 }
-/*
-    float: left;
-    display: inline-block;
-    background-image: url(../media/map-newyork.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-*/
+
+#map-full {
+    height: 1000px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
 
 article {
     width: 100%;

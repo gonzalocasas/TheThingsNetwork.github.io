@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_markwhat',
+    'jsonify',
     'waliki',
     'waliki.git',
     'waliki.attachments',

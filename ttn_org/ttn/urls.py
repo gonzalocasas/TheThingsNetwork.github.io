@@ -15,6 +15,11 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(template_name=APP+'index.html'),
         name='index'),
 
+    # Main pages
+    url(r'^map$',
+        views.OverviewView.as_view(template_name=APP+'community/map.html'),
+        name='map'),
+
     # Community pages
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/?$',
         views.CommunityView.as_view(template_name=APP+'community/index.html'),

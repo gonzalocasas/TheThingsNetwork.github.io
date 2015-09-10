@@ -8,3 +8,4 @@ markdown
 waliki[all]
 hovercraft
 django-sendfile
+django-jsonify

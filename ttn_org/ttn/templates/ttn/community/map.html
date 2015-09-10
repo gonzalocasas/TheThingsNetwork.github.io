@@ -1,0 +1,38 @@
+{% extends "ttn/community/base.html" %}
+{% load staticfiles markup jsonify %}
+
+{% block author %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="{% static 'ttn/js/map.js' %}"></script>
+<script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map-full');
+        var mapOptions = {
+          center: new google.maps.LatLng(
+                {{ community.lat|default:'24.5403' }},
+                {{ community.lon|default:'-0.5463' }}),
+          zoom: {{ community.scale|default:3 }},
+          scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+
+        var communitydump = {{ communities.all|jsonify }};
+        var gatewaydump = {{ gateways.all|jsonify }};
+        var communities = draw_communities(map, communitydump);
+        var gateways = draw_gateways(map, gatewaydump);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock %}
+
+{% block content %}
+
+    <article class="coverage-progress">
+        <div id="map-full">Loading map..</div>
+    </article>
+
+{% endblock %}
