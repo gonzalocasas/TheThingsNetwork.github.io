@@ -28,6 +28,8 @@ class Gateway(models.Model):
     message_count = models.IntegerField(default=0, null=True, blank=True)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES,
                               default='AC')
+    gateway_eui = models.CharField(max_length=32, null=True, blank=True)
+    auto_update = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
