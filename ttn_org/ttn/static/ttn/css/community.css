@@ -126,19 +126,19 @@ h1 {
     height: 1em;
     text-align: center;
     font-size: 2em;
-
 }
 
 .initiator-city {
     text-align: center;
     margin: auto;
     position: absolute;
-    top: 28em;
+    top: 27em;
     left: 0;
     bottom: 0;
     right: 0;
     height: 1em;
     font-weight: 300;
+    font-size: 1.2em;
 }
 
 .coverage-progress {
@@ -205,7 +205,17 @@ article {
 
 }
 
-.contributor {
+.user-block {
+    display: inline-block;
+    width: 20em;
+    margin: 1em 0em;
+    color: #5E5B5B;
+    font-family: 'Lato';
+    font-weight: 300;
+    text-align: center;
+}
+
+.user-img {
     display: block;
     width: 8em;
     margin: 0 auto;
@@ -259,7 +269,7 @@ article {
 .blog-post p {
     font-family: 'Lato';
     color: #5E5B5B;
-    font-weigth: 300;
+    font-weight: 300;
     padding-bottom: 1em;
     width: auto;
 }
@@ -376,6 +386,51 @@ article {
     color: #5E5B5B;
     padding-bottom: 2em;
     
+}
+
+
+.modal .modal-content {
+    border-radius: 0;
+    
+}
+#new-member-button {
+    background-color: transparent;
+    border: none;
+}
+.modal input {
+    border: 2px solid #5E5B5B;
+    width: 18em;
+    color: #5E5B5B;
+}
+
+.modal .clear input {
+    background-color: #5E5B5B;
+    color: white;
+}
+
+.modal .clear input:hover {
+    background-color: #361617;
+    border-color: #361617;
+}
+.modal img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: #F2F2F2;
+    width: 50%;
+    height: auto;
+}
+
+.modal .close {
+    color: #5E5B5B;
+}
+.modal h4 {
+    color: #5E5B5B;
+    text-align: center;
+}
+
+.modal p {
+    color: #5E5B5B;
 }
 
 

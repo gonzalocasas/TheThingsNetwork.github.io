@@ -60,6 +60,7 @@
                     <img src="{% static 'ttn/media/progress.png' %}">
                 </div -->
                 <div class="clear"></div>
+                <a name="map">&nbsp;</a>
                 <div id="map-inline">Loading map..</div>
             </article>
             
@@ -94,19 +95,12 @@
                 <section class="left-bar">
                     <h1>Contributors</h1>
                     {% for member in community.members.all|slice:":4" %}
-                    <img class="contributor" alt="{{ member.first_name }} {{ member.last_name }}"
+                    <img class="user-img" alt="{{ member.first_name }} {{ member.last_name }}" title="{{ member.first_name }} {{ member.last_name }}"
                      src="{% if member.ttnuser.image_thumb_url %}{{ member.ttnuser.image_thumb_url }}{% else %}{% static 'ttn/media/team/newmember.png' %}{% endif %}">
                     {% endfor %}
-                    {% if community.members.all|length > 4 %}
-                    {% comment %}
-                    <a href="#" onclick="">see all</a>
 
-                    TODO MODAL
-                    {% for member in community.members.all %}
-                    <img class="contributor" alt="{{ member.first_name }} {{ member.last_name }}"
-                     src="{% if member.ttnuser.image_thumb_url %}{{ member.ttnuser.image_thumb_url }}{% else %}{% static 'ttn/media/team/newmember.png' %}{% endif %}">
-                    {% endfor %}
-                    {% endcomment %}
+                    {% if community.members.all|length > 4 %}
+                    <button id="usersButton" class="btn btn-lg button" data-toggle="modal" data-target="#usersModal" type="button">See all</button>
                     {% endif %}
                 </section>
             
@@ -175,5 +169,12 @@
                     </div>
                 </section>
          </article>
+
+
+        <!-- Modals -->
+        {% with users=community.members.all title='Contributors to '|add:community.title %}
+        {% include 'ttn/partials/users_modal.html' %}
+        {% endwith %}
+        <!-- End Modals -->
 
 {% endblock %}
