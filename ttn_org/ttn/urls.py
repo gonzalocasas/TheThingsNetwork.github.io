@@ -30,8 +30,13 @@ urlpatterns = [
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/post/(?P<pk>[0-9a-zA-Z_-]+)$',
         views.PostView.as_view(template_name=APP+'community/post.html'),
         name='community-post'),
+
+    # start a community
+    url(r'^start-a-community/thanks$',
+        TemplateView.as_view(template_name=APP+'community/start-a-community-thanks.html'),
+        name='new-community-thanks'),
     url(r'^start-a-community/(?P<search>[0-9a-zA-Z_-]+)?$',
-        TemplateView.as_view(template_name=APP+'community/start-a-community.html'),
+        views.StartCommunityView.as_view(template_name=APP+'community/start-a-community.html'),
         name='new-community'),
 
     # Special pages

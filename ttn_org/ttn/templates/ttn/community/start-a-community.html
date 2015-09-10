@@ -9,7 +9,36 @@
 {% block content %}
 
         <article class="intro">
-            <p>&nbsp;</p>
-            Landing page for starting a community.
+            <h1>So you want to kickstart The Things Network in your area?</h1>
+
+            <div class="page-content">
+                <p>Awesome!</p>
+                <p>We'll provide you with online tools, best practices and support, so you can focus on activating your community.<p>
+                <p>To get started, provide us with some info and we'll get in contact ASAP!</p>
+
+                <div class="container">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        Tell us about yourself.
+                        <input type="text" value="" name="name" class="required" placeholder="What's your name?">
+                        <input type="email" value="" name="email" class="required email" placeholder="Your email address">
+                        <input type="text" value="" name="linkedin" class="required" placeholder="Linkedin or personal website">
+                        <textarea name="background" class="required" placeholder="Your background / top skills" rows=4></textarea>
+
+                        Tell us about your (future) community.
+                        <input type="text" value="{{ search|capfirst }}" name="area" class="required" placeholder="City or area">
+                        <textarea name="contributors" class="required" placeholder="Community members gathered" rows=4></textarea>
+                        
+                        What is your plan?
+                        <textarea name="plan" class="required" placeholder="The plan" rows=4></textarea>
+
+                        How can we help?
+                        <textarea name="help" class="required" placeholder="The Things Network Global loves helping you succeed" rows=4></textarea>
+
+                        <input type="submit" value="Let's get started!">
+                    </form>
+                </div>
+
+            </div>
         </article>
 {% endblock %}

@@ -28,6 +28,17 @@ class CommunityView(TemplateView):
         return self.render_to_response(context)
 
 
+class StartCommunityView(TemplateView):
+    
+    def get(self, request, search, **kwargs):
+        context = self.get_context_data(**kwargs)
+        context['search'] = search or ""
+        return self.render_to_response(context)
+
+    def post(self, request, **kwargs):
+        return redirect('ttn:new-community-thanks')
+
+
 class OverviewView(TemplateView):
 
     def get(self, request, **kwargs):

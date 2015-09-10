@@ -377,6 +377,31 @@ article {
     text-transform: uppercase;
 }
 
+form input {
+    width: 100%;
+    border: 2px solid #5E5B5B;
+    padding: 1em;
+    margin-left: 0;
+    margin-bottom: 1em;
+    font-family: 'Lato';
+    font-size: 1em;
+}
+
+form textarea {
+    width: 100%;
+    border: 2px solid #5E5B5B;
+    padding: 1em;
+    margin-left: 0;
+    margin-bottom: 1em;
+    font-family: 'Lato';
+    font-size: 1em;
+}
+
+.container {
+    width: 80%;
+    margin: 1em auto;
+}
+
 .how-to-connect h1 {
     padding-top: 1em;
     
