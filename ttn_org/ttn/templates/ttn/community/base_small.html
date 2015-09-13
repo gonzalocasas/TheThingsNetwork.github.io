@@ -1,0 +1,12 @@
+{% extends "ttn/community/base.html" %}
+{% load staticfiles markup %}
+
+{% block header %}
+            <div class="frontpage-small" style="background-image: url('{% if community.image_url %}{{ community.image_url }}{% else %}{% static 'ttn/media/examplecity-newyork.jpg' %}{% endif %}');">
+                <a href="{% url 'ttn:index' %}">
+                    <img class="logo" src="{% static 'ttn/media/The Things Uitlijning.svg' %}">
+                </a>
+                {% block author %}
+                {% endblock %}
+            </div>
+{% endblock %}
