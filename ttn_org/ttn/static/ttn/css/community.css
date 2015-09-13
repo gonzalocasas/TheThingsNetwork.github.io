@@ -442,6 +442,10 @@ form textarea {
     text-decoration: none;
 }
 
+.error {
+    color: #F00;
+}
+
 .how-to-connect h1 {
     padding-top: 1em;
     

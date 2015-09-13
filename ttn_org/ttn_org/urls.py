@@ -16,6 +16,9 @@ urlpatterns = [
     url(r'^wiki/', include('waliki.urls')),
 
     # account
-    url(r'^accounts/login/$', auth_views.login),
+    #url(r'^accounts/login/$', auth_views.login),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    # TODO: look at django-allauth
+    # (r'', include('allauth.urls')),
 
 ]
