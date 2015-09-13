@@ -1,6 +1,12 @@
 {% extends "ttn/community/base.html" %}
 {% load staticfiles markup jsonify %}
 
+{% block menu %}
+    {% if 'admin' in permissions %}
+    <a href="{% url 'ttn:community-settings' slug=community.slug %}">Settings</a>
+    {% endif %}
+{% endblock %}
+
 {% block author %}
                 {% for leader in community.leaders.all %}
                 <div class="leader">
