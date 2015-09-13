@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
+from django.contrib.auth.models import User
 from django.http import Http404
 from django.db import models
 
 from .models import Community, Post, Gateway, InitiatorSubmission
+from .forms import SettingsForm
+user = []
 
 
 class IndexView(TemplateView):
@@ -20,13 +23,26 @@ class IndexView(TemplateView):
 class CommunityView(TemplateView):
 
     def get(self, request, slug, **kwargs):
+        context = self.get_context_data(**kwargs)
+        context['community'] = self._get_community(slug=slug)
+        return self.render_to_response(context)
+
+    def _get_community(self, slug):
         c = Community.objects.filter(slug=slug)
         if not c:
             return redirect('ttn:new-community', search=slug)
-        context = self.get_context_data(**kwargs)
-        context['community'] = c[0]
-        return self.render_to_response(context)
+        return c[0]
 
+    def _get_permissions(self, community=None):
+        p = []
+        """
+        if community and user in community.members:
+            p.append('contributor')
+        if community and user in community.leaders:
+            p.append('admin')
+            """
+        return p
+        
 
 class StartCommunityView(TemplateView):
     
@@ -55,15 +71,34 @@ class OverviewView(TemplateView):
         return self.render_to_response(context)
 
 
-class PostView(TemplateView):
+class PostView(CommunityView):
 
     def get(self, request, slug, pk, **kwargs):
-        c = Community.objects.filter(slug=slug)
-        if not c:
-            return redirect('ttn:new-community', search=slug)
         post = get_object_or_404(Post, pk=pk)
         context = self.get_context_data(**kwargs)
-        context['community'] = c[0]
+        context['community'] = self._get_community(slug=slug)
         context['post'] = post
         return self.render_to_response(context)
+
+
+class SettingsView(CommunityView):
+
+    def get(self, request, slug, **kwargs):
+        community = self._get_community(slug=slug)
+        permissions = self._get_permissions(community)
+        if 'admin' not in permissions:
+            return redirect('ttn:community', slug=slug) # no access
+        form = SettingsForm(instance=community)
+        context = self.get_context_data(**kwargs)
+        context['community'] = self._get_community(slug=slug)
+        context['form'] = form
+        return self.render_to_response(context)
+
+    def post(self, request, slug, **kwargs):
+        community = self._get_community(slug=slug)
+        permissions = self._get_permissions(community)
+        if 'admin' in permissions:
+            settings = SettingsForm(request.POST, instance=community)
+            settings.save()
+        return redirect('ttn:community', slug=slug)
 

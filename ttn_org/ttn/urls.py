@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.decorators import login_required
 from . import views
 from django.views.generic import TemplateView, RedirectView
 
@@ -30,6 +31,10 @@ urlpatterns = [
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/post/(?P<pk>[0-9a-zA-Z_-]+)$',
         views.PostView.as_view(template_name=APP+'community/post.html'),
         name='community-post'),
+    url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/settings/?$',
+        login_required(views.SettingsView.as_view(
+            template_name=APP+'community/settings.html')),
+        name='community-settings'),
 
     # start a community
     url(r'^start-a-community/thanks$',

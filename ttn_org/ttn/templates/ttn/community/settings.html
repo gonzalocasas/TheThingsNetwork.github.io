@@ -1,0 +1,38 @@
+{% extends "ttn/community/base_small.html" %}
+{% load staticfiles markup jsonify %}
+
+{% block author %}
+{% endblock %}
+
+{% block content %}
+
+        <article class="intro">
+            <h1>Settings for {{ community.title }}</h1>
+
+            <div class="page-content">
+                <p>Here's your settings.</p>
+
+                <div class="container">
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        {{ form }}
+
+                        <!-- custom fields
+                        <input type="text" value="" name="name" class="required" placeholder="What's your name?">
+                        <input type="email" value="" name="email" class="required email" placeholder="Your email address">
+                        <input type="text" value="" name="url" class="required" placeholder="Linkedin or personal website">
+                        <textarea name="skills" class="required" placeholder="Your background / top skills" rows=4></textarea>
+                        -->
+
+                        <input type="submit" value="Save changes">
+                    </form>
+                </div>
+            </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static "admin/js/core.js" %}"></script>
+{% endblock %}

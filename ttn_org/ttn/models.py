@@ -41,7 +41,7 @@ class Community(models.Model):
     # TODO: use area type
     lat = models.FloatField('latitude', blank=True, null=True)
     lon = models.FloatField('longitude', blank=True, null=True)
-    scale = models.FloatField('Scale (m)', default=13)
+    scale = models.FloatField('Scale (zoom)', default=13)
     published = models.BooleanField(default=True)
     slug = models.CharField(max_length=200)
     slug.help_text = 'url'

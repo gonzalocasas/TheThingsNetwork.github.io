@@ -409,6 +409,13 @@ form textarea {
     font-size: 1em;
 }
 
+.helptext {
+    display: block;
+    margin-top: -1.8em;
+    font-style: italic;
+    font-size: 80%;
+}
+
 .container {
     width: 80%;
     margin: 1em auto;
