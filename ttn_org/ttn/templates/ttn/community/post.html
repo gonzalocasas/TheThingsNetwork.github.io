@@ -14,9 +14,21 @@
                 {{ post.description|markdown }}
             </div>
 
-            <a href="{% url 'ttn:community' slug=post.community.slug %}">
-                Back to {{ post.community.title }}
+            {% if post.image_url %}
+            <div class="container">
+                <img src="{{ post.image_url }}" style="max-width:100%;">
+            </div>
+            <p>&nbsp;</p>
+            {% endif %}
+
+            <a href="{% url 'ttn:community' slug=community.slug %}">
+                Back to {{ community.title }}
             </a>
+            {% if 'admin' in permissions %}
+            <a href="{% url 'ttn:community-post-edit' slug=community.slug pk=post.pk %}">
+                Edit post
+            </a>
+            {% endif %}
 
             <p>&nbsp;</p>
         </article>

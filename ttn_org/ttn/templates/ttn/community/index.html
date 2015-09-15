@@ -134,6 +134,14 @@
                                 <p>The {{ community.title }} community hasn't posted anything yet!</p>
                             </div>
                             {% endif %}
+
+                            {% if 'admin' in permissions %}
+                            <div class="blog-post">
+                                <a href="{% url 'ttn:community-post-edit' slug=community.slug pk='new' %}">
+                                    Add update
+                                </a>
+                            </div>
+                            {% endif %}
                     </div>
                 </section>
             

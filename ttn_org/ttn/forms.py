@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from .models import Community
+from .models import Community, Post
 
 
 class SettingsForm(ModelForm):
@@ -13,4 +13,10 @@ class SettingsForm(ModelForm):
         widgets = {
             # https://docs.djangoproject.com/en/1.8/ref/forms/widgets/
         }
+
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'image_url', 'description']
 

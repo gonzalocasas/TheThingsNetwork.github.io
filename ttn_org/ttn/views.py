@@ -5,7 +5,7 @@ from django.http import Http404
 from django.db import models
 
 from .models import Community, Post, Gateway, InitiatorSubmission
-from .forms import SettingsForm
+from .forms import SettingsForm, PostForm
 
 
 class IndexView(TemplateView):
@@ -78,12 +78,42 @@ class PostView(CommunityView):
     def get(self, request, slug, pk, **kwargs):
         post = get_object_or_404(Post, pk=pk)
         community = self._get_community(slug=slug)
+        permissions = self._get_permissions(request.user, community)
         if not community:
             return redirect('ttn:new-community', search=slug)
         context = self.get_context_data(**kwargs)
         context['community'] = community
+        context['permissions'] = permissions
         context['post'] = post
         return self.render_to_response(context)
+
+
+class PostEditView(PostView):
+
+    def get(self, request, slug, pk, **kwargs):
+        community = get_object_or_404(Community, slug=slug)
+        post = Post.objects.filter(pk=pk)[0] if pk != 'new' else None
+        form = PostForm(instance=post)
+        permissions = self._get_permissions(request.user, community)
+        context = self.get_context_data(**kwargs)
+        context['community'] = community
+        context['post'] = post
+        context['permissions'] = permissions
+        context['form'] = form
+        return self.render_to_response(context)
+
+    def post(self, request, slug, pk, **kwargs):
+        community = get_object_or_404(Community, slug=slug)
+        post = Post.objects.filter(pk=pk)[0] if pk != 'new' else None
+        permissions = self._get_permissions(request.user, community)
+        if 'admin' in permissions:
+            new_post = PostForm(request.POST, instance=post)
+            post = new_post.save(commit=False)
+            if pk == 'new':
+                post.author = request.user
+                post.community = community
+            post.save()
+        return redirect('ttn:community-post', slug=slug, pk=post.pk)
 
 
 class SettingsView(CommunityView):
@@ -108,8 +138,8 @@ class SettingsView(CommunityView):
             return redirect('ttn:new-community', search=slug)
         permissions = self._get_permissions(request.user, community)
         if 'admin' in permissions:
-            settings = SettingsForm(request.POST, instance=community)
-            settings.save()
+            new_settings = SettingsForm(request.POST, instance=community)
+            settings = new_settings.save()
         return redirect('ttn:community', slug=slug)
 
 

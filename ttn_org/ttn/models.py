@@ -135,3 +135,6 @@ class InitiatorSubmission(models.Model):
     helping = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return "[{}] {} <{}>".format(self.area, self.name, self.email)
+

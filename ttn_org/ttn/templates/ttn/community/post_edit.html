@@ -9,13 +9,24 @@
 {% block content %}
 
         <article class="intro">
-            <h1>{{ post.title }}</h1>
             <div class="page-content">
-                {{ post.description|markdown }}
+                <h1>Write an update.</h1>
+
+                <div class="container">
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        {{ form }}
+
+                        <!-- TODO: nice wysiwyg (markdown) editor -->
+
+                        <input type="submit" value="Save update">
+                    </form>
+                </div>
             </div>
 
-            <a href="{% url 'ttn:community' slug=post.community.slug %}">
-                Back to {{ post.community.title }}
+            <a href="{% url 'ttn:community' slug=community.slug %}">
+                Back to {{ community.title }}
             </a>
 
             <p>&nbsp;</p>
