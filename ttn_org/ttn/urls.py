@@ -31,6 +31,10 @@ urlpatterns = [
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/post/(?P<pk>[0-9a-zA-Z_-]+)$',
         views.PostView.as_view(template_name=APP+'community/post.html'),
         name='community-post'),
+    url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/post/(?P<pk>[0-9a-zA-Z_-]+)/edit/?$',
+        login_required(views.PostView.as_view(
+            template_name=APP+'community/post_edit.html')),
+        name='community-post-edit'),
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/settings/?$',
         login_required(views.SettingsView.as_view(
             template_name=APP+'community/settings.html')),

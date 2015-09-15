@@ -1,0 +1,18 @@
+{% extends "ttn/community/base_small.html" %}
+{% load staticfiles markup jsonify %}
+
+{% block content %}
+
+        <article class="intro">
+            <h1>Profile</h1>
+
+            <div class="page-content">
+
+                <div class="container">
+
+                Welcome, {{ user.first_name }}!
+
+                </div>
+            </div>
+{% endblock %}
+

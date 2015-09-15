@@ -1,6 +1,8 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView, RedirectView
+from ttn import views
 
 urlpatterns = [
     # Examples:
@@ -18,6 +20,10 @@ urlpatterns = [
     # account
     #url(r'^accounts/login/$', auth_views.login),
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/signup/', views.SignupView.as_view(
+        template_name='registration/signup.html'), name='signup'),
+    url(r'^accounts/profile/', TemplateView.as_view(
+        template_name='registration/profile.html'), name='profile'),
     # TODO: look at django-allauth
     # (r'', include('allauth.urls')),
 

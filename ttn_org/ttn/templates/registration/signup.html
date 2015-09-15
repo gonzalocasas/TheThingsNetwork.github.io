@@ -1,0 +1,32 @@
+{% extends "ttn/community/base_small.html" %}
+{% load staticfiles markup jsonify %}
+
+{% block content %}
+
+        <article class="intro">
+            <h1>Create an account</h1>
+
+            <div class="page-content">
+
+                <div class="container">
+
+                {% for error in errors %}
+                <p class="error">{{ error }}</p>
+                {% endfor %}
+
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        <input type="text" value="{{ first_name }}" name="first_name" class="required" placeholder="First name">
+                        <input type="text" value="{{ last_name }}" name="last_name" class="required" placeholder="Last name">
+                        <input type="email" value="{{ email }}" name="email" class="required email" placeholder="Your email address">
+                        <input type="text" value="{{ username }}" name="username" class="required" placeholder="Username">
+                        <input type="password" value="" name="password1" class="required" placeholder="Password">
+                        <input type="password" value="" name="password2" class="required" placeholder="Password (again)">
+
+                        <input type="submit" value="Create account">
+
+                    </form>
+                </div>
+            </div>
+{% endblock %}
