@@ -14,6 +14,11 @@ echo '--- Migrating, collecting static files'
 ./manage.py migrate
 ./manage.py collectstatic --noinput --link --clear
 
-echo '--- Running server'
-#./manage.py runserver 0.0.0.0:80
-supervise .
+if [ -n "$LIVE" ];
+then
+    echo '--- Running server LIVE'
+    supervise .
+else
+    echo '--- Running server DEVELOPMENT'
+    ./manage.py runserver 0.0.0.0:8000
+fi
