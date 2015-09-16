@@ -1,0 +1,13 @@
+{% extends "wiki/base.html" %}
+{% load waliki_tags %}
+
+{% block body %}
+
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+            {% waliki_box slug %}
+            </div>
+        </div>
+
+{% endblock %}

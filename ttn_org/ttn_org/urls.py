@@ -16,6 +16,7 @@ urlpatterns = [
 
     # wiki
     url(r'^wiki/', include('waliki.urls')),
+    url(r'^wiki2/', include('wiki.urls')),
 
     # account
     #url(r'^accounts/login/$', auth_views.login),
