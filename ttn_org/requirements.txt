@@ -9,3 +9,4 @@ waliki[all]
 hovercraft
 django-sendfile
 django-jsonify
+djangorestframework

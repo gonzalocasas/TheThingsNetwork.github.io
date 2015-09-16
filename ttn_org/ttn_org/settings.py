@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'waliki.attachments',
     'waliki.pdf',
     'waliki.togetherjs',
+    'rest_framework',
 
     'ttn',
     'wiki',
