@@ -107,6 +107,10 @@ else:
         }
     }
 
+API_INFLUX_HOST = env.get('API_INFLUX_HOST', '')
+API_INFLUX_PORT = env.get('API_INFLUX_PORT', '')
+API_INFLUX_DB = env.get('API_INFLUX_DB', '')
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

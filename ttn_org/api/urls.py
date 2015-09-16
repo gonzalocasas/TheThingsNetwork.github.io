@@ -12,6 +12,7 @@ APPNS = 'api:'
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+#router.register(r'gateways', views.GatewayView)
 
 
 urlpatterns = [
@@ -19,7 +20,8 @@ urlpatterns = [
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^', include(router.urls)),
 
-    url(r'^custom/', views.CustomView.as_view(), name='custom'),
+    url(r'^gateways/$', views.GatewayView.as_view(), name='gateways'),
+    url(r'^gateways/(?P<eui>[0-9a-zA-Z]+)/$', views.GatewayView.as_view(), name='gateway'),
 
 ]
 

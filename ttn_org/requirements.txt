@@ -10,3 +10,4 @@ hovercraft
 django-sendfile
 django-jsonify
 djangorestframework
+influxdb
