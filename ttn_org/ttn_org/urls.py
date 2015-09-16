@@ -30,6 +30,5 @@ urlpatterns = [
 
     # API
     url(r'^api/v0/', include('api.urls', namespace='api')),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
 ]
