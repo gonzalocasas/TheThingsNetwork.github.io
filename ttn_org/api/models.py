@@ -15,41 +15,41 @@ class Influx:
         query = "SELECT {fields} FROM {table}".format(
             fields=fields, table=table)
         where = []
-        if kwargs.get('eui'):
-            where.append("eui = '{}'".format(kwargs['eui']))
+        for where_key in ['eui', 'node_eui', 'gateway_eui']:
+            if kwargs.get(where_key):
+                where.append("{} = '{}'".format(where_key, kwargs[where_key]))
         if kwargs.get('time_span'):
             where.append("time > now() - {}".format(kwargs['time_span']))
         if where:
             query += " WHERE " + " AND ".join(where)
+        if 'group_by' in kwargs:
+            query += " GROUP BY {}".format(kwargs['group_by'])
         if 'limit' in kwargs:
-            query += " LIMIT {}".format(kwargs['limit'])
+            limit = min(100, kwargs['limit'])
+            query += " LIMIT {}".format(limit)
         if 'offset' in kwargs:
             query += " OFFSET {}".format(kwargs['offset'])
         return query
 
-    def remap(self, result):
-        """Remap from InfluxDB format (tag, keys => [values]) to list of rows"""
-        if isinstance(result, resultset.ResultSet):
-            result = result.raw
-        results = []
-        for serie in result.get('series'):
-            tags = serie.get('tags', {})
-            columns = serie.get('columns')
-            for row_values in serie.get('values'):
-                item = tags.copy()
-                for key, value in zip(columns, row_values):
-                    item[key] = value
-                results.append(item)
-        return results
-
 
 class IFGateways(Influx):
 
-    def get(self, eui=None, time_span=None, limit=20, offset=0):
+    def get(self, eui=None, time_span=None, limit=20, offset=0, **kwargs):
         query = self.make_query(table='gateway_status',
                                 eui=eui, time_span=time_span,
-                                limit=limit, offset=offset)
+                                limit=limit, offset=offset, **kwargs)
         print("Q", query)
         result = self.client.query(query)
-        return self.remap(result)
+        return result
+
+
+class IFNodes(Influx):
+
+    def get(self, node_eui=None, time_span=None, limit=20, offset=0, **kwargs):
+        query = self.make_query(table='rx_packets',
+                                node_eui=node_eui, time_span=time_span,
+                                limit=limit, offset=offset, **kwargs)
+        print("Q", query)
+        result = self.client.query(query)
+        return result
 

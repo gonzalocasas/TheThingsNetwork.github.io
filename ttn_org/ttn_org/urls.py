@@ -1,4 +1,5 @@
 from django.conf.urls import include, url
+from django.core.urlresolvers import reverse_lazy
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView, RedirectView
@@ -29,6 +30,7 @@ urlpatterns = [
     # (r'', include('allauth.urls')),
 
     # API
-    url(r'^api/v0/', include('api.urls', namespace='api')),
+    url(r'^api/$', RedirectView.as_view(url='v0/', permanent=False)),
+    url(r'^api/v0/', include('api.urls', namespace='api'), name='api_root'),
 
 ]

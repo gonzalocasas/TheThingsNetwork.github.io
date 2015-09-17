@@ -18,10 +18,15 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
 
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^', include(router.urls)),
+    url(r'^', include(router.urls), name='api'),
 
+    # TODO: get in router / root overview
     url(r'^gateways/$', views.GatewayView.as_view(), name='gateways'),
-    url(r'^gateways/(?P<eui>[0-9a-zA-Z]+)/$', views.GatewayView.as_view(), name='gateway'),
+    url(r'^gateways/(?P<eui>[0-9a-zA-Z]+)/$', views.GatewayView.as_view(),
+        name='gateway'),
+    url(r'^nodes/$', views.NodeView.as_view(), name='nodes'),
+    url(r'^nodes/(?P<node_eui>[0-9a-zA-Z]+)/$', views.NodeView.as_view(),
+        name='node'),
 
 ]
 
