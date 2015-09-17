@@ -33,4 +33,7 @@ urlpatterns = [
     url(r'^api/$', RedirectView.as_view(url='v0/', permanent=False)),
     url(r'^api/v0/', include('api.urls', namespace='api'), name='api_root'),
 
+    # special
+    url(r'^robots.txt', TemplateView.as_view(template_name='robots.txt')),
+
 ]
