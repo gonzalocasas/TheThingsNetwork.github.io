@@ -1,5 +1,6 @@
 from django.db import models
 from influxdb import InfluxDBClient, resultset
+import re
 
 from ttn_org import settings
 
@@ -18,17 +19,22 @@ class Influx:
         for where_key in ['eui', 'node_eui', 'gateway_eui']:
             if kwargs.get(where_key):
                 where.append("{} = '{}'".format(where_key, kwargs[where_key]))
-        if kwargs.get('time_span'):
+        if kwargs.get('time_span') and re.match('[0-9]+[a-zA-Z]+', kwargs['time_span']):
             where.append("time > now() - {}".format(kwargs['time_span']))
         if where:
             query += " WHERE " + " AND ".join(where)
         if 'group_by' in kwargs:
             query += " GROUP BY {}".format(kwargs['group_by'])
         if 'limit' in kwargs:
-            limit = min(100, kwargs['limit'])
-            query += " LIMIT {}".format(limit)
+            limit = kwargs['limit']
+            if isinstance(limit, int) or limit.isdigit():
+                limit = min(100, int(limit))
+                query += " LIMIT {}".format(limit)
         if 'offset' in kwargs:
-            query += " OFFSET {}".format(kwargs['offset'])
+            offset = kwargs['offset']
+            if isinstance(offset, int) or offset.isdigit():
+                offset = min(100, int(offset))
+                query += " OFFSET {}".format(offset)
         return query
 
 

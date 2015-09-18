@@ -19,10 +19,19 @@ class GatewayView(APIView):
     def get(self, request, eui=None, *args, **kwargs):
         queryset = IFGateways()
         serializer = InfluxSerializer()
+
+        query_params = {}
+        for key in ['time_span', 'limit', 'offset']:
+            if request.GET.get(key):
+                query_params[key] = request.GET.get(key)
         if eui:
-            items = queryset.get(time_span='4d', eui=eui)
+            # gateway list
+            query_params['eui'] = eui
         else:
-            items = queryset.get(time_span='4d', group_by='eui', limit=1)
+            # gateway statuses overview
+            query_params['group_by'] = 'eui'
+            query_params['limit'] = 1
+        items = queryset.get(**query_params)
         items = serializer.remap(items)
         response = Response(items, status=status.HTTP_200_OK)
         return response
@@ -34,10 +43,19 @@ class NodeView(APIView):
     def get(self, request, node_eui=None, *args, **kwargs):
         queryset = IFNodes()
         serializer = InfluxSerializer()
+
+        query_params = {}
+        for key in ['time_span', 'limit', 'offset']:
+            if request.GET.get(key):
+                query_params[key] = request.GET.get(key)
         if node_eui:
-            items = queryset.get(time_span='4d', node_eui=node_eui)
+            # node packets list
+            query_params['node_eui'] = node_eui
         else:
-            items = queryset.get(time_span='4d', group_by='node_eui', limit=1)
+            # node overview
+            query_params['group_by'] = 'node_eui'
+            query_params['limit'] = 1
+        items = queryset.get(**query_params)
         items = serializer.remap(items)
         items = serializer.annotate(items)
         response = Response(items, status=status.HTTP_200_OK)
