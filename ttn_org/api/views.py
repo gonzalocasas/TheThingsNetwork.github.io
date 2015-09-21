@@ -8,6 +8,9 @@ from .models import IFGateways, IFNodes
 from .serializers import UserSerializer, InfluxSerializer
 
 
+DOCS_URL = "http://thethingsnetwork.org/wiki/Software/Overview#api"
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -19,6 +22,7 @@ class IndexView(APIView):
     def get(self, request, **kwargs):
         base_url = request.build_absolute_uri()
         index = {
+            'docs': DOCS_URL,
             'nodes': "{}nodes/".format(base_url),
             'gateways': "{}gateways/".format(base_url),
         }
