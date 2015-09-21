@@ -20,7 +20,7 @@ class GatewayView(APIView):
         queryset = IFGateways()
         serializer = InfluxSerializer()
 
-        query_params = {}
+        query_params = {'order_by': '-time'}
         for key in ['time_span', 'limit', 'offset']:
             if request.GET.get(key):
                 query_params[key] = request.GET.get(key)
@@ -44,7 +44,7 @@ class NodeView(APIView):
         queryset = IFNodes()
         serializer = InfluxSerializer()
 
-        query_params = {}
+        query_params = {'order_by': '-time'}
         for key in ['time_span', 'limit', 'offset']:
             if request.GET.get(key):
                 query_params[key] = request.GET.get(key)

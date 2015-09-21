@@ -25,6 +25,10 @@ class Influx:
             query += " WHERE " + " AND ".join(where)
         if 'group_by' in kwargs:
             query += " GROUP BY {}".format(kwargs['group_by'])
+        if 'order_by' in kwargs:
+            direction = 'DESC' if kwargs['order_by'].startswith('-') else 'ASC'
+            key = kwargs['order_by'][1:] if kwargs['order_by'].startswith('-') else kwargs['order_by']
+            query += " ORDER BY {} {}".format(key, direction)
         if 'limit' in kwargs:
             limit = kwargs['limit']
             if isinstance(limit, int) or limit.isdigit():
