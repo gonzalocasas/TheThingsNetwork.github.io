@@ -13,6 +13,18 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
+class IndexView(APIView):
+    permission_classes = []
+
+    def get(self, request, **kwargs):
+        base_url = request.build_absolute_uri()
+        index = {
+            'nodes': "{}nodes/".format(base_url),
+            'gateways': "{}gateways/".format(base_url),
+        }
+        return Response(index)
+
+
 class GatewayView(APIView):
     permission_classes = []
 

@@ -18,7 +18,8 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
 
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^', include(router.urls), name='api'),
+    #url(r'^', include(router.urls), name='api'),
+    url(r'^/?$', views.IndexView.as_view(), name='api'),
 
     # TODO: get in router / root overview
     url(r'^gateways/$', views.GatewayView.as_view(), name='gateways'),
