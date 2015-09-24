@@ -66,6 +66,7 @@ class NodeView(APIView):
                 query_params[key] = request.GET.get(key)
         if node_eui:
             # node packets list
+            query_params['group_by'] = 'gateway_eui'
             query_params['node_eui'] = node_eui
         else:
             # node overview
