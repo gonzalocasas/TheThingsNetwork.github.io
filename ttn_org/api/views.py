@@ -36,7 +36,8 @@ class GatewayView(APIView):
         queryset = IFGateways()
         serializer = InfluxSerializer()
 
-        query_params = {'order_by': '-time'}
+        sort_key = '-time'
+        query_params = {'order_by': sort_key}
         for key in ['time_span', 'limit', 'offset']:
             if request.GET.get(key):
                 query_params[key] = request.GET.get(key)
@@ -48,7 +49,7 @@ class GatewayView(APIView):
             query_params['group_by'] = 'eui'
             query_params['limit'] = 1
         items = queryset.get(**query_params)
-        items = serializer.remap(items)
+        items = serializer.remap(items, sort_key=sort_key)
         response = Response(items, status=status.HTTP_200_OK)
         return response
 
@@ -60,7 +61,8 @@ class NodeView(APIView):
         queryset = IFNodes()
         serializer = InfluxSerializer()
 
-        query_params = {'order_by': '-time'}
+        sort_key = '-time'
+        query_params = {'order_by': sort_key}
         for key in ['time_span', 'limit', 'offset']:
             if request.GET.get(key):
                 query_params[key] = request.GET.get(key)
@@ -73,7 +75,7 @@ class NodeView(APIView):
             query_params['group_by'] = 'node_eui'
             query_params['limit'] = 1
         items = queryset.get(**query_params)
-        items = serializer.remap(items)
+        items = serializer.remap(items, sort_key=sort_key)
         items = serializer.annotate(items)
         response = Response(items, status=status.HTTP_200_OK)
         return response

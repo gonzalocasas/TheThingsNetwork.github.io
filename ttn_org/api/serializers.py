@@ -13,7 +13,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class InfluxSerializer:
 
-    def remap(self, result):
+    def remap(self, result, sort_key=None):
         """Remap from InfluxDB format (tag, keys => [values]) to list of rows"""
         if isinstance(result, resultset.ResultSet):
             result = result.raw
@@ -26,6 +26,13 @@ class InfluxSerializer:
                 for key, value in zip(columns, row_values):
                     item[key] = value
                 results.append(item)
+        # InfluxDB sorting is weird. Let's fix the order
+        if sort_key:
+            reverse = False
+            if sort_key[:1] == '-':
+                reverse = True
+                sort_key = sort_key[1:]
+            results = sorted(results, key=lambda k: k.get(sort_key), reverse=reverse)
         return results
 
     def annotate(self, rows):
