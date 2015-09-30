@@ -1,0 +1,59 @@
+{% extends "ttn/community/base_small.html" %}
+{% load staticfiles markup jsonify %}
+
+{% block extra_css %}
+<link href="{% static 'ttn/css/impact.css' %}" rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block extra_js %}
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="{% static 'ttn/js/map.js' %}"></script>
+<script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map-inline');
+        var mapOptions = {
+          center: new google.maps.LatLng(
+                {{ community.lat|default:'24.5403' }},
+                {{ community.lon|default:'-0.5463' }}),
+          zoom: {{ community.scale|default:3 }},
+          scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+
+        var communitydump = {{ communities.all|jsonify }};
+        var gatewaydump = {{ gateways.all|jsonify }};
+        var communities = draw_communities(map, communitydump);
+        var gateways = draw_gateways(map, gatewaydump);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock %}
+
+
+{% block author %}
+    <h2 class="initiator-name"></h2>
+{% endblock %}
+
+
+{% block content %}
+
+            <!-- h1>Contact {{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }}, initiator of {{ community.title }}.</h1 -->
+            
+            <div class="page-content">
+                <br>
+                <h1>How many people will you reach?</h1>
+                Curious how many people can be connected to TheThingsNetwork if you back our Kickstarter and pledge for a TTN Gateway? Fill in your city and find out how much of an impact you can make!
+            </div>
+
+            <div id="map-inline">Loading map..</div>
+
+            <form>
+                <input class="input-address" type="text" name="location" placeholder="Fill in your city, for example: Amsterdam"></input>
+                <button class="button-impact"><a href="">Show my impact!</a></button>
+            </form>
+
+            <p>&nbsp;</p>
+
+{% endblock %}
+

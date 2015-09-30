@@ -54,5 +54,8 @@ urlpatterns = [
         name='kickstarter'),
     url(r'^kickstarter-landing/kickstarter.html$',
         RedirectView.as_view(url=reverse_lazy(APPNS+'kickstarter'), permanent=True)),
+    url(r'^landing/impact$',
+        TemplateView.as_view(template_name=APP+'landing/impact.html'),
+        name='impact'),
 
 ]
