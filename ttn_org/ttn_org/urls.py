@@ -24,6 +24,15 @@ urlpatterns = [
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/signup/', views.SignupView.as_view(
         template_name='registration/signup.html'), name='signup'),
+    url(r'^accounts/password/reset/', auth_views.password_reset,
+        {'template_name': 'registration/password_reset.html',
+         'post_reset_redirect': reverse_lazy('password_reset_sent')},
+        name='password_reset'),
+    url(r'^accounts/password/reset/done', auth_views.password_reset_done,
+        {'template_name': 'registration/password_reset_sent.html'},
+        name='password_reset_sent'),
+#views.PasswordResetView.as_view(
+#        template_name='registration/password_reset_form.html'), name='password_reset'),
     url(r'^accounts/profile/', TemplateView.as_view(
         template_name='registration/profile.html'), name='profile'),
     # TODO: look at django-allauth
