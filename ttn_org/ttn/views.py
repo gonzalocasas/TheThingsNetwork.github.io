@@ -62,13 +62,15 @@ class StartCommunityView(TemplateView):
         return redirect('ttn:new-community-thanks')
 
 
-class OverviewView(TemplateView):
+class MapView(TemplateView):
 
     def get(self, request, **kwargs):
         cs = Community.objects.all()
         gws = Gateway.objects.all()
+        cskeys = ['lat', 'lon', 'scale', 'title', 'slug', 'image_url', 'published']
+        cs_filtered = [{key: getattr(c, key) for key in cskeys} for c in cs]
         context = self.get_context_data(**kwargs)
-        context['communities'] = cs
+        context['communities'] = cs_filtered
         context['gateways'] = gws
         return self.render_to_response(context)
 

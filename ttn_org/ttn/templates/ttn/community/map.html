@@ -20,7 +20,7 @@
         }
         var map = new google.maps.Map(mapCanvas, mapOptions)
 
-        var communitydump = {{ communities.all|jsonify }};
+        var communitydump = {{ communities|jsonify }};
         var gatewaydump = {{ gateways.all|jsonify }};
         var communities = draw_communities(map, communitydump);
         var gateways = draw_gateways(map, gatewaydump);

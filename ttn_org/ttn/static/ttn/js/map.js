@@ -51,7 +51,7 @@ function draw_gateway(map, gw) {
 function draw_communities(map, communitydump) {
     var communities = [];
     for (var i in communitydump) {
-        var c = communitydump[i].fields;
+        var c = communitydump[i];
         communities.push(draw_community(map, c));
     }
     return communities

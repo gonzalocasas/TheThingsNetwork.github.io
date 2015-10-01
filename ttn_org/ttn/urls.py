@@ -18,7 +18,7 @@ urlpatterns = [
 
     # Main pages
     url(r'^map$',
-        views.OverviewView.as_view(template_name=APP+'community/map.html'),
+        views.MapView.as_view(template_name=APP+'community/map.html'),
         name='map'),
 
     # Community pages
