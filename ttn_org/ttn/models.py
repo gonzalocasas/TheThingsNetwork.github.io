@@ -77,6 +77,9 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-updated']
+
     def __str__(self):
         c = self.community.title if self.community else '*'
         return "[{}] {}".format(c, self.title)
