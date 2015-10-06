@@ -120,8 +120,7 @@ class Company(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        c = self.community.title if self.community else '*'
-        return "[{}] {}".format(c, self.title)
+        return self.title
 
 
 class InitiatorSubmission(models.Model):
