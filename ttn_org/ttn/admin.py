@@ -10,7 +10,6 @@ admin.site.register(Post)
 admin.site.register(Media)
 admin.site.register(Resource)
 admin.site.register(Company)
-admin.site.register(InitiatorSubmission)
 
 
 # Users
@@ -65,4 +64,9 @@ class CommunityAdmin(admin.ModelAdmin):
     list_display = ('slug', 'title', 'created')
     search_fields = ('title', 'slug', 'description')
     list_filter = ('created',)
+
+
+@admin.register(InitiatorSubmission)
+class InitiatorSubmissionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'area', 'created')
 
