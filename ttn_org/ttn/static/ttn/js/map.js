@@ -16,6 +16,16 @@ function shadeColor(color, percent) {
 
 // Drawing functions
 
+function draw_marker(map, position, title) {
+    var marker = new google.maps.Marker({
+        map: map,
+        position: position,
+        title: title || "",
+        clickable: true,
+        animation: google.maps.Animation.DROP
+    });
+}
+
 function draw_gateways(map, gatewaydump) {
     var gateways = [];
     var statuses = ['DE', 'PL', 'MA', 'AC'];
@@ -34,7 +44,7 @@ function draw_gateways(map, gatewaydump) {
 function draw_gateway(map, gw) {
     var colour = colours[gw.status] || '#333333';
     var opacity = opacities[gw.status] || 0.5;
-    var gw = new google.maps.Circle({
+    var gateway = new google.maps.Circle({
         strokeColor: shadeColor(colour, 20),
         strokeOpacity: opacity,
         strokeWeight: 1,
@@ -44,7 +54,7 @@ function draw_gateway(map, gw) {
         center: {lat: gw.lat || 0, lng: gw.lon || 0 },
         radius: gw.rng || 5000
     });
-    return gw;
+    return gateway;
 }
 
 
@@ -58,7 +68,6 @@ function draw_communities(map, communitydump) {
 }
 
 function draw_community(map, community) {
-    console.log(community);
     var c = new google.maps.Circle({
         strokeColor: '#F00',
         strokeOpacity: 0.7,
@@ -70,4 +79,21 @@ function draw_community(map, community) {
         radius: Math.log(21 - (community.scale||13)) / Math.LN2 * 25000
     });
     return c;
+}
+
+
+// Controller functions
+var geocoder;
+function initLookup() {
+    geocoder = new google.maps.Geocoder();
+}
+
+function addressLookup(address, callback) {
+    geocoder.geocode( {'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            callback(false, results[0].geometry.location);
+        } else {
+            callback(true, status);
+        }
+    });
 }

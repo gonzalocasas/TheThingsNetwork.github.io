@@ -26,7 +26,7 @@ body {
     padding-top: 2em;
 }
 
-form {
+.impact-form {
     text-align: center;
     margin-top: 2em;
 }
@@ -75,15 +75,15 @@ article>p {
     border-radius: 2px;
     box-shadow: 1px 1px 1px lightgrey;
     border: none;
-}
-
-.button-impact>a {
     color: white;
     text-decoration: none;
-    padding: 2.2em;
-    border: none;
 }
 
 .button-impact:hover {
     background-color: #8BA870;
+}
+
+.error-line {
+    color: #f55;
+    font-size: 2em;
 }
