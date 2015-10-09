@@ -1,94 +1,55 @@
-{% extends "ttn/community/base_small.html" %}
-{% load staticfiles markup jsonify %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>The Things Network</title>
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+        <link href="style.css" rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <header>Hallo</header>
+        
+        <div class="kickstarter">
+        <h1>We are launching a Kickstarter-campaign!</h1>
+            <p>We want to see as many cities as possible connected to The Things Network as possible to eventually cover the whole world! To achieve this we are launching a Kickstarter campaign where we are selling 3 products: The Things Node, The Things Uno & The Things Gateway. Take a look at the three pledges and it's specifications. Wanna now how many people you can reach with a Gateway? Scroll down, fill in an address and find out!</p><div class="arrow"></div>
+        </div>
+        
+        <div class="images">
+            <img src="{% static 'ttn/media/impact/gateway_white.png' %}">
+        </div>
 
-{% block extra_css %}
-<link href="{% static 'ttn/css/impact.css' %}" rel='stylesheet' type='text/css'>
-{% endblock %}
-
-{% block extra_js %}
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script src="{% static 'ttn/js/map.js' %}"></script>
-<script>
-    var map;
-    function initialize() {
-      var mapCanvas = document.getElementById('map-inline');
-      var mapOptions = {
-        center: new google.maps.LatLng(
-              {{ community.lat|default:'24.5403' }},
-              {{ community.lon|default:'-0.5463' }}),
-        zoom: {{ community.scale|default:2 }},
-        scrollwheel: false,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      }
-      map = new google.maps.Map(mapCanvas, mapOptions);
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-    $(document).ready(function() {
-        initLookup();
-
-        $('.input-address').keypress(function (e) {
-            if (e.which == 13)
-                $('.button-impact').click();
-        });
-
-        $('.button-impact').on('click', function(elem) {
-            $('.error-line').slideUp();
-            var address = $('.input-address').val();
-            var position = addressLookup(address, function(error, position) {
-                if (error) {
-                    $('.error-address').slideDown();
-                } else {
-                    console.log("POSITION", position);
-                    map.panTo(position);
-                    map.setZoom(12);
-                    draw_marker(map, position, "Your gateway");
-                    var range = 5000;
-                    var gw = {
-                        lat: position.H,
-                        lon: position.L,
-                        rng: range,
-                        status: 'PL',
-                    };
-                    draw_gateway(map, gw);
-                }
-            });
-        });
-    });
-</script>
-{% endblock %}
-
-
-{% block author %}
-    <h2 class="initiator-name"></h2>
-{% endblock %}
-
-
-{% block content %}
-
-            <!-- h1>Contact {{ community.leaders.first.first_name }} {{ community.leaders.first.last_name }}, initiator of {{ community.title }}.</h1 -->
-            
-            <div class="page-content">
-                <br>
-                <h1>We are launching a Kickstarter-campaign!</h1>
-                <p>We want to see as many cities as possible connected to The Things Network as possible to eventually cover the whole world! To achieve this we are launching a Kickstarter campaign where we're selling 3 products: The Things Node, The Things Uno &amp; The Things Gateway. Take a look at the three pledges and it's specifications. Wanna now how much people you can reach with a Gateway? Scroll down, fill in an address and find out!</p>
-                <a href="{% url 'ttn:kickstarter' %}">To Kickstarter Campaign</a>
-
-                <h1>How many people will you reach?</h1>
-                <p>Curious how many people can be connected to TheThingsNetwork if you back our Kickstarter and pledge for a TTN Gateway? Fill in your city and find out how much of an impact you can make!</p>
+    
+        <div class="white">
+        <article>
+            <h1>How many people will you reach?</h1>
+                <p>Do you wanna know how many people can be connected to TheThingsNetwork if you back our Kickstarter and pledge for a <b>TTN Gateway?</b> Fill in your city and find out how many people you will reach with your Gateway.</p>
+        <form>
+            <input type="text" placeholder="Fill in your address, for example: Herengracht, Amsterdam">
+            <button>TODO CLICKEVENT Show my reach!</a></button>
+        </form> </article>
+        </div>
+        <div class="map">
+            <div class="reach">
+                <p>For €200.- you will reach:</p>
+                <p>20.490</p>
+                <p>people in Amsterdam.</p>
             </div>
+        </div>
 
-            <div id="map-inline">Loading map..</div>
-
-            <div class="impact-form">
-                <div class="error-line error-address" style="display:none;">
-                    Sorry, can't find your address! Try again?
-                </div>
-                <input class="input-address" type="text" name="location" placeholder="Fill in your city, for example: Amsterdam"></input>
-                <button class="button-impact">Show my impact!</button>
-            </div>
-
-            <p>&nbsp;</p>
-
-{% endblock %}
-
+    <div class="bottom-area">
+        <h1>Reach these people!</h1>
+        <p>Do you want to place a Gateway here? Awesome! Commit and add yourself to the map so people can see that you are helping!</p>
+        <a href="{% url 'ttn:kickstarter' %}">Commit</a>
+        <img src="{% static 'ttn/media/impact/down2.png' %}">
+        <p>Let the world know that you are joining The Things Network and show them how many people you are reaching for €200!</p>
+        <div class="share">
+            <a href="TODO FACEBOOK SHARE">Post on Facebook</a>
+            <a href="TODO TWITTER SHARE">Share it on Twitter</a>
+        </div>
+        <img src="{% static 'ttn/media/impact/down2.png' %}">
+        <p>Ready to support us and really buy a Gateway? Pledge for a Gateway at our Kickstarter!</p>
+        <a href="{% url 'ttn:kickstarter' %}">Pledge</a>
+        </div>
+    </body>
+</html>

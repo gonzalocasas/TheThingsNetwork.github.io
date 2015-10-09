@@ -1,0 +1,100 @@
+* {
+    font-family: 'Lato';
+    box-sizing: border-box;
+    color: #5E5B5B;
+}
+
+body {
+    background-color: #F2F2F2;
+    margin: 0;
+}
+
+/*
+.map {
+    width: 100%;
+    height: 28em;
+    background-image: url(amsterdam-map.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+*/
+
+.white {
+    background-color: white;
+    padding-bottom: 2em;
+    padding-top: 2em;
+}
+
+.impact-form {
+    text-align: center;
+    margin-top: 2em;
+}
+
+article {
+    padding-left: 5em;
+}
+
+article>h1 {
+    font-weight: 400;
+    font-size: 2.5em;
+}
+
+article>p {
+    width: 40em;
+    line-height: 170%;
+    font-size: 1.3em;
+    font-weight: 300;
+    margin-top: -1em;
+    
+}
+
+.page-content>h1 {
+    padding-top: 200px;
+}
+
+.page-content>a {
+    color: #5E5B5B;
+    font-family: 'Lato';
+    text-decoration: none;
+    border: 2px solid #5E5B5B;
+    padding: 0.5em;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+.input-address {
+    height: 80px;
+    vertical-align: top;
+    width: 50%;
+    font-size: 2em;
+    border: none;
+    padding-left: 0.5em;
+    box-shadow: 1px 1px 1px lightgrey;
+    border-radius: 3px;
+    font-weight: 300;
+}
+
+.button-impact {
+    height: 2.8em;
+    width: 15em;
+    border: none;
+    background-color: #93DB70;
+    font-size: 2em;
+    transition: 0.2s ease-in-out;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px lightgrey;
+    border: none;
+    color: white;
+    text-decoration: none;
+}
+
+.button-impact:hover {
+    background-color: #8BA870;
+}
+
+.error-line {
+    color: #f55;
+    font-size: 2em;
+}
