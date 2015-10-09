@@ -1,3 +1,4 @@
+{% load staticfiles markup jsonify %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,10 +6,65 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>The Things Network</title>
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
-        <link href="style.css" rel='stylesheet' type='text/css'>
+        <link href="{% static 'ttn/css/impact.css' %}" rel='stylesheet' type='text/css'>
+
+<script src="{% static 'ttn/js/jquery-2.1.3.js' %}"></script>
+<script src="{% static 'ttn/js/ga.js' %}"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="{% static 'ttn/js/map.js' %}"></script>
+<script>
+    var map;
+    function initialize() {
+      var mapCanvas = document.getElementById('map-inline');
+      var mapOptions = {
+        center: new google.maps.LatLng(
+              {{ community.lat|default:'24.5403' }},
+              {{ community.lon|default:'-0.5463' }}),
+        zoom: {{ community.scale|default:2 }},
+        scrollwheel: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      map = new google.maps.Map(mapCanvas, mapOptions);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    $(document).ready(function() {
+        initLookup();
+
+        $('.input-address').keypress(function (e) {
+            if (e.which == 13)
+                $('.button-impact').click();
+        });
+
+        $('.button-impact').on('click', function(elem) {
+            $('.error-line').slideUp();
+            var address = $('.input-address').val();
+            var position = addressLookup(address, function(error, position) {
+                if (error) {
+                    $('.error-address').slideDown();
+                } else {
+                    console.log("POSITION", position);
+                    map.panTo(position);
+                    map.setZoom(12);
+                    draw_marker(map, position, "Your gateway");
+                    var range = 5000;
+                    var gw = {
+                        lat: position.lat(),
+                        lon: position.lng(),
+                        rng: range,
+                        status: 'PL',
+                    };
+                    console.log("ABOUT TO DRAW", gw);
+                    draw_gateway(map, gw);
+                }
+            });
+        });
+    });
+</script>
+
     </head>
     <body>
-        <header>Hallo</header>
+        <header></header>
         
         <div class="kickstarter">
         <h1>We are launching a Kickstarter-campaign!</h1>
@@ -23,18 +79,19 @@
         <div class="white">
         <article>
             <h1>How many people will you reach?</h1>
-                <p>Do you wanna know how many people can be connected to TheThingsNetwork if you back our Kickstarter and pledge for a <b>TTN Gateway?</b> Fill in your city and find out how many people you will reach with your Gateway.</p>
-        <form>
-            <input type="text" placeholder="Fill in your address, for example: Herengracht, Amsterdam">
-            <button>TODO CLICKEVENT Show my reach!</a></button>
-        </form> </article>
-        </div>
-        <div class="map">
-            <div class="reach">
-                <p>For €200.- you will reach:</p>
-                <p>20.490</p>
-                <p>people in Amsterdam.</p>
+            <p>Do you wanna know how many people can be connected to TheThingsNetwork if you back our Kickstarter and pledge for a <b>TTN Gateway?</b> Fill in your city and find out how many people you will reach with your Gateway.</p>
+            <p>&nbsp;</p>
+
+            <div class="impact-form">
+                <div class="error-line error-address" style="display:none;">
+                    Sorry, can't find your address! Try again?
+                </div>
+                <input class="input-address" type="text" name="location" placeholder="Fill in your city, for example: Amsterdam"></input>
+                <button class="button-impact">Show my impact!</button>
             </div>
+        </div>
+
+        <div id="map-inline">
         </div>
 
     <div class="bottom-area">
