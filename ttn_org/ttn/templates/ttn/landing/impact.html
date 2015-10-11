@@ -56,6 +56,9 @@
                     };
                     console.log("ABOUT TO DRAW", gw);
                     draw_gateway(map, gw);
+                    var impact = get_impact('{% url "ttn:impact-calc" %}',
+                                            position.lat(), position.lng(),
+                                            range / 1000)
                 }
             });
         });

@@ -3,6 +3,8 @@ from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.db import models
+import math
+import os
 
 from .models import Community, Post, Gateway, InitiatorSubmission
 from .forms import SettingsForm, PostForm
@@ -189,4 +191,72 @@ class SignupView(TemplateView):
                 username, email, password1,
                 first_name=first_name, last_name=last_name)
             return redirect('login')
+
+
+class ImpactCalculationView(TemplateView):
+    template_name = 'ttn/json.html'
+
+    def dispatch(self, request, **kwargs):
+        data = {}
+        lat = request.REQUEST.get('lat')
+        lng = request.REQUEST.get('lng')
+        rng = request.REQUEST.get('rng', 5)
+        if not lat or not lng:
+            data = {'error': 'Please provide lat and lng parameters.'}
+        else:
+            try:
+                p = population(float(lat), float(lng), float(rng))
+                data = {'population': p}
+            except Exception as e:
+                data = {'error': str(e)}
+        context = self.get_context_data(**kwargs)
+        context['data'] = data
+        return self.render_to_response(context)
+
+
+def population(lat, lng, rng):
+      d = density(lat, lng)
+      p = d * (rng ** 2 * math.pi) # circle
+      return p
+
+
+def density(lat, lng):
+    headers, data = get_population_data()
+    # lat = N-S = 0 (equator) til 90 (N or S)      = y = rows(?) -> some
+    # lng = E-W = 0 (GMT) til +180 (E) or -180 (W) = x = cols(?) -> all
+    csize = float(headers.get('cellsize'))
+    lat_offset = round(float(headers.get('yllcorner')) / csize)
+    lng_offset = round(float(headers.get('xllcorner')) / csize)
+    lat_count = int(headers.get('nrows'))
+    lng_count = int(headers.get('ncols'))
+    lat_i = lat_count - (round(lat / csize) - lat_offset)
+    lng_i = round(lng / csize) - lng_offset
+    print("coords", lat_i, lng_i)
+    if lat_i < 0 or lat_i > lat_count or lng_i < 0 or lng_i > lng_count:
+        raise ValueError("Location not available on map.")
+    # lookup value
+    words = data[lat_i].split()
+    value = words[lng_i]
+    if value == headers.get('NODATA_value'):
+        raise ValueError("No data available for given location.")
+    return float(value)
+
+
+def get_population_data():
+    fn = os.path.expanduser("/home/ttn/glds00g.asc")
+    if not os.path.exists(fn):
+        raise Exception("Population data file not found.")
+    fp = open(fn, 'r')
+    lines = fp.readlines()
+  
+    headers = {}
+    data = []
+    for i, line in enumerate(lines):
+        words = line.split()
+        if len(words) == 2:
+            headers[words[0]] = words[1]
+        else: # assume all else is data
+            data = lines[i:]
+            break
+    return headers, data
 

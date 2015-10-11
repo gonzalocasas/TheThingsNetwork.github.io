@@ -57,5 +57,7 @@ urlpatterns = [
     url(r'^landing/impact$',
         TemplateView.as_view(template_name=APP+'landing/impact.html'),
         name='impact'),
+    url(r'^api/impact/$',
+        views.ImpactCalculationView.as_view(), name='impact-calc'),
 
 ]
