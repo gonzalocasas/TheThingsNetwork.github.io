@@ -12,6 +12,7 @@
 <script src="{% static 'ttn/js/ga.js' %}"></script>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script src="{% static 'ttn/js/map.js' %}"></script>
+<script src="{% static 'ttn/js/maplabel.js' %}"></script>
 <script>
     var map;
     function initialize() {
@@ -56,9 +57,22 @@
                     };
                     console.log("ABOUT TO DRAW", gw);
                     draw_gateway(map, gw);
-                    var impact = get_impact('{% url "ttn:impact-calc" %}',
-                                            position.lat(), position.lng(),
-                                            range / 1000)
+                    get_impact('{% url "ttn:impact-calc" %}',
+                               position.lat(), position.lng(), range / 1000,
+                               function (impact) {
+                        var line;
+                        console.log("IMPACT", impact);
+                        if (impact.error) {
+                            draw_label(map, position, "Error: " + impact.error, 15);
+                        } else {
+                            line1 = new google.maps.LatLng(position.lat() + 0.015, position.lng());
+                            line2 = new google.maps.LatLng(position.lat(), position.lng());
+                            line3 = new google.maps.LatLng(position.lat() - 0.015, position.lng());
+                            draw_label(map, line1, "Your gateway will reach", 25);
+                            draw_label(map, line2, Math.round(impact.population), 40);
+                            draw_label(map, line3, "people!", 30);
+                        }
+                    });
                 }
             });
         });

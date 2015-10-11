@@ -26,6 +26,16 @@ function draw_marker(map, position, title) {
     });
 }
 
+function draw_label(map, position, text, size) {
+    var label = new MapLabel({
+        text: text,
+        position: position,
+        map: map,
+        fontSize: size || 30,
+        align: 'center'
+    });
+}
+
 function draw_gateways(map, gatewaydump) {
     var gateways = [];
     var statuses = ['DE', 'PL', 'MA', 'AC'];
@@ -97,3 +107,17 @@ function addressLookup(address, callback) {
         }
     });
 }
+
+function get_impact(URL, lat, lng, rng, callback) {
+    $.ajax({
+        url: URL,
+        data: {lat: lat, lng: lng, rng},
+        type: 'GET',
+        success: function(result, status) {
+            var json = JSON.parse(result);
+            console.log(json);
+            callback(json);
+        }
+    });
+}
+
