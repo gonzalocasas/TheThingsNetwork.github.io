@@ -6,9 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>The Things Network</title>
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+        <link href="{% static 'ttn/css/bootstrap.css' %}" rel='stylesheet' type='text/css'>
         <link href="{% static 'ttn/css/impact.css' %}" rel='stylesheet' type='text/css'>
 
 <script src="{% static 'ttn/js/jquery-2.1.3.js' %}"></script>
+<script src="{% static 'ttn/js/bootstrap.js' %}"></script>
 <script src="{% static 'ttn/js/ga.js' %}"></script>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script src="{% static 'ttn/js/map.js' %}"></script>
@@ -65,11 +67,12 @@
                         if (impact.error) {
                             draw_label(map, position, "Error: " + impact.error, 15);
                         } else {
+                            var reach = Math.round(impact.population).toLocaleString();
                             line1 = new google.maps.LatLng(position.lat() + 0.015, position.lng());
                             line2 = new google.maps.LatLng(position.lat(), position.lng());
                             line3 = new google.maps.LatLng(position.lat() - 0.015, position.lng());
-                            draw_label(map, line1, "Your gateway will reach", 25);
-                            draw_label(map, line2, Math.round(impact.population), 40);
+                            draw_label(map, line1, "For €200 you will reach:" ,25);
+                            draw_label(map, line2, reach, 70);
                             draw_label(map, line3, "people!", 30);
                         }
                     });
@@ -103,11 +106,11 @@
             <p>&nbsp;</p>
 
             <div class="impact-form">
+                <input class="input-address" type="text" name="location" placeholder="Fill in your address, for example: Herengracht, Amsterdam"></input>
+                <button class="button-impact">Show my reach!</button>
                 <div class="error-line error-address" style="display:none;">
                     Sorry, can't find your address! Try again?
                 </div>
-                <input class="input-address" type="text" name="location" placeholder="Fill in your address, for example: Herengracht, Amsterdam"></input>
-                <button class="button-impact">Show my reach!</button>
             </div>
         </div>
 
@@ -121,8 +124,8 @@
         <img src="{% static 'ttn/media/impact/down2.png' %}">
         <p>Let the world know that you are joining The Things Network and show them how many people you are reaching!</p>
         <div class="share">
-            <a href="TODO FACEBOOK SHARE">Post on Facebook</a>
-            <a href="TODO TWITTER SHARE">Share it on Twitter</a>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#fbModal"><img src="fb.png">Post on Facebook</button>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#twitModal"><img src="tw.png">Share it on Twitter</button>
         </div>
         <img src="{% static 'ttn/media/impact/down2.png' %}">
         <p>Ready to support us and buy a Gateway for €200,-? Pledge for a Gateway at our Kickstarter!</p>
@@ -132,7 +135,7 @@
         </div>
 
 
-<!-- Commit Modal -->
+  <!-- Commit Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -143,7 +146,7 @@
           <h4 class="modal-title">Commit to place a gateway here.</h4>
         </div>
         <div class="modal-body">
-            <img src="modal-picture.png">
+          <!-- TODO: img of location? -->
           <p>Fill in your email and you will be shown on the map as the one who is committing to to this specific spot!</p>
         </div>
 

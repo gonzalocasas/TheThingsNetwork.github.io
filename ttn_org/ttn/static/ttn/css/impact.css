@@ -85,6 +85,11 @@ header {
     height: 24em;
 }
 
+.kickstarter img {
+    width: 40em;
+    margin-top: 2em;
+    
+}
 
 .kickstarter p {
     padding-bottom: 1em;
@@ -112,32 +117,15 @@ form {
 .kickstarter h1 {
     margin-bottom: 1em;
 }
-
 h1:first-of-type {
+    
 }
-
 .button {
-    height: 60px;
     padding: 2em;
-    border: medium none;
-    color: white;
-    background-color: #1ECE6D;
-    font-size: 1.5em;
-    transition: all 0.2s ease-in-out 0s;
-    /*
+    border: 2px solid #5E5B5B;
     text-decoration: none;
     text-transform: uppercase;
-    */
-}
-
-.kickstart-image {
-    background-image: url(support-kickstart.jpg);
-    background-size: 60%;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 25em;
-    width: 40%;
-    float: left;
+    
 }
 
 article {
@@ -170,7 +158,7 @@ input {
     color: #5E5B5B;
 }
 
-button {
+article button {
     height: 60px;
     width: 12em;
     border: none;
@@ -186,7 +174,7 @@ button>a {
     padding: 2.2em;
 }
 
-button:hover {
+article button:hover {
     background-color: #32CD32;
 }
 
@@ -204,14 +192,15 @@ button:hover {
 }
 
 .bottom-area {
-    height: 30em;
+    height: auto;
+    margin-bottom: 2em;
     width: 100%;
     float: left;
 }
 
 .bottom-area>p {
     padding-bottom: 2em;
-    padding-top: 4em;
+    padding-top: 3em;
     text-align: center;
 }
 
@@ -219,20 +208,38 @@ button:hover {
     padding-top: 0;
 }
 
-.bottom-area a {
+.bottom-area button {
     margin: auto;
     display: block;
-    width:8em;
-    text-align: center;
+    width: 20em;
     height: 4em;
-    padding-top: 32px;
+    padding-top: 26px;
     text-decoration: none;
     border: 2px solid #5E5B5B;
     font-size: 1.5em;
     background:#5E5B5B;
     color: white;
+    border-radius: 0px;
 }
 
+.bottom-area>a {
+    margin: auto;
+    display: block;
+    width: 20em;
+    height: 4em;
+    padding-top: 26px;
+    text-decoration: none;
+    border: 2px solid #5E5B5B;
+    font-size: 1.5em;
+    background:#5E5B5B;
+    color: white;
+    border-radius: 0px;
+}
+.bottom-area>button:first-of-type:hover {
+    background: #5E5B5B;
+    opacity: 0.8;
+    border-color: #5E5B5B;
+}
 .share {
     display: flex;
     width: 52em;
@@ -244,26 +251,61 @@ button:hover {
     text-align: center;
     padding-top: 1em;
 }
-.share>a {
-    width: 15em;
+
+.share>button{
+    width: 16em;
     background: #3B5998;
     color: white;
     border-color: #3B5998;
+    text-align: center;
 }
 
-.share>a:nth-of-type(2) {
+.share>button:nth-of-type(2) {
     background: #55acee;
     color: white;
     border-color: #55acee;
-    
+    text-align: center;
+}
+
+.share>button:hover {
+    background: #3B5998;
+    opacity: 0.8;
+    border-color: #3B5998;
+}
+
+.share>button:nth-of-type(2):hover {
+    background: #55acee;
+    opacity: 0.8;
+    border-color: #55acee;
+}
+
+.bottom-area input {
+    float: left;
+    width: 1em;
+    margin-top: -0.4em;
+    margin-left: 0.5em;
+}
+
+button img {
+    float: left;
+    height: 2em;
+    margin-left: 1em;
+    margin-top: -0.3em;
 }
 
 .bottom-area>a:last-of-type {
-    background: #2ECC71;
+    background: #2BDE73;
     color: white;
     border-color: #2ECC71;
-    margin-bottom: 5em;
-    
+    margin-bottom: 3em;
+    text-align: center;
+}
+.ks {
+    height: 2em;
+    float: left;
+    margin-left: 2em;
+    margin-right: -2em;
+    margin-top: -0.3em;
 }
 
 .bottom-area>img {
@@ -274,8 +316,41 @@ button:hover {
     opacity: 0.2;
 }
 
-.bottom-area a:hover {
+.bottom-area>a:hover {
     opacity: 0.8;
+}
+
+/* MODALS*/
+
+.modal-body p {
+    width: 100%;
+}
+
+.modal-title {
+    font-size: 2em;
+}
+
+.modal img {
+    width: 100%;
+}
+
+/* SIGNUP MAILCHIMP */
+
+#mc_embed_signup label {
+    display: none;
+}
+
+.mc-field-group input {
+    width: 100%;
+}
+    
+#mc_embed_signup .button {
+    margin-top: 1em;
+    padding: 0;
+    font-weight: 400;
+    background: #2ECC71;
+    color: white;
+    border: none;
 }
 
 .error-line {
