@@ -39,6 +39,17 @@
                 $('.button-impact').click();
         });
 
+        var fb_message = "facebook message";
+        var twtr_message = "twitter message";
+        $('.fb-share').on('click', function() {
+            var url = "https://www.facebook.com/sharer/sharer.php?p[summary]=" + fb_message + "&p[title]=TheThingsNetworks=100&p[url]=thethingsnetwork.org";
+            window.open(url, '_blank');
+        });
+        $('.tw-share').on('click', function() {
+            var url = "https://twitter.com/home?status=" + twtr_message + "&via=thethingsntwrk";
+            window.open(url, '_blank');;
+        });
+
         $('.button-impact').on('click', function(elem) {
             $('.error-line').slideUp();
             var address = $('.input-address').val();
@@ -124,8 +135,8 @@
         <img src="{% static 'ttn/media/impact/down2.png' %}">
         <p>Let the world know that you are joining The Things Network and show them how many people you are reaching!</p>
         <div class="share">
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#fbModal"><img src="{% static 'ttn/media/impact/fb.png' %}">Post on Facebook</button>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#twitModal"><img src="{% static 'ttn/media/impact/tw.png' %}">Share it on Twitter</button>
+            <button type="button" class="btn btn-info btn-lg fb-share"><img src="{% static 'ttn/media/impact/fb.png' %}">Post on Facebook</button>
+            <button type="button" class="btn btn-info btn-lg tw-share"><img src="{% static 'ttn/media/impact/tw.png' %}">Share it on Twitter</button>
         </div>
         <img src="{% static 'ttn/media/impact/down2.png' %}">
         <p>Ready to support us and buy a Gateway for €200,-? Pledge for a Gateway at our Kickstarter!</p>
