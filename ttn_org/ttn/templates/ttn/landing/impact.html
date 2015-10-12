@@ -85,7 +85,10 @@
         
         <div class="kickstarter">
         <h1>We are launching a Kickstarter-campaign!</h1>
-            <p>We want to see as many cities as possible connected to The Things Network as possible to eventually cover the whole world! To achieve this we are launching a Kickstarter campaign where we are selling 3 products: The Things Node, The Things Uno & The Things Gateway. Take a look at the three pledges and it's specifications. Wanna now how many people you can reach with a Gateway? Scroll down, fill in an address and find out!</p><div class="arrow"></div>
+            <p>
+                We want to see as many cities as possible connected to The Things Network as possible to eventually cover the whole world! To achieve this we are launching a Kickstarter campaign where we are selling 3 products: The Things Node, The Things Uno &amp; The Things Gateway. Take a look at the three pledges and it's specifications. Wanna now how many people you can reach with a Gateway? Scroll down, fill in an address and find out!
+                <img src="{% static 'ttn/media/impact/popping_network.gif' %}">
+            </p><div class="arrow"></div>
         </div>
         
         <div class="images">
@@ -103,8 +106,8 @@
                 <div class="error-line error-address" style="display:none;">
                     Sorry, can't find your address! Try again?
                 </div>
-                <input class="input-address" type="text" name="location" placeholder="Fill in your city, for example: Amsterdam"></input>
-                <button class="button-impact">Show my impact!</button>
+                <input class="input-address" type="text" name="location" placeholder="Fill in your address, for example: Herengracht, Amsterdam"></input>
+                <button class="button-impact">Show my reach!</button>
             </div>
         </div>
 
@@ -114,16 +117,62 @@
     <div class="bottom-area">
         <h1>Reach these people!</h1>
         <p>Do you want to place a Gateway here? Awesome! Commit and add yourself to the map so people can see that you are helping!</p>
-        <a href="{% url 'ttn:kickstarter' %}">Commit</a>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><input type="radio" name="commit" value="commit-yes">Commit to place a gateway here</button>
         <img src="{% static 'ttn/media/impact/down2.png' %}">
-        <p>Let the world know that you are joining The Things Network and show them how many people you are reaching for €200!</p>
+        <p>Let the world know that you are joining The Things Network and show them how many people you are reaching!</p>
         <div class="share">
             <a href="TODO FACEBOOK SHARE">Post on Facebook</a>
             <a href="TODO TWITTER SHARE">Share it on Twitter</a>
         </div>
         <img src="{% static 'ttn/media/impact/down2.png' %}">
-        <p>Ready to support us and really buy a Gateway? Pledge for a Gateway at our Kickstarter!</p>
-        <a href="{% url 'ttn:kickstarter' %}">Pledge</a>
+        <p>Ready to support us and buy a Gateway for €200,-? Pledge for a Gateway at our Kickstarter!</p>
+        <a href="{% url 'ttn:kickstarter' %}">
+            <img src="kickstarter-logo.png" class="ks">Pledge at Kickstarter
+        </a>
         </div>
+
+
+<!-- Commit Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Commit to place a gateway here.</h4>
+        </div>
+        <div class="modal-body">
+            <img src="modal-picture.png">
+          <p>Fill in your email and you will be shown on the map as the one who is committing to to this specific spot!</p>
+        </div>
+
+        <div class="modal-footer">
+            <!-- Begin MailChimp Signup Form -->
+            <div id="mc_embed_signup">
+            <form action="//thethingsnetwork.us11.list-manage.com/subscribe/post?u=20406705fec6d7d4b2ab1d6cc&amp;id=8f79e5d86e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+            <div class="mc-field-group">
+                <label for="mce-EMAIL">Email Address </label>
+                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your email address">
+            </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_20406705fec6d7d4b2ab1d6cc_8f79e5d86e" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                </div>
+            </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
     </body>
 </html>
