@@ -124,13 +124,13 @@
         <img src="{% static 'ttn/media/impact/down2.png' %}">
         <p>Let the world know that you are joining The Things Network and show them how many people you are reaching!</p>
         <div class="share">
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#fbModal"><img src="fb.png">Post on Facebook</button>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#twitModal"><img src="tw.png">Share it on Twitter</button>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#fbModal"><img src="{% static 'ttn/media/impact/fb.png' %}">Post on Facebook</button>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#twitModal"><img src="{% static 'ttn/media/impact/tw.png' %}">Share it on Twitter</button>
         </div>
         <img src="{% static 'ttn/media/impact/down2.png' %}">
         <p>Ready to support us and buy a Gateway for €200,-? Pledge for a Gateway at our Kickstarter!</p>
         <a href="{% url 'ttn:kickstarter' %}">
-            <img src="kickstarter-logo.png" class="ks">Pledge at Kickstarter
+            <img src="{% static 'ttn/media/impact/kickstarter_logo.png' %}" class="ks">Pledge at Kickstarter
         </a>
         </div>
 
