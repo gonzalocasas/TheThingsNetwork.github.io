@@ -15,7 +15,16 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    display: flex;
+    justify-content: space-around;
 }
+
+header>img {
+    height: 20em;
+    width: 20em;
+    align-self: center;
+}
+
 .arrow {
     height: 5em;
     background-image: url(../media/impact/down2.png);
@@ -86,9 +95,10 @@ header {
 }
 
 .kickstarter img {
-    width: 40em;
+    max-width: 40em;
     margin-top: 2em;
-    
+    display: flex;
+    justify-content: space-around;
 }
 
 .kickstarter p {
@@ -162,6 +172,25 @@ input {
     color: #5E5B5B;
 }
 
+@media screen and (max-width: 699px) {
+    input {
+        width: 90%;
+    }
+
+    .button-impact {
+        width: 90%;
+    }
+
+    p {
+        width: 90%;
+    }
+
+    .kickstarter img {
+        width: 100%;
+    }
+
+}
+
 article button {
     height: 60px;
     width: 12em;
@@ -215,7 +244,6 @@ article button:hover {
 .bottom-area button {
     margin: auto;
     display: block;
-    width: 20em;
     height: 4em;
     padding-top: 26px;
     text-decoration: none;
@@ -226,10 +254,11 @@ article button:hover {
     border-radius: 0px;
 }
 
-.bottom-area>a {
+.bottom-area a {
+    display: flex;
+    flex-grow: 1;
     margin: auto;
-    display: block;
-    width: 20em;
+    max-width: 20em;
     height: 4em;
     padding-top: 26px;
     text-decoration: none;
@@ -244,20 +273,22 @@ article button:hover {
     opacity: 0.8;
     border-color: #5E5B5B;
 }
-.share {
-    display: flex;
-    width: 52em;
-    margin: auto;
-    
-}
 
 .bottom-area>h1 {
     text-align: center;
     padding-top: 1em;
 }
 
+.share {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 52em;
+    margin: auto;
+}
+
 .share>button{
-    width: 16em;
+    flex-grow: 1;
+    margin: 10px;
     background: #3B5998;
     color: white;
     border-color: #3B5998;
@@ -297,7 +328,7 @@ button img {
     margin-top: -0.3em;
 }
 
-.bottom-area>a:last-of-type {
+.bottom-area a:last-of-type {
     background: #2BDE73;
     color: white;
     border-color: #2ECC71;
@@ -320,7 +351,7 @@ button img {
     opacity: 0.2;
 }
 
-.bottom-area>a:hover {
+.bottom-area a:hover {
     opacity: 0.8;
 }
 

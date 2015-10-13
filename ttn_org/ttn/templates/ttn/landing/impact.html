@@ -131,7 +131,7 @@
 
     </head>
     <body>
-        <header><img src="{% static 'ttn/media/landing/ttn_round.png' %}"></header>
+        <header><img src="{% static 'ttn/media/impact/ttn_round.png' %}"></header>
 
         <div class="kickstarter">
         <h1>How many people will you impact by contributing to The Things Network?</h1>
@@ -166,10 +166,12 @@
     <div class="bottom-area">
         <h1>This is your impact</h1>
         <p>Do you want to place a Gateway here? Awesome! Commit and add yourself to the map so people can see that you are helping!</p>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
-            <span class="glyphicon glyphicon-map-marker"></span>
-            Commit to place a gateway here
-        </button>
+        <div class="btn-container">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                Commit to place a gateway here
+            </button>
+        </div>
         <img src="{% static 'ttn/media/impact/down2.png' %}">
         <p>Let the world know that you are joining The Things Network</p>
         <div class="share">
@@ -178,9 +180,11 @@
         </div>
         <img src="{% static 'ttn/media/impact/down2.png' %}">
         <p>You are now ready to pledge for a The Things Gateway at our Kickstarter!</p>
-        <a href="{% url 'ttn:kickstarter' %}">
-            <img src="{% static 'ttn/media/impact/kickstarter_logo.png' %}" class="ks">Pledge at Kickstarter
-        </a>
+        <div class="pledge-container">
+            <a href="{% url 'ttn:kickstarter' %}">
+                <img src="{% static 'ttn/media/impact/kickstarter_logo.png' %}" class="ks">Pledge at Kickstarter
+            </a>
+        </div>
         </div>
 
 
