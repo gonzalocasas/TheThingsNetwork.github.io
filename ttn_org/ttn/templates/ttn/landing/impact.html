@@ -62,6 +62,26 @@
             window.open(url, '_blank');;
         });
 
+        $('.button-commit').on('click', function(elem) {
+            elem.preventDefault();
+            var dataString = $('.commit-form').serialize();
+            $.ajax({
+                url: "{% url 'ttn:impact-commitgw' %}",
+                type: "POST",
+                data: dataString,
+                success: function(result) {
+                    result = JSON.parse(result);
+                    if (result.error) {
+                        alert("Sorry, an error occurred while submitting the commitment. Did you fill in your location, name and email already?");
+                    } else {
+                        $('.commit-form').hide();
+                        $('.commit-form-title').hide();
+                        $('.commit-submitted').show();
+                    }
+                }
+            });
+        });
+
         $('.button-impact').on('click', function(elem) {
             $('.error-line').slideUp();
             var address = $('.input-address').val();
@@ -73,7 +93,7 @@
                     map.panTo(position);
                     map.setZoom(12);
                     draw_marker(map, position, "Your gateway");
-                    var range = 5000;
+                    var range = 3000;
                     var gw = {
                         lat: position.lat(),
                         lon: position.lng(),
@@ -91,6 +111,10 @@
                             draw_label(map, position, "Error: " + impact.error, 15);
                         } else {
                             reach = Math.round(impact.population).toLocaleString(); // global var
+                            $('#commit-lat').val(position.lat());
+                            $('#commit-lng').val(position.lng());
+                            $('#commit-rng').val(range);
+                            $('#commit-impact').val(Math.round(impact.population));
                             line1 = new google.maps.LatLng(position.lat() + 0.015, position.lng());
                             line2 = new google.maps.LatLng(position.lat(), position.lng());
                             line3 = new google.maps.LatLng(position.lat() - 0.015, position.lng());
@@ -168,30 +192,30 @@
           <h4 class="modal-title">Commit to place a gateway here.</h4>
         </div>
         <div class="modal-body">
-          <!-- TODO: img of location? -->
-          <p>Fill in your email and you will be shown on the map as the one who is committing to to this specific spot!</p>
+            <div class="commit-form-title">
+                <!-- TODO: img of location? -->
+                Fill in your email and you will be shown on the map as the one who is committing to to this specific spot!
+            </div>
+            <div class="commit-submitted" style="display:none;">
+                Thanks for committing to buy a gateway!
+            </div>
         </div>
 
         <div class="modal-footer">
-            <!-- Begin MailChimp Signup Form -->
-            <div id="mc_embed_signup">
-            <form action="//thethingsnetwork.us11.list-manage.com/subscribe/post?u=20406705fec6d7d4b2ab1d6cc&amp;id=8f79e5d86e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="novalidate">
-                <div id="mc_embed_signup_scroll">
-            <div class="mc-field-group">
-                <label for="mce-EMAIL">Email Address </label>
-                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your email address" aria-required="true">
-            </div>
-                <div id="mce-responses" class="clear">
-                    <div class="response" id="mce-error-response" style="display:none"></div>
-                    <div class="response" id="mce-success-response" style="display:none"></div>
-                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                <div style="position: absolute; left: -5000px;"><input type="text" name="b_20406705fec6d7d4b2ab1d6cc_8f79e5d86e" tabindex="-1" value=""></div>
-                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            <form class="commit-form">
+                <div class="mc-field-group">
+                    {% csrf_token %}
+                    <input type="hidden" value="" id="commit-lat" name="lat">
+                    <input type="hidden" value="" id="commit-lng" name="lon">
+                    <input type="hidden" value="" id="commit-rng" name="rng">
+                    <input type="hidden" value="" id="commit-impact" name="impact">
+                    <input type="text" value="" id="commit-name" name="name" class="required email" placeholder="Your name" aria-required="true">
+                    <input type="email" value="" id="commit-email" name="email" class="required email" placeholder="Your email address" aria-required="true">
+                </div>
+                <div class="clear">
+                <input type="submit" value="Commit" name="subscribe" class="button button-commit"></div>
                 </div>
             </form>
-            </div>
-            <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-            <!--End mc_embed_signup-->
 
         </div>
       </div>

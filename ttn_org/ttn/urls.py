@@ -59,5 +59,7 @@ urlpatterns = [
         name='impact'),
     url(r'^api/impact/$',
         views.ImpactCalculationView.as_view(), name='impact-calc'),
+    url(r'^api/commitgw/$',
+        views.CommitGWView.as_view(), name='impact-commitgw'),
 
 ]

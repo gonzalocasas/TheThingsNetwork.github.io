@@ -117,15 +117,19 @@ form {
 .kickstarter h1 {
     margin-bottom: 1em;
 }
+
 h1:first-of-type {
-    
 }
+
 .button {
     padding: 2em;
     border: 2px solid #5E5B5B;
     text-decoration: none;
     text-transform: uppercase;
-    
+}
+
+.button-impact {
+    color: white;
 }
 
 article {
@@ -336,15 +340,12 @@ button img {
 
 /* SIGNUP MAILCHIMP */
 
-#mc_embed_signup label {
-    display: none;
-}
-
-.mc-field-group input {
+.commit-form input {
     width: 100%;
+    margin: 5px 0px;
 }
     
-#mc_embed_signup .button {
+.commit-form .button {
     margin-top: 1em;
     padding: 0;
     font-weight: 400;

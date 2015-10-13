@@ -193,6 +193,28 @@ class SignupView(TemplateView):
             return redirect('login')
 
 
+class CommitGWView(TemplateView):
+    template_name = 'ttn/json.html'
+
+    def post(self, request, **kwargs):
+        data = {}
+        for key in ['lat', 'lon', 'rng', 'impact', 'email']:
+            data[key] = request.REQUEST.get(key)
+        name = request.REQUEST.get('name')
+        data['title'] = "{}'s Kickstarter Gateway".format(name)
+        if not data['lat'] or not data['lon'] or not name or not data['email']:
+            data = {'error': 'Please provide lat, lng, name and email parameters.'}
+        else:
+            gw = Gateway(**data)
+            gw.kickstarter = True
+            gw.status = 'PL'
+            gw.save()
+            data = {'status': 'OK'}
+        context = self.get_context_data(**kwargs)
+        context['data'] = data
+        return self.render_to_response(context)
+
+
 class ImpactCalculationView(TemplateView):
     template_name = 'ttn/json.html'
 
