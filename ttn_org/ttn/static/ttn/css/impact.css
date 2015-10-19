@@ -348,12 +348,18 @@ button img {
     margin-bottom: 3em;
     text-align: center;
 }
+
 .ks {
     height: 2em;
     float: left;
     margin-left: 2em;
     margin-right: -2em;
     margin-top: -0.3em;
+}
+
+.ks-text {
+    margin-left: 80px;
+    color: white;
 }
 
 .bottom-area>img {
@@ -366,6 +372,15 @@ button img {
 
 .bottom-area a:hover {
     opacity: 0.8;
+}
+
+.lnr-map-marker {
+    color: white;
+    font-size: 25px;
+}
+
+.commit-btn {
+    padding-top: 0px;
 }
 
 /* MODALS*/
