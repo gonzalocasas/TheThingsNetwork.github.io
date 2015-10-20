@@ -50,8 +50,8 @@
         });
 
         var reach = 1;
-        var fb_message = "I am placing a The Things Network Gateway and impacting {REACH} people @thethingsnetwork";
-        var twtr_message = "I am placing a The Things Network Gateway and impacting {REACH} people @thethingsntwrk";
+        var fb_message = "I am placing a The Things Network Gateway and impacting {REACH} people! @thethingsnetwork http://thethingsnetwork.org/landing/kickstarter";
+        var twtr_message = "I am placing a The Things Network Gateway and impacting {REACH} people! @thethingsntwrk";
         $('.fb-share').on('click', function() {
             var url = "https://www.facebook.com/sharer/sharer.php?p[summary]=" + fb_message + "&p[title]=TheThingsNetwork&s=100&p[url]=thethingsnetwork.org{% url 'ttn:impact' %}";
             url = url.replace('{REACH}', reach);
