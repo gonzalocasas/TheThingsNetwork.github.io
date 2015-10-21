@@ -23,7 +23,7 @@
         var communitydump = {{ communities|jsonify }};
         var gatewaydump = {{ gateways.all|jsonify }};
         var communities = draw_communities(map, communitydump);
-        var gateways = draw_gateways(map, gatewaydump);
+        var gateways = draw_gateways(map, gatewaydump, true);
       }
       google.maps.event.addDomListener(window, 'load', initialize);
 </script>

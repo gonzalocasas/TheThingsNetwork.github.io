@@ -36,7 +36,7 @@ function draw_label(map, position, text, size) {
     });
 }
 
-function draw_gateways(map, gatewaydump) {
+function draw_gateways(map, gatewaydump, drawMarkers) {
     var gateways = [];
     var statuses = ['DE', 'PL', 'MA', 'AC'];
     // draw most important status last
@@ -44,16 +44,17 @@ function draw_gateways(map, gatewaydump) {
         for (var g=0; g < gatewaydump.length; g++) {
             var gw = gatewaydump[g].fields;
             if (gw.status == statuses[si]) {
-                gateways.push(draw_gateway(map, gw));
+                gateways.push(draw_gateway(map, gw, drawMarkers));
             }
         }
     }
     return gateways;
 }
 
-function draw_gateway(map, gw) {
+function draw_gateway(map, gw, drawMarker) {
     var colour = colours[gw.status] || '#333333';
     var opacity = opacities[gw.status] || 0.5;
+    var position = {lat: gw.lat || 0, lng: gw.lon || 0 };
     var gateway = new google.maps.Circle({
         strokeColor: shadeColor(colour, 20),
         strokeOpacity: opacity,
@@ -61,9 +62,12 @@ function draw_gateway(map, gw) {
         fillColor: colour,
         fillOpacity: opacity,
         map: map,
-        center: {lat: gw.lat || 0, lng: gw.lon || 0 },
+        center: position,
         radius: gw.rng || 5000
     });
+    if (drawMarker) {
+        draw_marker(map, position, gw.title);
+    }
     return gateway;
 }
 
