@@ -50,18 +50,23 @@
                 $('.button-impact').click();
         });
 
+        $('.ks-url').click(function (e) {
+            var url = "{% url 'ttn:kickstarter' %}";
+            window.open_tracked(url, '_blank', 'impact_to_kickstarter');
+        });
+
         var reach = "thousands of";
         var fb_message = "I am placing a The Things Network Gateway and impacting {REACH} people! @thethingsnetwork";
         var twtr_message = "I am placing a The Things Network Gateway and impacting {REACH} people! @thethingsntwrk http://thethingsnetwork.org/landing/kickstarter";
         $('.fb-share').on('click', function() {
             var url = "https://www.facebook.com/sharer/sharer.php?p[summary]=" + fb_message + "&p[title]=TheThingsNetwork&s=100&p[url]=thethingsnetwork.org{% url 'ttn:impact' %}";
             url = url.replace('{REACH}', reach);
-            window.open(url, '_blank');
+            window.open_tracked(url, '_blank', 'impact_share', 'facebook');
         });
         $('.tw-share').on('click', function() {
             var url = "https://twitter.com/home?status=" + twtr_message + "&via=thethingsntwrk";
             url = url.replace('{REACH}', reach);
-            window.open(url, '_blank');;
+            window.open_tracked(url, '_blank', 'impact_share', 'twitter');
         });
 
         $('.button-commit').on('click', function(elem) {
@@ -76,6 +81,7 @@
                     if (result.error) {
                         alert("Sorry, an error occurred while submitting the commitment. Did you fill in your location, name and email already?");
                     } else {
+                        window.track_event('impact_committed', dataString);
                         $('.commit-form').hide();
                         $('.commit-form-title').hide();
                         $('.commit-submitted').show();
@@ -87,6 +93,7 @@
         $('.button-impact').on('click', function(elem) {
             $('.error-line').slideUp();
             var address = $('.input-address').val();
+            window.track_event('impact_search', address);
             var position = addressLookup(address, function(error, position) {
                 if (error) {
                     $('.error-address').slideDown();
@@ -113,6 +120,7 @@
                             draw_label(map, position, "Error: " + impact.error, 15);
                         } else {
                             reach = Math.round(impact.population).toLocaleString(); // global var
+                            window.track_event('impact_search_found', 'reach='+reach);
                             $('#commit-lat').val(position.lat());
                             $('#commit-lng').val(position.lng());
                             $('#commit-rng').val(range);
@@ -187,7 +195,7 @@
         <img src="{% static 'ttn/media/impact/down2.png' %}">
         <p>You are now ready to pledge for a The Things Gateway at our Kickstarter!</p>
         <div class="pledge-container">
-            <a href="{% url 'ttn:kickstarter' %}">
+            <a href="#" class="ks-url">
                 <img src="{% static 'ttn/media/impact/kickstarter_logo.png' %}" class="ks">
                 <span class="ks-text">Pledge at Kickstarter</span>
             </a>
