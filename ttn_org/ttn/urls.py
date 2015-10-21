@@ -49,8 +49,11 @@ urlpatterns = [
         name='new-community'),
 
     # Special pages
+    #url(r'^landing/kickstarter$',
+    #    TemplateView.as_view(template_name=APP+'landing/kickstarter.html'),
+    #    name='kickstarter'),
     url(r'^landing/kickstarter$',
-        TemplateView.as_view(template_name=APP+'landing/kickstarter.html'),
+        RedirectView.as_view(url="https://www.kickstarter.com/projects/419277966/the-things-network"),
         name='kickstarter'),
     url(r'^kickstarter$',
         RedirectView.as_view(url=reverse_lazy(APPNS+'kickstarter'), permanent=True)),
