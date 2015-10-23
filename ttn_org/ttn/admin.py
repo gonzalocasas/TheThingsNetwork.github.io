@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from .models import Gateway, Community, Post, Media, Resource, TTNUser,\
                     Company, InitiatorSubmission
 
-admin.site.register(Gateway)
-admin.site.register(Post)
 admin.site.register(Media)
 admin.site.register(Resource)
 admin.site.register(Company)
@@ -61,12 +59,25 @@ class CommunityAdmin(admin.ModelAdmin):
     ]
     filter_horizontal = ('leaders', 'members', 'gateways', 'companies')
     inlines = [PostInline, MediaInline, ResourceInline]
-    list_display = ('slug', 'title', 'created')
+    list_display = ('slug', 'title', 'published', 'created')
     search_fields = ('title', 'slug', 'description')
-    list_filter = ('created',)
+    list_filter = ('created', 'published')
+
+
+@admin.register(Gateway)
+class GatewayAdmin(admin.ModelAdmin):
+    list_display = ('title', 'kickstarter', 'status', 'created')
+    search_fields = ('title', 'email')
+    list_filter = ('created', 'kickstarter')
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'author', 'created', 'updated')
+    search_fields = ('title', 'description')
 
 
 @admin.register(InitiatorSubmission)
 class InitiatorSubmissionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'area', 'created')
+    list_display = ('name', 'email', 'area', 'internal_comments', 'created')
 

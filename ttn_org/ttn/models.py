@@ -8,6 +8,7 @@ class TTNUser(models.Model):
     tagline = models.CharField(max_length=200, blank=True, null=True)
     #image_thumb = models.ImageField('Picture', blank=True, null=True)
     image_thumb_url = models.CharField(max_length=250, blank=True, null=True)
+    twitter_handle = models.CharField(max_length=250, blank=True, null=True)
 
 
 class Gateway(models.Model):
@@ -57,13 +58,15 @@ class Community(models.Model):
     #image = models.ImageField('City image', blank=True, null=True)
     image_url = models.CharField(max_length=250)
     image_thumb_url = models.CharField(max_length=250)
-    created = models.DateTimeField(auto_now_add=True)
+    meetup_url = models.CharField(max_length=250, blank=True, null=True)
+    twitter_handle = models.CharField(max_length=250, blank=True, null=True)
     leaders = models.ManyToManyField(User, related_name="Leaders")
     members = models.ManyToManyField(User, related_name="Members")
     companies = models.ManyToManyField('Company', related_name="Companies",
                                        blank=True)
     gateways = models.ManyToManyField(Gateway, related_name="Gateways",
                                       blank=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return "{} <{}, {}>".format(self.title, self.lat, self.lon)
@@ -138,6 +141,7 @@ class InitiatorSubmission(models.Model):
     contributors = models.TextField(blank=True, null=True)
     plan = models.TextField(blank=True, null=True)
     helping = models.TextField(blank=True, null=True)
+    internal_comments = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
