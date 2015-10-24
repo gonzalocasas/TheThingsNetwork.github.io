@@ -8,6 +8,7 @@ class TTNUser(models.Model):
     tagline = models.CharField(max_length=200, blank=True, null=True)
     #image_thumb = models.ImageField('Picture', blank=True, null=True)
     image_thumb_url = models.CharField(max_length=250, blank=True, null=True)
+    website_url = models.CharField(max_length=250, blank=True, null=True)
     twitter_handle = models.CharField(max_length=250, blank=True, null=True)
 
 
@@ -84,7 +85,7 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-updated']
+        ordering = ['-created']
 
     def __str__(self):
         c = self.community.title if self.community else '*'

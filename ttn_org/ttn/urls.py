@@ -35,6 +35,9 @@ urlpatterns = [
         login_required(views.PostEditView.as_view(
             template_name=APP+'community/post_edit.html')),
         name='community-post-edit'),
+    url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/posts/?$',
+        views.PostView.as_view(template_name=APP+'community/posts.html'),
+        name='community-posts'),
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/settings/?$',
         login_required(views.SettingsView.as_view(
             template_name=APP+'community/settings.html')),
