@@ -108,13 +108,19 @@
                     {% if community.members.all|length > 4 %}
                     <button id="usersButton" class="btn btn-lg button" data-toggle="modal" data-target="#usersModal" type="button">See all</button>
                     {% endif %}
+
+                    <div class="bottom-button">
+                        <p><a href="{% url 'ttn:community-contact' slug=community.slug %}">
+                            Contact us
+                        </a></p>
+                    </div>
                 </section>
             
                 <section class="center">
                     <div class="blog-posts">
                         <h1>Posts</h1>
                             {% if community.post_set.all %}
-                            {% for post in community.post_set.all %}
+                            {% for post in community.post_set.all|slice:":2" %}
                             <div class="blog-post">
                                 {% if post.image_url %}
                                 <div class="blog-image" style="background-image: url('{% if post.image_url %}{{ post.image_url }}{% endif %}');"></div>
@@ -122,7 +128,7 @@
                                 
                                 <div class="blog-text">
                                     <h4>{{ post.title }}</h4>
-                                    <p>{{ post.description|truncatewords:50 }}</p>
+                                    <p>{{ post.description|markdown|truncatewords_html:40 }}</p>
                                     <a href="{% url 'ttn:community-post' slug=community.slug pk=post.pk %}">
                                         Read more
                                     </a>
@@ -135,13 +141,18 @@
                             </div>
                             {% endif %}
 
-                            {% if 'admin' in permissions %}
-                            <div class="blog-post">
+                            <div class="bottom-button">
+                                {% if community.post_set.all|length > 2 %}
+                                <a href="{% url 'ttn:community-posts' slug=community.slug %}">
+                                    See archive
+                                </a>
+                                {% endif %}
+                                {% if 'admin' in permissions %}
                                 <a href="{% url 'ttn:community-post-edit' slug=community.slug pk='new' %}">
                                     Add update
                                 </a>
+                                {% endif %}
                             </div>
-                            {% endif %}
                     </div>
                 </section>
             
@@ -175,12 +186,6 @@
                         We don't have any external resources yet.
                     </div>
                     {% endif %}
-
-                    <div class="contact">
-                        <p><a href="{% url 'ttn:community-contact' slug=community.slug %}">
-                            Contact us
-                        </a></p>
-                    </div>
                 </section>
          </article>
 
