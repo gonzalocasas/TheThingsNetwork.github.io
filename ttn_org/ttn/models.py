@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.models import ContentType
+
 
 
 class TTNUser(models.Model):
@@ -47,8 +50,8 @@ class Community(models.Model):
     lat = models.FloatField('latitude', blank=True, null=True)
     lon = models.FloatField('longitude', blank=True, null=True)
     scale = models.FloatField('Scale (zoom)', default=13)
-    published = models.BooleanField(default=True)
-    slug = models.CharField(max_length=200)
+    published = models.BooleanField(default=False)
+    slug = models.CharField(max_length=200, unique=True)
     slug.help_text = 'url'
     title = models.CharField(max_length=200)
     title.help_text = 'Area name'
@@ -57,7 +60,7 @@ class Community(models.Model):
     description.help_text = 'Get them excited'
     contact = models.TextField(blank=True, null=True)
     #image = models.ImageField('City image', blank=True, null=True)
-    image_url = models.CharField(max_length=250)
+    image_url = models.CharField(max_length=250, blank=True, null=True)
     image_thumb_url = models.CharField(max_length=250)
     meetup_url = models.CharField(max_length=250, blank=True, null=True)
     twitter_handle = models.CharField(max_length=250, blank=True, null=True)
@@ -133,6 +136,20 @@ class Company(models.Model):
         return self.title
 
 
+class Feed(models.Model):
+    """Activity feed items"""
+    ACT_CHOICES = [('CR', 'CREATED'), ('UP', 'UPDATED'), ('DE', 'DELETED')]
+    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType)
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
+    activity = models.CharField(max_length=2, choices=ACT_CHOICES,
+                                default='CR')
+    activity_data = models.TextField(blank=True, null=True)
+    activity_created = models.DateTimeField(auto_now_add=True)
+    # TODO quicker lookups
+    # https://zerokspot.com/weblog/2008/08/13/genericforeignkeys-with-less-queries
+
+
 class InitiatorSubmission(models.Model):
     name = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
@@ -143,6 +160,7 @@ class InitiatorSubmission(models.Model):
     plan = models.TextField(blank=True, null=True)
     helping = models.TextField(blank=True, null=True)
     internal_comments = models.TextField(blank=True, null=True)
+    community = models.ForeignKey(Community, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

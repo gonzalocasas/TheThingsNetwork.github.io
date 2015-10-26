@@ -1,13 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from django.utils import safestring
 
 from .models import Gateway, Community, Post, Media, Resource, TTNUser,\
-                    Company, InitiatorSubmission
+                    Company, Feed, InitiatorSubmission
+from . import actions
 
 admin.site.register(Media)
 admin.site.register(Resource)
 admin.site.register(Company)
+admin.site.register(Feed)
 
 
 # Users
@@ -79,5 +82,12 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(InitiatorSubmission)
 class InitiatorSubmissionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'area', 'internal_comments', 'created')
+    #def button(self):
+    #    return safestring.mark_safe('<input type="...">')
+    #button.short_description = 'Action'
+    #button.allow_tags = True
+
+    actions = (actions.create_community,)
+    list_display = ('name', 'email', 'area', 'internal_comments', 'created',
+                    'community')
 

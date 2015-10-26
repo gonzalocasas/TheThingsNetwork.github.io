@@ -8,6 +8,7 @@ class SettingsForm(ModelForm):
         model = Community
         fields = ['mission', 'description', 'contact',
                   'lat', 'lon', 'scale',
+                  'meetup_url', 'twitter_handle',
                   'image_url', 'image_thumb_url',
                  ]
         widgets = {
