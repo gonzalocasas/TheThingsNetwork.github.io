@@ -2,9 +2,6 @@
 {% load staticfiles markup jsonify %}
 
 {% block menu %}
-    {% if 'admin' in permissions %}
-    <a href="{% url 'ttn:community-settings' slug=community.slug %}">Settings</a>
-    {% endif %}
 {% endblock %}
 
 {% block author %}
@@ -43,6 +40,12 @@
 
 {% block content %}
             <article class="intro">
+
+                {% if 'admin' in permissions %}
+                <a href="{% url 'ttn:community-settings' slug=community.slug %}">UPDATE THIS PAGE</a>
+                <div>&nbsp;</div>
+                {% endif %}
+
                 <h1>We are on a mission to build a global open crowdsourced Internet of Things data network.</h1>
 
                 <div class="intro-mission">
@@ -65,6 +68,12 @@
                     <h1>Progress</h1>
                     <img src="{% static 'ttn/media/progress.png' %}">
                 </div -->
+                <div>
+                    <a class="btn-big" href="{% url 'ttn:kickstarter' %}" target="_blank">
+                        Place a gateway Now
+                    </a>
+                </div>
+
                 <div class="clear"></div>
                 <a name="map">&nbsp;</a>
                 <div id="map-inline">Loading map..</div>
