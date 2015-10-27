@@ -164,7 +164,8 @@ class SettingsView(CommunityView):
             new_settings = SettingsForm(request.POST, instance=community)
             settings = new_settings.save()
             # notify
-            message = "*Community page updated*\n{}".format(
+            message = "*Community page updated* by {} {}\n{}".format(
+                request.user.first_name, request.user.last_name,
                 request.build_absolute_uri(reverse(
                     'ttn:community', kwargs={'slug': slug})))
             utils.send_slack(message)
