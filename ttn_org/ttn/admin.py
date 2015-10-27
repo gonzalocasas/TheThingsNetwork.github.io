@@ -4,13 +4,14 @@ from django.contrib.auth.models import User
 from django.utils import safestring
 
 from .models import Gateway, Community, Post, Media, Resource, TTNUser,\
-                    Company, Feed, InitiatorSubmission
+                    Company, Feed, InitiatorSubmission, KeyValue
 from . import actions
 
 admin.site.register(Media)
 admin.site.register(Resource)
 admin.site.register(Company)
 admin.site.register(Feed)
+admin.site.register(KeyValue)
 
 
 # Users

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
-
+import json
 
 
 class TTNUser(models.Model):
@@ -165,4 +165,39 @@ class InitiatorSubmission(models.Model):
 
     def __str__(self):
         return "[{}] {} <{}>".format(self.area, self.name, self.email)
+
+
+class KeyValue(models.Model):
+    key = models.CharField(max_length=200)
+    value = models.TextField(blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def as_json(self):
+        try:
+            return json.loads(self.value)
+        except:
+            return None
+
+    def __str__(self):
+        return self.key
+
+
+def key_lookup(key, default=None):
+    search = KeyValue.objects.filter(key=key)
+    if len(search):
+        return search[0].as_json() or search[0].value
+    return default
+
+def key_save(key, value):
+    if isinstance(value, dict):
+        value = json.dumps(value)
+    search = KeyValue.objects.filter(key=key)
+    if len(search):
+        item = search[0]
+        item.value = value
+    else:
+        item = KeyValue(key=key, value=value)
+    item.save()
+    return item
 
