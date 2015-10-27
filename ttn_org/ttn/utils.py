@@ -15,13 +15,18 @@ def send_email(template_name, sender, receivers, **kwargs):
     send_mail(template_name, kwargs, sender, receivers)
 
 
-def send_slack(text, template_name='slack.html', **kwargs):
+def send_slack(text, template_name='slack.html', fail_silently=True, **kwargs):
     if settings.DEBUG:
         print("Skipping slack message:", kwargs)
         return
     slack.api_token = settings.SLACK_TOKEN
     channel = "#{}".format(settings.SLACK_CHANNEL)
-    slack.chat.post_message(channel, text, username='Thing')
+    try:
+        slack.chat.post_message(channel, text, username='Thing')
+    except Exception as e:
+        print("[!!] Slack exception: {}".format(e))
+        if not fail_silently:
+            raise e
 
 
 def create_user(email, username=None, send_activation_email=False, **kwargs):

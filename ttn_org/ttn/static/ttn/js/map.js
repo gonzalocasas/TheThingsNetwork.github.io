@@ -118,7 +118,7 @@ function get_impact(URL, lat, lng, rng, callback) {
         data: {lat: lat, lng: lng, rng},
         type: 'GET',
         success: function(result, status) {
-            var json = JSON.parse(result);
+            var json = result; //JSON.parse(result);
             console.log(json);
             callback(json);
         }

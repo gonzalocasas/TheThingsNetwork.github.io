@@ -77,7 +77,7 @@
                 type: "POST",
                 data: dataString,
                 success: function(result) {
-                    result = JSON.parse(result);
+                    //result = JSON.parse(result);
                     if (result.error) {
                         alert("Sorry, an error occurred while submitting the commitment. Did you fill in your location, name and email already?");
                     } else {
@@ -98,7 +98,7 @@
                 if (error) {
                     $('.error-address').slideDown();
                 } else {
-                    console.log("POSITION", position);
+                    console.log("POSITION", position.lat(), position.lng());
                     map.panTo(position);
                     map.setZoom(12);
                     draw_marker(map, position, "Your gateway");
@@ -221,7 +221,7 @@
             <div class="commit-submitted" style="display:none;">
                 Thanks for committing to buy a gateway!<br><br>
 
-                We'll publish a map featuring all pledges as soon as possible!
+                We'll publish a map featuring all pledges during the campaign!
             </div>
         </div>
 

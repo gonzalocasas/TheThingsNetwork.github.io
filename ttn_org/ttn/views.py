@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from django.http import Http404, JsonResponse
@@ -6,6 +7,7 @@ from django.db import models
 import math
 import os
 
+from . import utils
 from .models import Community, Post, Gateway, InitiatorSubmission, Feed
 from .forms import SettingsForm, PostForm
 
@@ -68,6 +70,10 @@ class StartCommunityView(TemplateView):
                       'contributors', 'plan', 'helping']:
             setattr(submission, field, request.POST.get(field, ''))
         submission.save()
+        # notify
+        message = "*Initiator submission* in _{}_ by {}".format(
+            submission.area, submission.name)
+        utils.send_slack(message)
         return redirect('ttn:new-community-thanks')
 
 
@@ -124,6 +130,12 @@ class PostEditView(PostView):
                 post.author = request.user
                 post.community = community
             post.save()
+            if pk == 'new':
+                # notify
+                message = "*Community post added*\n{}".format(
+                    request.build_absolute_uri(reverse(
+                        'ttn:community-post', kwargs={'slug': slug, 'pk': post.pk})))
+                utils.send_slack(message)
         return redirect('ttn:community-post', slug=slug, pk=post.pk)
 
 
@@ -151,6 +163,11 @@ class SettingsView(CommunityView):
         if 'admin' in permissions:
             new_settings = SettingsForm(request.POST, instance=community)
             settings = new_settings.save()
+            # notify
+            message = "*Community page updated*\n{}".format(
+                request.build_absolute_uri(reverse(
+                    'ttn:community', kwargs={'slug': slug})))
+            utils.send_slack(message)
         return redirect('ttn:community', slug=slug)
 
 
@@ -206,37 +223,45 @@ class SignupView(TemplateView):
             user = User.objects.create_user(
                 username, email, password1,
                 first_name=first_name, last_name=last_name)
+            # notify
+            message = "*New Community User:* {} {}".format(
+                first_name, last_name)
+            utils.send_slack(message)
             return redirect('login')
 
 
 class CommitGWView(JsonView):
+    STATIC_MAPS_URL = "http://maps.googleapis.com/maps/api/staticmap?center={lat},{lon}&zoom=13&size=640x400"
 
     def post(self, request, **kwargs):
         data = {}
         for key in ['lat', 'lon', 'rng', 'impact', 'email']:
-            data[key] = request.REQUEST.get(key)
-        name = request.REQUEST.get('name')
+            data[key] = request.POST.get(key)
+        name = request.POST.get('name')
         data['title'] = "{}'s Kickstarter Gateway".format(name)
         if not data['lat'] or not data['lon'] or not name or not data['email']:
-            data = {'error': 'Please provide lat, lng, name and email parameters.'}
+            response = {'error': 'Please provide lat, lng, name and email parameters.'}
         else:
             gw = Gateway(**data)
             gw.kickstarter = True
             gw.status = 'PL'
             gw.save()
-            data = {'status': 'OK'}
+            response = {'status': 'OK'}
+            message = "*Gateway committed* by {}\n".format(name) \
+                    + self.STATIC_MAPS_URL.format(**data)
+            utils.send_slack(message)
         context = self.get_context_data(**kwargs)
-        context['data'] = data
+        context['data'] = response
         return self.render_to_response(context)
 
 
 class ImpactCalculationView(JsonView):
 
-    def dispatch(self, request, **kwargs):
+    def get(self, request, **kwargs):
         data = {}
-        lat = request.REQUEST.get('lat')
-        lng = request.REQUEST.get('lng')
-        rng = request.REQUEST.get('rng', 5)
+        lat = request.GET.get('lat')
+        lng = request.GET.get('lng')
+        rng = request.GET.get('rng', 5)
         if not lat or not lng:
             data = {'error': 'Please provide lat and lng parameters.'}
         else:
