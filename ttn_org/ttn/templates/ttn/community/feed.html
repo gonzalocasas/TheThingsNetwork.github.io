@@ -1,0 +1,23 @@
+{% extends "ttn/community/base_small.html" %}
+{% load staticfiles markup %}
+
+{% block author %}
+    <h2>Recent Activity</h2>
+{% endblock %}
+
+
+{% block content %}
+
+        <article class="intro">
+
+            {% for activity in feed %}
+            <div class="activity">
+                <h1>{{ activity.title }}</h1>
+                <div class="page-content">
+                    {{ activity.description|markdown }}
+                </div>
+            </div>
+
+        </article>
+
+{% endblock %}
