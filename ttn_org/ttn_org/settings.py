@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'waliki.pdf',
     'waliki.togetherjs',
     'rest_framework',
+    'mail_templated',
 
     'ttn',
     'wiki',
@@ -106,6 +107,16 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+
+EMAIL_HOST = env.get('EMAIL_HOST')
+EMAIL_PORT = env.get('EMAIL_PORT')
+EMAIL_USE_TLS = bool(env.get('EMAIL_USE_TLS', False))
+EMAIL_USE_SSL = bool(env.get('EMAIL_USE_SSL', True))
+EMAIL_HOST_USER = env.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.get('EMAIL_HOST_PASSWORD')
+EMAIL_FROM = env.get('EMAIL_FROM', EMAIL_HOST_USER)
+EMAIL_ADMIN = env.get('EMAIL_ADMIN')
+
 
 API_INFLUX_HOST = env.get('API_INFLUX_HOST', '')
 API_INFLUX_PORT = env.get('API_INFLUX_PORT', '')

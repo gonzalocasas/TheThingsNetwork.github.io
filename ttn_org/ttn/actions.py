@@ -1,11 +1,15 @@
-from django.utils import text as utils_text
+from django.core.urlresolvers import reverse
+from django.utils import text as utils_text, safestring
+from django.contrib import messages
+from django.conf import settings
+
 from . import utils
 from .models import Gateway, Community, Post, Media, Resource, TTNUser,\
                     Company, Feed, InitiatorSubmission
 
 def create_community(modeladmin, request, queryset):
     errors = []
-    messages = []
+    notifications = []
     for submission in queryset:
         if submission.community:
             errors.append("Community already created for {}!".format(submission))
@@ -15,7 +19,8 @@ def create_community(modeladmin, request, queryset):
             first_name = names[0] if len(names) else ""
             last_name = " ".join(names[1:]) if len(names) > 1 else ""
             user = utils.create_user(email=submission.email,
-                first_name=first_name, last_name=last_name)
+                first_name=first_name, last_name=last_name,
+                send_activation_email=True)
             # Create community
             com = Community()
             com.title = submission.area
@@ -41,8 +46,16 @@ what you want to accomplish and why. For example:
             submission.community = com
             submission.save()
 
-            messages.append('Created {} community page! slug={}'.format(
-                com.title, com.slug))
-    return errors, messages
+            # Notifications
+            utils.send_email("emails/campaign_created.html",
+                             settings.EMAIL_FROM, [submission.email],
+                             community=com, user=user)
+            notifications.append('Created {} community page! <a href="{}">{}</a>'.format(
+                com.title, reverse('ttn:community', kwargs={'slug':com.slug}),
+                com.slug))
+    for error in errors:
+        modeladmin.message_user(request, error, level=messages.ERROR)
+    for notification in notifications:
+        modeladmin.message_user(request, safestring.mark_safe(notification))
 create_community.short_description = "Create community landing page"
 

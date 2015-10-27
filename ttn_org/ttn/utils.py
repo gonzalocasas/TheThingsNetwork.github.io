@@ -1,10 +1,18 @@
 from django.utils import text as utils_text
 from django.contrib.auth.models import User
+#from django.core.mail import send_mail
+from mail_templated import send_mail
+from django.conf import settings
+from django.template.loader import render_to_string
+
 from .models import Gateway, Community, Post, Media, Resource
 
 
-def send_email(todo):
-    pass
+def send_email(template_name, sender, receivers, **kwargs):
+    if settings.DEBUG:
+        receivers = [settings.EMAIL_ADMIN]
+    send_mail(template_name, kwargs, sender, receivers)
+
 
 def create_user(email, username=None, send_activation_email=False, **kwargs):
     existing = User.objects.filter(email=email)
@@ -25,8 +33,9 @@ def create_user(email, username=None, send_activation_email=False, **kwargs):
         
     user = User(username=username, email=email, **kwargs)
     user.save()
-    #user = User.objects.filter(email=email)
     print("CREATED USER", user, 'WITH', email, username, kwargs)
     if send_activation_email:
-        send_email("TODO")
+        send_email("emails/account_created.html",
+                   settings.EMAIL_FROM, [email],
+                   user=user)
     return user
