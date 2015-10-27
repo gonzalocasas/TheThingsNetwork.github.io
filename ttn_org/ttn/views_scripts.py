@@ -29,7 +29,7 @@ class KickstarterScraperView(JsonView):
             ks_data_str = search.group(1)
             ks_data_str = html.unescape(ks_data_str)
             ks_data = json.loads(ks_data_str)
-            for key in ['backers_count', 'pledged']:
+            for key in ['backers_count', 'pledged', 'goal']:
                 data[key] = ks_data.get(key)
             data['pledges'] = []
             for reward in ks_data.get('rewards', []):
@@ -41,9 +41,14 @@ class KickstarterScraperView(JsonView):
         # send events, update db
         ks_key = 'kickstarter_data'
         data_prev = key_lookup(ks_key, {})
+        percentage = data.get('pledged') / data.get('goal') * 100
+        message = "*New Kickstarter Pledge*!\nTotal euros pledged: *{}* ({:.1f}%) by {} backers".format(
+            data.get('pledged', '???'), percentage, data.get('backers_count', '???'))
+        print(message)
         if data_prev.get('backers_count', 0) < data.get('backers_count', 0):
-            message = "*New Kickstarter Pledge*!\nTotal euros pledged: *{}* by {} backers".format(
-                data.get('pledged', '???'), data.get('backers_count', '???'))
+            percentage = data.get('pledged') / data.get('goal') * 100
+            message = "*New Kickstarter Pledge*!\nTotal euros pledged: *{}* ({.1f}%) by {} backers".format(
+                data.get('pledged', '???'), percentage, data.get('backers_count', '???'))
             print(message)
             utils.send_slack(text=message)
         key_save(ks_key, data)
