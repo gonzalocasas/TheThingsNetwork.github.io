@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from mail_templated import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+import slack, slack.chat
 
 from .models import Gateway, Community, Post, Media, Resource
 
@@ -12,6 +13,15 @@ def send_email(template_name, sender, receivers, **kwargs):
     if settings.DEBUG:
         receivers = [settings.EMAIL_ADMIN]
     send_mail(template_name, kwargs, sender, receivers)
+
+
+def send_slack(text, template_name='slack.html', **kwargs):
+    if settings.DEBUG:
+        print("Skipping slack message:", kwargs)
+        return
+    slack.api_token = settings.SLACK_TOKEN
+    channel = "#{}".format(settings.SLACK_CHANNEL)
+    slack.chat.post_message(channel, text, username='Thing')
 
 
 def create_user(email, username=None, send_activation_email=False, **kwargs):
