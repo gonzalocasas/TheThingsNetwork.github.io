@@ -2,6 +2,7 @@ from django.conf.urls import include, url
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from . import views
+from . import views_scripts
 from django.views.generic import TemplateView, RedirectView
 
 APP = 'ttn/'
@@ -69,5 +70,9 @@ urlpatterns = [
         views.ImpactCalculationView.as_view(), name='impact-calc'),
     url(r'^api/commitgw/$',
         views.CommitGWView.as_view(), name='impact-commitgw'),
+
+    # Scripts to run
+    url(r'^scripts/kickstarter_scraper/$',
+        views_scripts.KickstarterScraperView.as_view()),
 
 ]

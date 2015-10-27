@@ -1,13 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.db import models
 import math
 import os
 
-from .models import Community, Post, Gateway, InitiatorSubmission
+from .models import Community, Post, Gateway, InitiatorSubmission, Feed
 from .forms import SettingsForm, PostForm
+
+
+class JsonView(TemplateView):
+    template_name = 'ttn/json.html'
+
+    def render_to_response(self, context, **kwargs):
+        return JsonResponse(context['data'], **kwargs)
 
 
 class IndexView(TemplateView):
@@ -147,6 +154,15 @@ class SettingsView(CommunityView):
         return redirect('ttn:community', slug=slug)
 
 
+class FeedView(TemplateView):
+    
+    def get(self, request, **kwargs):
+        activities = Feed.object.all()
+        context = self.get_context_data(**kwargs)
+        context['activities'] = activities
+        return self.render_to_response(context)
+
+
 ## General non-TTN views
 class SignupView(TemplateView):
 
@@ -193,8 +209,7 @@ class SignupView(TemplateView):
             return redirect('login')
 
 
-class CommitGWView(TemplateView):
-    template_name = 'ttn/json.html'
+class CommitGWView(JsonView):
 
     def post(self, request, **kwargs):
         data = {}
@@ -215,8 +230,7 @@ class CommitGWView(TemplateView):
         return self.render_to_response(context)
 
 
-class ImpactCalculationView(TemplateView):
-    template_name = 'ttn/json.html'
+class ImpactCalculationView(JsonView):
 
     def dispatch(self, request, **kwargs):
         data = {}
@@ -281,4 +295,3 @@ def get_population_data():
             data = lines[i:]
             break
     return headers, data
-
