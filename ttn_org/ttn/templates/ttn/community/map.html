@@ -22,7 +22,7 @@
 
         var communitydump = {{ communities|jsonify }};
         var gatewaydump = {{ gateways.all|jsonify }};
-        var communities = draw_communities(map, communitydump, false);
+        //var communities = draw_communities(map, communitydump, false);
         var gateways = draw_gateways(map, gatewaydump, false);
       }
       google.maps.event.addDomListener(window, 'load', initialize);
