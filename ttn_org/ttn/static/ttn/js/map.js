@@ -1,7 +1,7 @@
 // constants
 var colours = {'PL': '#0000DD', 'AC': '#00DD00',
            'MA': '#80A000', 'DE': '#995555'};
-var opacities = {'DE': 0.1, 'PL': 0.2, 'MA': 0.3, 'AC': 0.4};
+var opacities = {'DE': 0.1, 'PL': 0.3, 'MA': 0.4, 'AC': 0.5};
 
 // helpers
 function shadeColor(color, percent) {  
@@ -72,16 +72,17 @@ function draw_gateway(map, gw, drawMarker) {
 }
 
 
-function draw_communities(map, communitydump) {
+function draw_communities(map, communitydump, drawMarkers) {
     var communities = [];
     for (var i in communitydump) {
         var c = communitydump[i];
-        communities.push(draw_community(map, c));
+        communities.push(draw_community(map, c, drawMarkers));
     }
     return communities
 }
 
-function draw_community(map, community) {
+function draw_community(map, community, drawMarker) {
+    var position = {lat: community.lat || 0, lng: community.lon || 0 };
     var c = new google.maps.Circle({
         strokeColor: '#F00',
         strokeOpacity: 0.7,
@@ -89,9 +90,11 @@ function draw_community(map, community) {
         fillColor: '#F88',
         fillOpacity: 0.5,
         map: map,
-        center: {lat: community.lat || 0, lng: community.lon || 0 },
+        center: position,
         radius: Math.log(21 - (community.scale||13)) / Math.LN2 * 25000
     });
+    if (drawMarker)
+        draw_marker(map, position, community.title);
     return c;
 }
 
