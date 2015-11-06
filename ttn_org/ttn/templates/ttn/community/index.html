@@ -170,35 +170,63 @@
                 </section>
             
                 <section class="right-bar">
-                    <h1>Media</h1>
-                    {% if community.media_set.all %}
-                    {% for medium in community.media_set.all %}
-                    <div class="side-post">
-                        <h4>{{ medium.title }}</h4>
-                        <a href="{{ medium.url }}" target="_blank">read more</a>
+                    <div class="half-bar">
+                        <h1>Media</h1>
+                        {% if community.media_set.all %}
+                        {% for medium in community.media_set.all|slice:":2" %}
+                        <div class="side-post">
+                            <h4>{{ medium.title }}</h4>
+                            <a href="{{ medium.url }}" target="_blank">read more</a>
+                        </div>
+                        {% endfor %}
+                        {% if community.media_set.all|length > 2 %}
+                        <button id="mediaButton" class="btn btn-lg button" data-toggle="modal" data-target="#mediaModal" type="button">See all</button>
+                        {% endif %}
+
+                        {% else %}
+                        <div class="side-post">
+                            The {{ community.title }} community is working on media attention!
+                        </div>
+                        {% endif %}
+
                     </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="side-post">
-                        The {{ community.title }} community is working on media attention!
-                    </div>
-                    {% endif %}
 
                     <div class="vseperator">&nbsp;</div>
 
-                    <h1>Resources</h1>
-                    {% if community.resource_set.all %}
-                    {% for resource in community.resource_set.all %}
-                    <div class="side-post">
-                        <h4>{{ resource.title }}</h4>
-                        <a href="{{ resource.url }}" target="_blank">have a look</a>
+                    <div class="half-bar">
+                        <h1>Resources</h1>
+                        {% if community.meetup_url %}
+                        <div class="side-post">
+                            <h4>Meetup group</h4>
+                            <a href="{{ community.meetup_url_full }}" target="_blank">go to meetup.com</a>
+                        </div>
+                        {% endif %}
+
+                        {% if community.twitter_handle %}
+                        <div class="side-post">
+                            <h4>Twitter feed</h4>
+                            <a href="{{ community.twitter_url_full }}" target="_blank">go to twitter</a>
+                        </div>
+                        {% endif %}
+
+                        {% if community.resource_set.all %}
+                        {% for resource in community.resource_set.all|slice:":2" %}
+                        <div class="side-post">
+                            <h4>{{ resource.title }}</h4>
+                            <a href="{{ resource.url }}" target="_blank">have a look</a>
+                        </div>
+                        {% endfor %}
+                        {% if community.resource_set.all|length > 2 %}
+                        <button id="resourcesButton" class="btn btn-lg button" data-toggle="modal" data-target="#resourcesModal" type="button">See all</button>
+                        {% endif %}
+
+                        {% else %}
+                        <div class="side-post">
+                            We don't have any external resources yet.
+                        </div>
+                        {% endif %}
+
                     </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="side-post">
-                        We don't have any external resources yet.
-                    </div>
-                    {% endif %}
                 </section>
          </article>
 
@@ -206,6 +234,14 @@
         <!-- Modals -->
         {% with users=community.members.all title='Contributors to '|add:community.title %}
         {% include 'ttn/partials/users_modal.html' %}
+        {% endwith %}
+
+        {% with media=community.media_set.all title='Media attention for '|add:community.title %}
+        {% include 'ttn/partials/media_modal.html' %}
+        {% endwith %}
+
+        {% with resources=community.resource_set.all title='Resources of '|add:community.title %}
+        {% include 'ttn/partials/resources_modal.html' %}
         {% endwith %}
         <!-- End Modals -->
 

@@ -1,8 +1,10 @@
+import json
+import re
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
-import json
 
 
 class TTNUser(models.Model):
@@ -72,6 +74,25 @@ class Community(models.Model):
                                       blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def meetup_url_full(self):
+        """Return sanitised url"""
+        if not self.meetup_url:
+            return None
+        url = self.meetup_url
+        url = re.sub('/events/[^/]*', '', url)
+        if 'meetup.com' not in url:
+            url = "http://www.meetup.com/{}".format(url)
+        return url
+
+    @property
+    def twitter_url_full(self):
+        """Return sanitised url"""
+        if not self.meetup_url:
+            return None
+        url = "https://twitter.com/{}".format(self.twitter_handle.replace('@', ''))
+        return url
+
     def __str__(self):
         return "{} <{}, {}>".format(self.title, self.lat, self.lon)
 
@@ -79,7 +100,7 @@ class Community(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(User, null=True, blank=True)
     community = models.ForeignKey(Community, null=True, blank=True)
-    slug = models.CharField(max_length=200)
+    slug = models.CharField(max_length=200, null=True, blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True)
     #image = models.ImageField('City image', blank=True, null=True)
@@ -104,6 +125,9 @@ class Media(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-created']
+
     def __str__(self):
         c = self.community.title if self.community else '*'
         return "[{}] {}".format(c, self.title)
@@ -117,6 +141,9 @@ class Resource(models.Model):
     url = models.CharField(max_length=250)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created']
 
     def __str__(self):
         c = self.community.title if self.community else '*'

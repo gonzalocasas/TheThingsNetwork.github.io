@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{% if title %}{{ title }}{% else %}People{% endif %}</h4>
+            </div>
+
+            <div class="modal-body">
+
+                {% for medium in media %}
+                <h4>{{ medium.title }}</h4>
+                <p><a href="{{ medium.url }}" target="_blank">read more</a></p>
+                <p>&nbsp;</p>
+                {% endfor %}
+
+            </div>
+
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
