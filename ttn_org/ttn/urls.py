@@ -24,6 +24,9 @@ urlpatterns = [
     url(r'^posts/?$',
         views.PostsView.as_view(template_name=APP+'community/posts.html'),
         {'slug': None}, name='posts'),
+    url(r'^activity/?$',
+        views.FeedView.as_view(template_name=APP+'community/activity.html'),
+        name='activity'),
 
     # Community pages
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/?$',

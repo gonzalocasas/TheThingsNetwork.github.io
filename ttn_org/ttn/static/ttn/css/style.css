@@ -12,6 +12,8 @@ body {
     src: url(../fonts/Lato-Semibold.ttf);
 }
 
+
+
 /* Network-lines animation */
 .animation {
     height: 100vh;
@@ -49,14 +51,14 @@ body {
 .button-float {
    position: fixed;
    top: 20px;
-   right: 20px;
+   right: 80px;
    width: 25em;
    height: 13em;
    background: white;
    border-radius: 4px;
    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
    border: 1px solid #F2F2F2;
-   z-index: 10000000000000000000;
+   z-index: 10;
    font-family: 'Lato';
    font-weight: 400;
 }
@@ -106,7 +108,7 @@ body {
     text-shadow: none;
     font-weight: 600;
     position: relative;
-    z-index: 100000000000;
+    z-index: 5;
     text-decoration: none;
     border: 2px solid white;
     -webkit-transition: all 0.5s ease-in-out;
@@ -146,7 +148,7 @@ img.logo-img {
     margin-top: 8em;
     width: 20%;
     height: auto;
-    z-index: 10000;
+    z-index: 5;
     position: relative;
     background-color: rgba(255,255,255, 0.9);
     border-radius: 50%;
@@ -1286,7 +1288,7 @@ input:focus {
 }
 
 #joinTeam .close {
-    z-index: 400;
+    z-index: 5;
     color: #53c0a2;
     text-shadow: none;
 }

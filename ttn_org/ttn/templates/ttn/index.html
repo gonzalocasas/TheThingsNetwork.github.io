@@ -14,10 +14,30 @@
         <link href="{% static 'ttn/css/bootstrap.css' %}" rel='stylesheet' type='text/css'>
         <link href="{% static 'ttn/css/ionicons.css' %}" rel='stylesheet' type='text/css'>
         <link href="{% static 'ttn/css/style.css' %}" rel='stylesheet' type='text/css'>
+        <link href="{% static 'ttn/css/menu.css' %}" rel='stylesheet' type='text/css'>
         <link href="{% static 'ttn/css/animate.css' %}" rel='stylesheet' type='text/css'>
     </head>
     <body>
+
+      <div class="menu">
+        <div class="navbar-toggle-2" title="Menu">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+        <nav class="nav-hide">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'waliki_home' %}">Wiki</a></li>
+            <li><a href="http://forum.thethingsnetwork.org/">Forum</a></li>
+            <li><a href="{% url 'ttn:posts' %}">Blog</a></li>
+            <!-- li><a href="{% url 'ttn:activity' %}">Activity feed</a></li -->
+          </ul>
+        </nav>
+      </div>
+
         <main>
+
 
             <div class="button-float"><p>To connect as many cities as possible we launched a Kickstarter campaign. Join The Things Network!<a href="{% url 'ttn:kickstarter' %}">Go to Kickstarter</a></p></div>
 
@@ -691,6 +711,15 @@
     <script src="{% static 'ttn/js/script.js' %}"></script>
     <script>
         new WOW().init();
+
+        $(function(){
+          $('.navbar-toggle-2, nav').click(function(){
+            $('.navbar-toggle-2').toggleClass('navbar-on');
+            $('nav').fadeToggle();
+            $('nav').removeClass('nav-hide');
+          });
+        });
+
     </script>
 
 </html>
