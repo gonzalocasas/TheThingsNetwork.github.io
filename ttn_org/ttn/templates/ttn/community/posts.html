@@ -23,7 +23,7 @@
                             {{ post.community.title }}
                         </p>
                         <p>{{ post.description|markdown|truncatewords_html:80 }}</p>
-                        <a href="{% url 'ttn:community-post' slug=post.community.slug pk=post.pk %}">
+                        <a class="box" href="{% url 'ttn:community-post' slug=post.community.slug pk=post.pk %}">
                             Read more
                         </a>
                     </div>
@@ -39,11 +39,11 @@
             <div>&nbsp;</div>
 
             {% if community %}
-            <a href="{% url 'ttn:community' slug=community.slug %}">
+            <a class="box" href="{% url 'ttn:community' slug=community.slug %}">
                 Back to {{ community.title }}
             </a>
             {% else %}
-            <a href="{% url 'ttn:index' %}">
+            <a class="box" href="{% url 'ttn:index' %}">
                 Back to home
             </a>
             {% endif %}

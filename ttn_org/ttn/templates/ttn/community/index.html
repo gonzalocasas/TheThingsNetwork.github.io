@@ -42,7 +42,7 @@
             <article class="intro">
 
                 {% if 'admin' in permissions %}
-                <a href="{% url 'ttn:community-settings' slug=community.slug %}">UPDATE THIS PAGE</a>
+                <a class="box" href="{% url 'ttn:community-settings' slug=community.slug %}">UPDATE THIS PAGE</a>
                 <div>&nbsp;</div>
                 {% endif %}
 
@@ -69,7 +69,7 @@
                     <img src="{% static 'ttn/media/progress.png' %}">
                 </div -->
                 <div>
-                    <a class="btn-big" href="{% url 'ttn:kickstarter' %}" target="_blank">
+                    <a class="btn-big box" href="{% url 'ttn:kickstarter' %}" target="_blank">
                         Place a gateway Now
                     </a>
                 </div>
@@ -119,7 +119,7 @@
                     {% endif %}
 
                     <div class="bottom-button">
-                        <p><a href="{% url 'ttn:community-contact' slug=community.slug %}">
+                        <p><a class="box" href="{% url 'ttn:community-contact' slug=community.slug %}">
                             Contact us
                         </a></p>
                     </div>
@@ -136,7 +136,7 @@
                                 <div class="blog-text">
                                     <h4>{{ post.title }}</h4>
                                     <p>{{ post.description|markdown|truncatewords_html:40 }}</p>
-                                    <a href="{% url 'ttn:community-post' slug=community.slug pk=post.pk %}">
+                                    <a class="box" href="{% url 'ttn:community-post' slug=community.slug pk=post.pk %}">
                                         Read more
                                     </a>
                                 </div>
@@ -150,12 +150,12 @@
 
                             <div class="bottom-button">
                                 {% if community.post_set.all|length > 2 %}
-                                <a href="{% url 'ttn:community-posts' slug=community.slug %}">
+                                <a class="box" href="{% url 'ttn:community-posts' slug=community.slug %}">
                                     See archive
                                 </a>
                                 {% endif %}
                                 {% if 'admin' in permissions %}
-                                <a href="{% url 'ttn:community-post-edit' slug=community.slug pk='new' %}">
+                                <a class="box" href="{% url 'ttn:community-post-edit' slug=community.slug pk='new' %}">
                                     Add update
                                 </a>
                                 {% endif %}

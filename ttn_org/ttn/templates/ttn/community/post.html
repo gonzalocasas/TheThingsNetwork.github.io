@@ -21,11 +21,11 @@
             <p>&nbsp;</p>
             {% endif %}
 
-            <a href="{% url 'ttn:community' slug=community.slug %}">
+            <a class="box" href="{% url 'ttn:community' slug=community.slug %}">
                 Back to {{ community.title }}
             </a>
             {% if 'admin' in permissions %}
-            <a href="{% url 'ttn:community-post-edit' slug=community.slug pk=post.pk %}">
+            <a class="box" href="{% url 'ttn:community-post-edit' slug=community.slug pk=post.pk %}">
                 Edit post
             </a>
             {% endif %}

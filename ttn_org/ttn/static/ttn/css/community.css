@@ -25,12 +25,19 @@ h1 {
     width: 100%;
 }
 
+a {
+    /* general links: normal style */
+    font-family: 'Lato';
+    text-decoration: underline;
+    padding: 0.1em;
+    margin: 0.1em;
+}
+
 .title-author {
-    color: #AAA;
+    color: #EEE;
     font-family: 'Lato';
     font-style: italic;
     font-size: 90%;
-    margin-top: -0.5em;
 }
 
 .vseperator {
@@ -99,7 +106,7 @@ h1 {
     padding-bottom: 1.5em;
 }
 
-.intro a {
+a.box {
     color: #5E5B5B;
     font-family: 'Lato';
     text-decoration: none;
@@ -289,9 +296,9 @@ article {
 }
 
 .blog-post-overview {
-    width: 100%;
+    max-width: 100em;
     padding: 1em 2.5em;
-    margin: 1em 0em;
+    margin: 1em auto;
 }
 
 .blog-text {
@@ -307,30 +314,19 @@ article {
     height: auto;
 }
 
-.blog-post h4 {
+.blog-posts h4 {
     color: black;
     font-size: 1.3em;
     margin: 0;
     color: #5E5B5B;
 }
 
-.blog-post p {
+.blog-posts p {
     font-family: 'Lato';
     color: #5E5B5B;
     font-weight: 300;
     padding-bottom: 0.1em;
     width: auto;
-}
-
-.blog-post a {
-    color: #5E5B5B;
-    font-family: 'Lato';
-    text-decoration: none;
-    border: 2px solid #5E5B5B;
-    padding: 0.5em;
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 1.2em;
 }
 
 .blog-image {
@@ -378,31 +374,11 @@ article {
     width: auto;
 }
 
-.side-post a {
-    color: #5E5B5B;
-    font-family: 'Lato';
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 0.8em;
-}
-
 .bottom-button {
     position: absolute;
     bottom: 20px;
     width: 100%;
     text-align: center;
-}
-
-.bottom-button a {
-    color: #5E5B5B;
-    font-family: 'Lato';
-    text-decoration: none;
-    border: 2px solid #5E5B5B;
-    padding: 0.5em;
-    margin: 3px;
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 1.2em;
 }
 
 .how-to-connect {
