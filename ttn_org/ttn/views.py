@@ -90,6 +90,25 @@ class MapView(TemplateView):
         return self.render_to_response(context)
 
 
+class PostsView(CommunityView):
+
+    def get(self, request, slug, **kwargs):
+        if slug:
+            posts = Post.objects.filter(community__slug=slug)
+            community = self._get_community(slug=slug)
+            if not community:
+                return redirect('ttn:new-community', search=slug)
+        else:
+            posts = Post.objects.all()
+            community = None
+        permissions = self._get_permissions(request.user, community)
+        context = self.get_context_data(**kwargs)
+        context['community'] = community
+        context['permissions'] = permissions
+        context['posts'] = posts
+        return self.render_to_response(context)
+
+
 class PostView(CommunityView):
 
     def get(self, request, slug, pk, **kwargs):

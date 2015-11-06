@@ -131,9 +131,7 @@
                             {% if community.post_set.all %}
                             {% for post in community.post_set.all|slice:":2" %}
                             <div class="blog-post">
-                                {% if post.image_url %}
                                 <div class="blog-image" style="background-image: url('{% if post.image_url %}{{ post.image_url }}{% endif %}');"></div>
-                                {% endif %}
                                 
                                 <div class="blog-text">
                                     <h4>{{ post.title }}</h4>

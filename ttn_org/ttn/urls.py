@@ -21,6 +21,9 @@ urlpatterns = [
     url(r'^map$',
         views.MapView.as_view(template_name=APP+'community/map.html'),
         name='map'),
+    url(r'^posts/?$',
+        views.PostsView.as_view(template_name=APP+'community/posts.html'),
+        {'slug': None}, name='posts'),
 
     # Community pages
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/?$',
@@ -37,7 +40,7 @@ urlpatterns = [
             template_name=APP+'community/post_edit.html')),
         name='community-post-edit'),
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/posts/?$',
-        views.PostView.as_view(template_name=APP+'community/posts.html'),
+        views.PostsView.as_view(template_name=APP+'community/posts.html'),
         name='community-posts'),
     url(r'^c/(?P<slug>[0-9a-zA-Z_-]+)/settings/?$',
         login_required(views.SettingsView.as_view(

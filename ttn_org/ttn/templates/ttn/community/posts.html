@@ -1,0 +1,54 @@
+{% extends "ttn/community/base_small.html" %}
+{% load staticfiles markup %}
+
+{% block author %}
+    <h2 class="initiator-name">{{ p.author.first_name }} {{ p.author.last_name }}</h2>
+{% endblock %}
+
+
+{% block content %}
+
+        <article class="intro">
+
+            <div class="blog-posts">
+                {% if posts %}
+                {% for post in posts %}
+                <div class="blog-post-overview">
+                    <div class="blog-image" style="background-image: url('{% if post.image_url %}{{ post.image_url }}{% endif %}');"></div>
+                    
+                    <div class="blog-text">
+                        <h4>{{ post.title }}</h4>
+                        <p class="title-author">
+                            By {{ post.author.first_name }} {{ post.author.last_name }},
+                            {{ post.community.title }}
+                        </p>
+                        <p>{{ post.description|markdown|truncatewords_html:80 }}</p>
+                        <a href="{% url 'ttn:community-post' slug=post.community.slug pk=post.pk %}">
+                            Read more
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="blog-post">
+                    <p>The {{ post.community.title }} community hasn't posted anything yet!</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>&nbsp;</div>
+
+            {% if community %}
+            <a href="{% url 'ttn:community' slug=community.slug %}">
+                Back to {{ community.title }}
+            </a>
+            {% else %}
+            <a href="{% url 'ttn:index' %}">
+                Back to home
+            </a>
+            {% endif %}
+
+            <p>&nbsp;</p>
+        </article>
+
+{% endblock %}
