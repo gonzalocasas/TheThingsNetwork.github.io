@@ -17,6 +17,9 @@
                     <div class="blog-image" style="background-image: url('{% if post.image_url %}{{ post.image_url }}{% endif %}');"></div>
                     
                     <div class="blog-text">
+                        <div class="right-info">
+                            {{ post.created }}
+                        </div>
                         <h4>{{ post.title }}</h4>
                         <p class="title-author">
                             By {{ post.author.first_name }} {{ post.author.last_name }},

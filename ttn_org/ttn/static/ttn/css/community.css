@@ -34,9 +34,16 @@ a {
 }
 
 .title-author {
-    color: #EEE;
+    color: #AAA;
     font-family: 'Lato';
     font-style: italic;
+    font-size: 90%;
+}
+
+.right-info {
+    float: right;
+    color: #AAA;
+    font-family: 'Lato';
     font-size: 90%;
 }
 
@@ -231,7 +238,6 @@ article {
     width: 100%;
     text-align: center;
     float: left;
-
 }
 
 .information {
