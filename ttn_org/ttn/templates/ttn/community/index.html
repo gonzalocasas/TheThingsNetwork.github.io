@@ -230,6 +230,19 @@
                 </section>
          </article>
 
+        {% if community.companies.all %}
+         <article class="our-contributors">
+             <div class="container">
+                 <!-- h2>Friends</h2 -->
+                 {% for company in community.companies.all %}
+                 <a href="{{ company.url }}" target="_blank">
+                    <div class="company-logo" style="background-image:url('{{ company.image_logo_url }}');"></div>
+                 </a>
+                 {% endfor %}
+             </div>
+         </article>
+        {% endif %}
+
 
         <!-- Modals -->
         {% with users=community.members.all title='Contributors to '|add:community.title %}
