@@ -1,0 +1,4 @@
+MYSQL_ROOT_PASSWORD=really_super_secret_password
+MYSQL_USER=ttn_user
+MYSQL_PASSWORD=really_super_secret_password
+MYSQL_DATABASE=ttn

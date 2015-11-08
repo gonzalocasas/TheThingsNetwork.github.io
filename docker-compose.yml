@@ -1,0 +1,38 @@
+db_data:
+  image: busybox
+  volumes:
+    - /var/lib/docker/mysql-data:/var/lib/mysql
+
+influxdb:
+  extends:
+    file: ../server-devenv/docker-compose.yml
+    service: influxdb
+
+mysql:
+  build: ./mysql
+  env_file: ./mysql/.local
+  ports:
+    - "3306:3306"
+  volumes_from:
+    - "db_data"
+
+ttn_org:
+  build: ./ttn_org
+  env_file: ./ttn_org/.local
+  ports:
+    - "8090:8090"
+  links:
+    - mysql:mysql
+    - influxdb:influxdb
+  volumes:
+    - ./ttn_org/ttn/static:/usr/src/ttn_org/static
+  command: /usr/local/bin/gunicorn ttn_org.wsgi:application -w 2 -b 0.0.0.0:8090
+
+nginx:
+  build: ./nginx/
+  ports:
+    - "80:80"
+  volumes:
+    - ./ttn_org/ttn/static:/usr/src/ttn_org/static
+  links:
+    - ttn_org:ttn_org

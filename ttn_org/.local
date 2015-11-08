@@ -1,0 +1,7 @@
+MYSQL_HOST=mysql
+MYSQL_DB=ttn
+MYSQL_USER=ttn_user
+MYSQL_PASSWORD=really_super_secret_password
+API_INFLUX_HOST=influxdb
+API_INFLUX_PORT=8086
+API_INFLUX_DB=jolie

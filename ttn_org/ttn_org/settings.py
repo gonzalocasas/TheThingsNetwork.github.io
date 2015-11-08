@@ -89,14 +89,14 @@ WSGI_APPLICATION = 'ttn_org.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-if all(env.get(key) for key in ['MYSQL_DB', 'MYSQL_USER', 'MYSQL_PASSWORD']):
+if all(env.get(key) for key in ['MYSQL_HOST', 'MYSQL_DB', 'MYSQL_USER', 'MYSQL_PASSWORD']):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': env.get('MYSQL_DB'),
             'USER': env.get('MYSQL_USER'),
             'PASSWORD': env.get('MYSQL_PASSWORD'),
-            'HOST': '127.0.0.1',
+            'HOST': env.get('MYSQL_HOST'),
             'PORT': '3306'
         }
     }
