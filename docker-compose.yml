@@ -21,11 +21,11 @@ ttn_org:
   env_file: ./ttn_org/.local
   ports:
     - "8090:8090"
+  volumes:
+    - ./ttn_org/ttn/static/api:/usr/src/ttn_org/static
   links:
     - mysql:mysql
     - influxdb:influxdb
-  volumes:
-    - ./ttn_org/ttn/static:/usr/src/ttn_org/static
   command: /usr/local/bin/gunicorn ttn_org.wsgi:application -w 2 -b 0.0.0.0:8090
 
 nginx:
