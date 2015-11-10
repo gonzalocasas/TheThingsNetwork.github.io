@@ -40,7 +40,9 @@
         <main>
 
 
-            <div class="button-float"><p>To connect as many cities as possible we launched a Kickstarter campaign. Join The Things Network!<a href="{% url 'ttn:kickstarter' %}">Go to Kickstarter</a></p></div>
+            <div class="button-float">
+                <button type="button" class="close" aria-label="Close" onclick="$(this).parent().css('display', 'none');" style="color:black; margin-right:10px;"><span aria-hidden="true">&times;</span></button>
+                <p>To connect as many cities as possible we launched a Kickstarter campaign. Join The Things Network!<a href="{% url 'ttn:kickstarter' %}">Go to Kickstarter</a></p></div>
 
             <!--  Header w/ animation -->
             <div class="animation">
