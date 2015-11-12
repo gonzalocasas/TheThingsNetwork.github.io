@@ -123,6 +123,9 @@ SLACK_CHANNEL = env.get('SLACK_CHANNEL', 'general')
 API_INFLUX_HOST = env.get('API_INFLUX_HOST', '')
 API_INFLUX_PORT = env.get('API_INFLUX_PORT', '')
 API_INFLUX_DB = env.get('API_INFLUX_DB', '')
+API_MONGO_HOST = env.get('API_MONGO_HOST', '')
+API_MONGO_PORT = env.get('API_MONGO_PORT', '')
+API_MONGO_DB = env.get('API_MONGO_DB', '')
 
 
 # Internationalization

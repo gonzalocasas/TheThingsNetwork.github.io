@@ -1,9 +1,35 @@
 from django.db import models
 from influxdb import InfluxDBClient, resultset
+import pymongo
 import re
 
 from ttn_org import settings
 
+
+class MongoQuery:
+
+    def __init__(self):
+        self.client = pymongo.MongoClient(
+            settings.API_MONGO_HOST, int(settings.API_MONGO_PORT))
+        self.db = self.client[settings.API_MONGO_DB]
+
+    def query(self, collection, **kwargs):
+        _filter = {}
+        for where_key in ['eui', 'node_eui', 'gateway_eui']:
+            if kwargs.get(where_key):
+                _filter[where_key] = kwargs[where_key]
+        # TODO: time_span support
+        # TODO: group_by (for gateways and nodes overviews)
+        results = self.db[collection].find(_filter)
+        if kwargs.get('order_by'):
+            results = results.sort(kwargs['order_by'])
+        if kwargs.get('offset'):
+            results = results.skip(kwargs['offset'])
+        if kwargs.get('limit'):
+            print("LIMIT", kwargs.get('limit'))
+            results = results.limit(kwargs['limit'])
+        return list(results)
+        
 
 class Influx:
     def __init__(self):
@@ -41,25 +67,25 @@ class Influx:
                 query += " OFFSET {}".format(offset)
         return query
 
+    def query(self, table, **kwargs):
+        _query = self.make_query(table, **kwargs)
+        self.client.query(_query)
 
-class IFGateways(Influx):
+
+class IFGateways(MongoQuery):
 
     def get(self, eui=None, time_span=None, limit=20, offset=0, **kwargs):
-        query = self.make_query(table='gateway_status',
-                                eui=eui, time_span=time_span,
-                                limit=limit, offset=offset, **kwargs)
-        print("Q", query)
-        result = self.client.query(query)
+        result = self.query('gateway_statuses',
+                            eui=eui, time_span=time_span,
+                            limit=limit, offset=offset, **kwargs)
         return result
 
 
-class IFNodes(Influx):
+class IFNodes(MongoQuery):
 
     def get(self, node_eui=None, time_span=None, limit=20, offset=0, **kwargs):
-        query = self.make_query(table='rx_packets',
-                                node_eui=node_eui, time_span=time_span,
-                                limit=limit, offset=offset, **kwargs)
-        print("Q", query)
-        result = self.client.query(query)
+        result = self.query('rx_packets',
+                            node_eui=node_eui, time_span=time_span,
+                            limit=limit, offset=offset, **kwargs)
         return result
 
