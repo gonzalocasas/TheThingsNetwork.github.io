@@ -26,10 +26,10 @@ class MongoQuery:
         results = self.db[collection].find(_filter)
         if kwargs.get('order_by'):
             results = results.sort(kwargs['order_by'])
-        if kwargs.get('offset'):
-            results = results.skip(kwargs['offset'])
-        if kwargs.get('limit'):
-            results = results.limit(kwargs['limit'])
+        if kwargs.get('offset') and kwargs.get('offset').isdigit():
+            results = results.skip(int(kwargs['offset']))
+        if kwargs.get('limit') and kwargs.get('limit').isdigit():
+            results = results.limit(int(kwargs['limit']))
         return list(results)
         
 
