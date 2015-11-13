@@ -15,18 +15,20 @@ class MongoQuery:
 
     def query(self, collection, **kwargs):
         _filter = {}
-        for where_key in ['eui', 'node_eui', 'gateway_eui']:
+        for where_key in ['eui', 'node_eui', 'gateway_eui',
+                          'nodeeui', 'gatewayeui']:
             if kwargs.get(where_key):
                 _filter[where_key] = kwargs[where_key]
         # TODO: time_span support
         # TODO: group_by (for gateways and nodes overviews)
+        print("FILTER", _filter, kwargs.get('order_by'),
+              kwargs.get('offset'), kwargs.get('limit'))
         results = self.db[collection].find(_filter)
         if kwargs.get('order_by'):
             results = results.sort(kwargs['order_by'])
         if kwargs.get('offset'):
             results = results.skip(kwargs['offset'])
         if kwargs.get('limit'):
-            print("LIMIT", kwargs.get('limit'))
             results = results.limit(kwargs['limit'])
         return list(results)
         
