@@ -1,6 +1,7 @@
 from django.db import models
 from influxdb import InfluxDBClient, resultset
 import pymongo
+import bson
 import re
 
 from ttn_org import settings
@@ -23,7 +24,9 @@ class MongoQuery:
         # TODO: group_by (for gateways and nodes overviews)
         print("FILTER", _filter, kwargs.get('order_by'),
               kwargs.get('offset'), kwargs.get('limit'))
-        results = self.db[collection].find(_filter)
+        options = bson.codec_options.CodecOptions(tz_aware=True)
+        collection = self.db.get_collection(collection, codec_options=options)
+        results = collection.find(_filter)
         if kwargs.get('order_by'):
             results = results.sort(kwargs['order_by'])
         if kwargs.get('offset'):
@@ -81,6 +84,7 @@ class Influx:
 class IFGateways(MongoQuery):
 
     def get(self, eui=None, time_span=None, limit=20, offset=0, **kwargs):
+        limit = min(limit, 100)
         result = self.query('gateway_statuses',
                             eui=eui, time_span=time_span,
                             limit=limit, offset=offset, **kwargs)
@@ -90,6 +94,7 @@ class IFGateways(MongoQuery):
 class IFNodes(MongoQuery):
 
     def get(self, node_eui=None, time_span=None, limit=20, offset=0, **kwargs):
+        limit = min(limit, 100)
         result = self.query('rx_packets',
                             node_eui=node_eui, time_span=time_span,
                             limit=limit, offset=offset, **kwargs)
