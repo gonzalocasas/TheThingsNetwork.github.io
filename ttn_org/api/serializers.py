@@ -60,6 +60,7 @@ class MongoSerializer:
         """Remap from MongoDB format (tag, keys => [values]) to list of rows"""
         _rename = {'nodeeui': 'node_eui', 'gatewayeui': 'gateway_eui',
                    'rawdata': 'data_raw'}
+        _blacklist = {'_id'}
         for i, item in enumerate(result):
             keys = item.keys() # will change during loop
             for key in keys:
@@ -67,6 +68,8 @@ class MongoSerializer:
                     result[i][key] = str(item[key])
                 elif key in _rename:
                     result[i][_rename[key]] = result[i].pop(key)
+            for key in _blacklist:
+                item.pop(key, None)
         return result
 
     def annotate(self, rows):

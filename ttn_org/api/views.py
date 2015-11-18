@@ -39,7 +39,7 @@ class GatewayView(APIView):
 
         sort_key = '-time'
         #query_params = {'order_by': sort_key}
-        query_params = {'order_by': [('time', -1)]}
+        query_params = {'order_by': {'time': -1}}
         for key in ['time_span', 'limit', 'offset']:
             if request.GET.get(key):
                 query_params[key] = request.GET.get(key)
@@ -49,6 +49,15 @@ class GatewayView(APIView):
         else:
             # gateway statuses overview
             query_params['group_by'] = 'eui'
+            query_params['group_by_fields'] = { # mongo specific
+                'eui': {'$last': '$eui'},
+                'last_seen': {'$last': '$time'},
+                'latitude': {'$last': '$latitude'},
+                'longitude': {'$last': '$longitude'},
+                'altitude': {'$last': '$altitude'},
+                'altitude': {'$last': '$altitude'},
+                'status_packets_count': {'$sum': 1},
+            }
             #query_params['limit'] = 1
         items = queryset.get(**query_params)
         items = serializer.remap(items, sort_key=sort_key)
@@ -66,7 +75,7 @@ class NodeView(APIView):
 
         sort_key = '-time'
         #query_params = {'order_by': sort_key}
-        query_params = {'order_by': [('time', -1)]}
+        query_params = {'order_by': {'time': -1}}
         for key in ['time_span', 'limit', 'offset']:
             if request.GET.get(key):
                 query_params[key] = request.GET.get(key)
@@ -76,7 +85,13 @@ class NodeView(APIView):
             query_params['nodeeui'] = node_eui
         else:
             # node overview
-            query_params['group_by'] = 'node_eui'
+            query_params['group_by'] = 'nodeeui'
+            query_params['group_by_fields'] = { # mongo specific
+                'node_eui': {'$last': '$nodeeui'},
+                'last_seen': {'$last': '$time'},
+                'last_gateway_eui': {'$last': '$gateway_eui'},
+                'packets_count': {'$sum': 1},
+            }
             #query_params['limit'] = 1
         items = queryset.get(**query_params)
         items = serializer.remap(items, sort_key=sort_key)

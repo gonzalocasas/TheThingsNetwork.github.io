@@ -14,7 +14,16 @@ class MongoQuery:
             settings.API_MONGO_HOST, int(settings.API_MONGO_PORT))
         self.db = self.client[settings.API_MONGO_DB]
 
+    def get_collection(self, collection):
+        options = bson.codec_options.CodecOptions(tz_aware=True)
+        return self.db.get_collection(collection, codec_options=options)
+
     def query(self, collection, **kwargs):
+        if any(kwargs.get(key) for key in ['group_by']):
+            # not possible with normal find(); create aggregate
+            steps = self.make_aggregate(**kwargs)
+            return list(self.aggregate(collection, steps))
+
         _filter = {}
         for where_key in ['eui', 'node_eui', 'gateway_eui',
                           'nodeeui', 'gatewayeui']:
@@ -24,11 +33,12 @@ class MongoQuery:
         # TODO: group_by (for gateways and nodes overviews)
         print("FILTER", _filter, kwargs.get('order_by'),
               kwargs.get('offset'), kwargs.get('limit'))
-        options = bson.codec_options.CodecOptions(tz_aware=True)
-        collection = self.db.get_collection(collection, codec_options=options)
-        results = collection.find(_filter)
+        _collection = self.get_collection(collection)
+        results = _collection.find(_filter)
         if kwargs.get('order_by'):
-            results = results.sort(kwargs['order_by'])
+            _order = kwargs.get('order_by')
+            _sort = [(key, _order[key]) for key in _order]
+            results = results.sort(_sort)
         if kwargs.get('offset'):
             offset = kwargs.get('offset')
             if isinstance(offset, int) or offset.isdigit():
@@ -38,6 +48,41 @@ class MongoQuery:
             if isinstance(limit, int) or limit.isdigit():
                 results = results.limit(int(limit))
         return list(results)
+
+    def make_aggregate(self, **kwargs):
+        limit = kwargs.get('limit', 100)
+        steps = []
+        # $match step
+        _filter = {}
+        for where_key in ['eui', 'node_eui', 'gateway_eui',
+                          'nodeeui', 'gatewayeui']:
+            if kwargs.get(where_key):
+                _filter[where_key] = kwargs[where_key]
+        steps.append({'$match': _filter})
+        # $group step
+        if kwargs.get('group_by'):
+            group_step = {'$group': {'_id': '${}'.format(kwargs.get('group_by'))}}
+            if kwargs.get('group_by_fields'):
+                group_step['$group'].update(kwargs.get('group_by_fields'))
+            steps.append(group_step)
+        # @sort step
+        if kwargs.get('order_by'):
+            steps.append({'$sort': kwargs.get('order_by')})
+        # @skip step
+        if kwargs.get('offset'):
+            steps.append({'$skip': kwargs.get('offset')})
+        # @limit step
+        if kwargs.get('limit'):
+            limit = kwargs.get('limit')
+            if isinstance(limit, int) or limit.isdigit():
+                steps.append({'$limit': int(kwargs.get('limit'))})
+        return steps
+
+    def aggregate(self, collection, steps):
+        _collection = self.get_collection(collection)
+        print("STEPS", steps)
+        results = _collection.aggregate(steps)
+        return results
         
 
 class Influx:
