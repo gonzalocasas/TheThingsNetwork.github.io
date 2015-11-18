@@ -3,6 +3,7 @@ from rest_framework import serializers
 from influxdb import resultset
 import base64
 import json
+import bson
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -39,6 +40,40 @@ class InfluxSerializer:
         for i, row in enumerate(rows):
             if 'raw_data' in row:
                 rows[i]['data_raw'] = rows[i].pop('raw_data')
+            if 'data' in row:
+                try:
+                    rows[i]['data_plain'] = base64.b64decode(row['data']).decode()
+                except Exception as e:
+                    pass
+            if 'data_plain' in row:
+                try:
+                    rows[i]['data_json'] = json.loads(row['data_plain'])
+                    pass
+                except Exception as e:
+                    pass
+        return rows
+
+
+class MongoSerializer:
+
+    def remap(self, result, sort_key=None):
+        """Remap from MongoDB format (tag, keys => [values]) to list of rows"""
+        _rename = {'nodeeui': 'node_eui', 'gatewayeui': 'gateway_eui',
+                   'rawdata': 'data_raw'}
+        _blacklist = {'_id'}
+        for i, item in enumerate(result):
+            keys = item.keys() # will change during loop
+            for key in keys:
+                if isinstance(item[key], bson.ObjectId):
+                    result[i][key] = str(item[key])
+                elif key in _rename:
+                    result[i][_rename[key]] = result[i].pop(key)
+            for key in _blacklist:
+                item.pop(key, None)
+        return result
+
+    def annotate(self, rows):
+        for i, row in enumerate(rows):
             if 'data' in row:
                 try:
                     rows[i]['data_plain'] = base64.b64decode(row['data']).decode()

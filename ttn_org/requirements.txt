@@ -12,3 +12,4 @@ djangorestframework
 influxdb
 django-mail-templated
 pyslack
+pymongo

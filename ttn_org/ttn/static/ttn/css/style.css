@@ -50,10 +50,10 @@ body {
 
 .button-float {
    position: fixed;
-   top: 20px;
-   right: 80px;
-   width: 25em;
-   height: 13em;
+   top: 80px;
+   right: 20px;
+   max-width: 25em;
+   height: auto;
    background: white;
    border-radius: 4px;
    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
@@ -866,12 +866,6 @@ h4 {
     padding-bottom: 8em;
 }
 
-.our-contributors {
-    background-color: white;
-    padding-left: 5%;
-    padding-right: 5%;
-}
-
 .company-logo {
     width: 16.6666667%;
     height: 10em;
@@ -1565,12 +1559,6 @@ img.logo-img {
     padding-bottom: 2em;
 }
     
-.company-logo {
-    width: 20%;
-    filter: none;
-    -webkit-filter: grayscale(0);
-}
-        
 .partner-logo {
     width: 60%;
     filter: none;
@@ -1811,15 +1799,7 @@ canvas {
     margin-bottom: 0;
 
 }
-    
 
-.company-logo {
-    width: 50%;
-    filter: none;
-    -webkit-filter: grayscale(0);
-    
-}
-    
 #logo10 {
     background-size: 50%;
     
