@@ -1,6 +1,6 @@
 # The Things Network: Frontend Development Environment
 
-Contains thethingsnetwork.org website and the Nodes/Gateways API (InfluxDB).
+Contains thethingsnetwork.org website and the Nodes/Gateways API (MongoDB).
 
 ## Setup
 

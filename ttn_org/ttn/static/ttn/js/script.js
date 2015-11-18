@@ -1,4 +1,3 @@
-console.log("hello");
 /*
 $(function(fade) {
 $(".container-img").hide(0).delay(0).fadeIn(1000);
