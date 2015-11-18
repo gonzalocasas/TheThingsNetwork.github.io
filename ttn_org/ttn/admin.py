@@ -1,4 +1,6 @@
 from django.contrib import admin
+# too much missing in gis admin, only using where needed
+#from django.contrib.gis import admin as admin_gis
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.utils import safestring

@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'django_markwhat',
     'jsonify',
     'waliki',
@@ -92,7 +93,8 @@ WSGI_APPLICATION = 'ttn_org.wsgi.application'
 if all(env.get(key) for key in ['MYSQL_DB', 'MYSQL_USER', 'MYSQL_PASSWORD']):
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
+            #'ENGINE': 'django.db.backends.mysql',
+            'ENGINE': 'django.contrib.gis.db.backends.mysql',
             'NAME': env.get('MYSQL_DB'),
             'USER': env.get('MYSQL_USER'),
             'PASSWORD': env.get('MYSQL_PASSWORD'),
@@ -103,7 +105,8 @@ if all(env.get(key) for key in ['MYSQL_DB', 'MYSQL_USER', 'MYSQL_PASSWORD']):
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
+            #'ENGINE': 'django.db.backends.sqlite3',
+            'ENGINE': 'django.contrib.gis.db.backends.spatialite',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
