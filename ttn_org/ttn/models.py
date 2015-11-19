@@ -1,10 +1,35 @@
 import json
 import re
 
-from django.db import models
+#from django.db import models
+from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
+
+
+class CoordinateModel(models.Model):
+    """Generic model to inherit from for lat/lon functionality"""
+    @property
+    def lon(self):
+        return self.coords.x if self.coords else None
+
+    @lon.setter
+    def lon(self, value):
+        self.coords.x = value
+
+    @property
+    def lat(self):
+        return self.coords.y if self.coords else None
+
+    @lat.setter
+    def lat(self, value):
+        self.coords.y = value
+
+    objects = models.GeoManager() # needed for geospatial queries
+
+    class Meta:
+        abstract = True
 
 
 class TTNUser(models.Model):
@@ -17,7 +42,7 @@ class TTNUser(models.Model):
     twitter_handle = models.CharField(max_length=250, blank=True, null=True)
 
 
-class Gateway(models.Model):
+class Gateway(CoordinateModel):
     STATUS_CHOICES = [
         ('PL', 'Planned'),
         ('AC', 'Active'),
@@ -26,8 +51,9 @@ class Gateway(models.Model):
     ]
     # TODO: use GeoDjango fields (for fast geo queries)
     # https://docs.djangoproject.com/en/dev/ref/contrib/gis/
-    lat = models.FloatField('latitude', blank=True, null=True)
-    lon = models.FloatField('longitude', blank=True, null=True)
+    lat_old = models.FloatField('latitude', blank=True, null=True)
+    lon_old = models.FloatField('longitude', blank=True, null=True)
+    coords = models.PointField('coordinates', blank=True, null=True)
     rng = models.FloatField('Range (m)', default=5000)
     title = models.CharField(max_length=200)
     kickstarter = models.BooleanField(default=False)
@@ -47,10 +73,11 @@ class Gateway(models.Model):
         return self.title
 
 
-class Community(models.Model):
+class Community(CoordinateModel):
     # TODO: use area type
-    lat = models.FloatField('latitude', blank=True, null=True)
-    lon = models.FloatField('longitude', blank=True, null=True)
+    lat_old = models.FloatField('latitude', blank=True, null=True)
+    lon_old = models.FloatField('longitude', blank=True, null=True)
+    coords = models.PointField('coordinates', blank=True, null=True)
     scale = models.FloatField('Scale (zoom)', default=13)
     published = models.BooleanField(default=False)
     slug = models.CharField(max_length=200, unique=True)

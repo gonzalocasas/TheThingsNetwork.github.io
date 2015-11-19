@@ -55,7 +55,7 @@ class CommunityAdmin(admin.ModelAdmin):
         (None, {
             'fields': ['published', 'slug', 'title', 'mission',
                        'description', 'contact',
-                       'lat', 'lon', 'scale',
+                       'lat_old', 'lon_old', 'coords', 'scale',
                        'meetup_url', 'twitter_handle',
                        'image_url', 'image_thumb_url']
         }),
