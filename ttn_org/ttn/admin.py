@@ -55,16 +55,16 @@ class CommunityAdmin(admin.ModelAdmin):
         (None, {
             'fields': ['published', 'slug', 'title', 'mission',
                        'description', 'contact',
-                       'lat_old', 'lon_old', 'coords', 'scale',
+                       'coords', 'scale',
                        'meetup_url', 'twitter_handle',
                        'image_url', 'image_thumb_url']
         }),
         ('Assets', {
-            'fields': ['leaders', 'members', 'gateways', 'companies'],
+            'fields': ['leaders', 'members', 'companies'],
             'classes': ['collapse']
         })
     ]
-    filter_horizontal = ('leaders', 'members', 'gateways', 'companies')
+    filter_horizontal = ('leaders', 'members', 'companies')
     inlines = [PostInline, MediaInline, ResourceInline]
     list_display = ('slug', 'title', 'published', 'created')
     search_fields = ('title', 'slug', 'description')
@@ -74,6 +74,7 @@ class CommunityAdmin(admin.ModelAdmin):
 @admin.register(Gateway)
 class GatewayAdmin(admin.ModelAdmin):
     list_display = ('title', 'kickstarter', 'status', 'created')
+    exclude = ('lat_old', 'lon_old')
     search_fields = ('title', 'email')
     list_filter = ('created', 'kickstarter')
 

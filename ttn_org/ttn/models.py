@@ -1,9 +1,11 @@
 import json
 import re
+import pygc
 
 #from django.db import models
 from django.contrib.gis.db import models
-from django.contrib.gis.geos import Point
+from django.contrib.gis.geos import Point, Polygon
+from django.contrib.gis.measure import D
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
@@ -17,9 +19,7 @@ class CoordinateModel(models.Model):
 
     @lon.setter
     def lon(self, value):
-        if not self.coords:
-            self.coords = Point(0, 0)
-        self.coords.x = float(value)
+        self.coords.x = value
 
     @property
     def lat(self):
@@ -27,9 +27,7 @@ class CoordinateModel(models.Model):
 
     @lat.setter
     def lat(self, value):
-        if not self.coords:
-            self.coords = Point(0, 0)
-        self.coords.y = float(value)
+        self.coords.y = value
 
     objects = models.GeoManager() # needed for geospatial queries
 
@@ -102,9 +100,19 @@ class Community(CoordinateModel):
     members = models.ManyToManyField(User, related_name="Members")
     companies = models.ManyToManyField('Company', related_name="Companies",
                                        blank=True)
-    gateways = models.ManyToManyField(Gateway, related_name="Gateways",
+    gateways_old = models.ManyToManyField(Gateway, related_name="Gateways",
                                       blank=True)
     created = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def gateways(self):
+        point, d = self.coords, 15000 # meters
+        great = pygc.great_circle(distance=d, azimuth=[45, 135, 225, 315],
+                                  latitude=point.y, longitude=point.x)
+        corners = [(great['longitude'][i], great['latitude'][i]) for i in (0, 1, 2, 3, 0)]
+        poly = Polygon(corners)
+        gws = Gateway.objects.filter(coords__intersects=poly)
+        return gws
 
     @property
     def meetup_url_full(self):
