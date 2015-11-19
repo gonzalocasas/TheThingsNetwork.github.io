@@ -63,7 +63,7 @@ function draw_gateway(map, gw, drawMarker) {
         fillOpacity: opacity,
         map: map,
         center: position,
-        radius: gw.kickstarter ? 7000 : (gw.rng || 5000)
+        radius: gw.kickstarter ? 3000 : (gw.rng || 3000)
     });
     if (drawMarker) {
         draw_marker(map, position, gw.title);

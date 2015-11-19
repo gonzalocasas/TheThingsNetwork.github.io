@@ -21,7 +21,7 @@ class CoordinateModel(models.Model):
     def lon(self, value):
         if not self.coords:
             self.coords = Point(0, 0)
-            self.coords.x = float(value)
+        self.coords.x = float(value)
 
     @property
     def lat(self):
@@ -31,7 +31,7 @@ class CoordinateModel(models.Model):
     def lat(self, value):
         if not self.coords:
             self.coords = Point(0, 0)
-            self.coords.y = float(value)
+        self.coords.y = float(value)
 
     objects = models.GeoManager() # needed for geospatial queries
 

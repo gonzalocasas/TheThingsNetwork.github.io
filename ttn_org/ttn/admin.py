@@ -1,6 +1,6 @@
 from django.contrib import admin
 # too much missing in gis admin, only using where needed
-#from django.contrib.gis import admin as admin_gis
+from django.contrib.gis import admin as admin_gis
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.utils import safestring
@@ -50,7 +50,7 @@ class ResourceInline(admin.TabularInline):
 
 
 @admin.register(Community)
-class CommunityAdmin(admin.ModelAdmin):
+class CommunityAdmin(admin_gis.OSMGeoAdmin):
     fieldsets = [
         (None, {
             'fields': ['published', 'slug', 'title', 'mission',
@@ -72,7 +72,7 @@ class CommunityAdmin(admin.ModelAdmin):
 
 
 @admin.register(Gateway)
-class GatewayAdmin(admin.ModelAdmin):
+class GatewayAdmin(admin_gis.OSMGeoAdmin):
     list_display = ('title', 'kickstarter', 'status', 'created')
     exclude = ('lat_old', 'lon_old')
     search_fields = ('title', 'email')
