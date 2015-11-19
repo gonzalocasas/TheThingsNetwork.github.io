@@ -42,7 +42,7 @@ function draw_gateways(map, gatewaydump, drawMarkers) {
     // draw most important status last
     for (var si in statuses) {
         for (var g=0; g < gatewaydump.length; g++) {
-            var gw = gatewaydump[g].fields;
+            var gw = gatewaydump[g];
             if (gw.status == statuses[si]) {
                 gateways.push(draw_gateway(map, gw, drawMarkers));
             }

@@ -6,7 +6,7 @@
 
 . vars.sh
 
-sudo apt-get install python3-pip python3-virtualenv virtualenv nginx daemontools mysql-server mysql-client python3-dev libmysqlclient-dev apt-get install libxml2-dev libxslt1-dev lib32z1-dev libgeos-3* spatialite-bin
+sudo apt-get install python3-pip python3-virtualenv virtualenv nginx daemontools mysql-server mysql-client python3-dev libmysqlclient-dev libxml2-dev libxslt1-dev lib32z1-dev libgeos-3* spatialite-bin 
 
 cd ~
 git clone https://github.com/TheThingsNetwork/TheThingsNetwork.github.io.git $TTN_ORG

@@ -30,7 +30,7 @@
         }
         var map = new google.maps.Map(mapCanvas, mapOptions)
 
-        var gatewaydump = {{ community.gateways.all|jsonify }};
+        var gatewaydump = {{ gateways|jsonify }};
         var gateways = draw_gateways(map, gatewaydump);
       }
       google.maps.event.addDomListener(window, 'load', initialize);
