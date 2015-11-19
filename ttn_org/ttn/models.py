@@ -19,7 +19,9 @@ class CoordinateModel(models.Model):
 
     @lon.setter
     def lon(self, value):
-        self.coords.x = value
+        if not self.coords:
+            self.coords = Point(0, 0)
+            self.coords.x = float(value)
 
     @property
     def lat(self):
@@ -27,7 +29,9 @@ class CoordinateModel(models.Model):
 
     @lat.setter
     def lat(self, value):
-        self.coords.y = value
+        if not self.coords:
+            self.coords = Point(0, 0)
+            self.coords.y = float(value)
 
     objects = models.GeoManager() # needed for geospatial queries
 
