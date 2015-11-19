@@ -89,7 +89,7 @@ class NodeView(APIView):
             query_params['group_by_fields'] = { # mongo specific
                 'node_eui': {'$last': '$nodeeui'},
                 'last_seen': {'$last': '$time'},
-                'last_gateway_eui': {'$last': '$gateway_eui'},
+                'last_gateway_eui': {'$last': '$gatewayeui'},
                 'packets_count': {'$sum': 1},
             }
             #query_params['limit'] = 1
