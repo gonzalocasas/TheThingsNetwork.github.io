@@ -1,15 +1,11 @@
 # The Things Network: Frontend Development Environment
 
-Contains thethingsnetwork.org website and the Nodes/Gateways API (MongoDB).
+Contains thethingsnetwork.org website and the Nodes/Gateways API.
 
 ## Setup
 
   * Install [Docker Toolbox](https://www.docker.com/docker-toolbox)
   * Make sure `docker-machine` is running
-  * Clone the `server-devenv` repository on the same level as this repository
-
-        $ git clone git@github.com:TheThingsNetwork/server-devenv.git
-
   * Build and run all docker containers:
 
         $ docker-compose build && docker-compose up -d
