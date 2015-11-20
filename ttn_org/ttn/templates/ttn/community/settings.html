@@ -6,6 +6,8 @@
 
 {% block content %}
 
+        {{ form.media }}
+
         <article class="intro">
             <h1>Settings for {{ community.title }}</h1>
 
@@ -29,6 +31,13 @@
                     </form>
                 </div>
             </div>
+
+            <style>
+                #id_coords_div_map {
+                    width: 100%;
+                    float: none;
+                }
+            </style>
 
 
 {% endblock %}

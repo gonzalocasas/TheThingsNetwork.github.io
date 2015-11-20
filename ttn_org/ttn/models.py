@@ -1,10 +1,42 @@
 import json
 import re
+import pygc
 
-from django.db import models
+#from django.db import models
+from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point, Polygon
+from django.contrib.gis.measure import D
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
+
+
+class CoordinateModel(models.Model):
+    """Generic model to inherit from for lat/lon functionality"""
+    @property
+    def lon(self):
+        return self.coords.x if self.coords else None
+
+    @lon.setter
+    def lon(self, value):
+        if not self.coords:
+            self.coords = Point(0, 0)
+        self.coords.x = float(value)
+
+    @property
+    def lat(self):
+        return self.coords.y if self.coords else None
+
+    @lat.setter
+    def lat(self, value):
+        if not self.coords:
+            self.coords = Point(0, 0)
+        self.coords.y = float(value)
+
+    objects = models.GeoManager() # needed for geospatial queries
+
+    class Meta:
+        abstract = True
 
 
 class TTNUser(models.Model):
@@ -17,7 +49,7 @@ class TTNUser(models.Model):
     twitter_handle = models.CharField(max_length=250, blank=True, null=True)
 
 
-class Gateway(models.Model):
+class Gateway(CoordinateModel):
     STATUS_CHOICES = [
         ('PL', 'Planned'),
         ('AC', 'Active'),
@@ -26,8 +58,9 @@ class Gateway(models.Model):
     ]
     # TODO: use GeoDjango fields (for fast geo queries)
     # https://docs.djangoproject.com/en/dev/ref/contrib/gis/
-    lat = models.FloatField('latitude', blank=True, null=True)
-    lon = models.FloatField('longitude', blank=True, null=True)
+    lat_old = models.FloatField('latitude', blank=True, null=True)
+    lon_old = models.FloatField('longitude', blank=True, null=True)
+    coords = models.PointField('coordinates', blank=True, null=True)
     rng = models.FloatField('Range (m)', default=5000)
     title = models.CharField(max_length=200)
     kickstarter = models.BooleanField(default=False)
@@ -47,10 +80,11 @@ class Gateway(models.Model):
         return self.title
 
 
-class Community(models.Model):
+class Community(CoordinateModel):
     # TODO: use area type
-    lat = models.FloatField('latitude', blank=True, null=True)
-    lon = models.FloatField('longitude', blank=True, null=True)
+    lat_old = models.FloatField('latitude', blank=True, null=True)
+    lon_old = models.FloatField('longitude', blank=True, null=True)
+    coords = models.PointField('coordinates', blank=True, null=True)
     scale = models.FloatField('Scale (zoom)', default=13)
     published = models.BooleanField(default=False)
     slug = models.CharField(max_length=200, unique=True)
@@ -70,9 +104,19 @@ class Community(models.Model):
     members = models.ManyToManyField(User, related_name="Members")
     companies = models.ManyToManyField('Company', related_name="Companies",
                                        blank=True)
-    gateways = models.ManyToManyField(Gateway, related_name="Gateways",
+    gateways_old = models.ManyToManyField(Gateway, related_name="Gateways",
                                       blank=True)
     created = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def gateways(self):
+        point, d = self.coords, 15000 # meters
+        great = pygc.great_circle(distance=d, azimuth=[45, 135, 225, 315],
+                                  latitude=point.y, longitude=point.x)
+        corners = [(great['longitude'][i], great['latitude'][i]) for i in (0, 1, 2, 3, 0)]
+        poly = Polygon(corners)
+        gws = Gateway.objects.filter(coords__intersects=poly)
+        return gws
 
     @property
     def meetup_url_full(self):

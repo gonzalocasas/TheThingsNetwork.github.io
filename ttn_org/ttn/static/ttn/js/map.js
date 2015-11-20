@@ -42,7 +42,7 @@ function draw_gateways(map, gatewaydump, drawMarkers) {
     // draw most important status last
     for (var si in statuses) {
         for (var g=0; g < gatewaydump.length; g++) {
-            var gw = gatewaydump[g].fields;
+            var gw = gatewaydump[g];
             if (gw.status == statuses[si]) {
                 gateways.push(draw_gateway(map, gw, drawMarkers));
             }
@@ -63,7 +63,7 @@ function draw_gateway(map, gw, drawMarker) {
         fillOpacity: opacity,
         map: map,
         center: position,
-        radius: gw.kickstarter ? 7000 : (gw.rng || 5000)
+        radius: gw.kickstarter ? 3000 : (gw.rng || 3000)
     });
     if (drawMarker) {
         draw_marker(map, position, gw.title);

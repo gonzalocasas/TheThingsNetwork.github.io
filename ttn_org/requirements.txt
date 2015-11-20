@@ -13,3 +13,5 @@ influxdb
 django-mail-templated
 pyslack
 pymongo
+numpy
+pygc

@@ -22,9 +22,9 @@ class JsonView(TemplateView):
 class IndexView(TemplateView):
 
     def get(self, request, **kwargs):
-        c = Community.objects.filter(published=True) \
-                             .annotate(gateways_count=models.Count('gateways')) \
-                             .order_by('-gateways_count')
+        c = Community.objects.filter(published=True) #\
+                             #.annotate(gateways_count=models.Count('gateways')) \ # doesn't work for property?
+                             #.order_by('-gateways_count')
         context = self.get_context_data(**kwargs)
         context['communities'] = c
         return self.render_to_response(context)
@@ -37,8 +37,11 @@ class CommunityView(TemplateView):
         if not community:
             return redirect('ttn:new-community', search=slug)
         permissions = self._get_permissions(request.user, community)
+        gwkeys = ['lat', 'lon', 'rng', 'title', 'updated', 'created', 'status', 'kickstarter']
+        gws_filtered = [{key: getattr(c, key) for key in gwkeys} for c in community.gateways.all()]
         context = self.get_context_data(**kwargs)
         context['community'] = community
+        context['gateways'] = gws_filtered # js friendly
         context['permissions'] = permissions
         return self.render_to_response(context)
 
@@ -84,9 +87,11 @@ class MapView(TemplateView):
         gws = Gateway.objects.all()
         cskeys = ['lat', 'lon', 'scale', 'title', 'slug', 'image_url', 'published']
         cs_filtered = [{key: getattr(c, key) for key in cskeys} for c in cs]
+        gwkeys = ['lat', 'lon', 'rng', 'title', 'updated', 'created', 'status', 'kickstarter']
+        gws_filtered = [{key: getattr(c, key) for key in gwkeys} for c in gws]
         context = self.get_context_data(**kwargs)
         context['communities'] = cs_filtered
-        context['gateways'] = gws
+        context['gateways'] = gws_filtered
         return self.render_to_response(context)
 
 
